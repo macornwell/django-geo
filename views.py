@@ -5,10 +5,10 @@ from dal import autocomplete
 from rest_framework import generics, permissions
 from rest_framework.decorators import api_view, APIView
 from rest_framework.response import Response
-from openfruit.geography.serializers import LocationSerializer
-from openfruit.geography.services import GEO_DAL
+from django_geo.serializers import LocationSerializer
+from django_geo.services import GEO_DAL
 
-from openfruit.geography.models import Location, City, Zipcode, GeoCoordinate, UserLocation
+from django_geo.models import Location, City, Zipcode, GeoCoordinate, UserLocation
 
 
 class UsersLocationAutocomplete(autocomplete.Select2QuerySetView):
