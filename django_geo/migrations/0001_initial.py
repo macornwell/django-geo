@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 ('country_id', models.AutoField(serialize=False, primary_key=True)),
                 ('name', models.CharField(max_length=50, unique=True)),
                 ('abbreviation', models.CharField(max_length=2, unique=True)),
-                ('continent', models.ForeignKey(to='geography.Continent')),
+                ('continent', models.ForeignKey(to='django_geo.Continent')),
             ],
         ),
         migrations.CreateModel(
@@ -53,9 +53,9 @@ class Migration(migrations.Migration):
                 ('location_id', models.AutoField(serialize=False, primary_key=True)),
                 ('name', models.CharField(null=True, max_length=30, blank=True)),
                 ('generated_name', models.CharField(null=True, max_length=50, blank=True)),
-                ('city', models.ForeignKey(null=True, to='geography.City', blank=True)),
-                ('country', models.ForeignKey(to='geography.Country')),
-                ('geocoordinate', models.ForeignKey(null=True, to='geography.GeoCoordinate', help_text='This is a very specific location.', blank=True)),
+                ('city', models.ForeignKey(null=True, to='django_geo.City', blank=True)),
+                ('country', models.ForeignKey(to='django_geo.Country')),
+                ('geocoordinate', models.ForeignKey(null=True, to='django_geo.GeoCoordinate', help_text='This is a very specific location.', blank=True)),
             ],
         ),
         migrations.CreateModel(
@@ -65,15 +65,15 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=50, unique=True)),
                 ('abbreviation', models.CharField(max_length=2, unique=True)),
                 ('generated_name', models.CharField(null=True, max_length=50, blank=True)),
-                ('country', models.ForeignKey(to='geography.Country')),
-                ('geocoordinate', models.ForeignKey(to='geography.GeoCoordinate')),
+                ('country', models.ForeignKey(to='django_geo.Country')),
+                ('geocoordinate', models.ForeignKey(to='django_geo.GeoCoordinate')),
             ],
         ),
         migrations.CreateModel(
             name='UserGeographySettings',
             fields=[
                 ('user_geography_settings_id', models.AutoField(serialize=False, primary_key=True)),
-                ('location', models.ForeignKey(to='geography.Location')),
+                ('location', models.ForeignKey(to='django_geo.Location')),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
         ),
@@ -82,7 +82,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('user_location_id', models.AutoField(serialize=False, primary_key=True)),
                 ('last_used', models.DateTimeField(default=datetime.datetime.now, blank=True)),
-                ('location', models.ForeignKey(to='geography.Location')),
+                ('location', models.ForeignKey(to='django_geo.Location')),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -96,19 +96,19 @@ class Migration(migrations.Migration):
                 ('zipcode', IntegerRangeField(unique=True)),
                 ('timezone', models.IntegerField()),
                 ('generated_name', models.CharField(null=True, max_length=50, blank=True)),
-                ('city', models.ForeignKey(to='geography.City')),
-                ('geocoordinate', models.ForeignKey(to='geography.GeoCoordinate')),
+                ('city', models.ForeignKey(to='django_geo.City')),
+                ('geocoordinate', models.ForeignKey(to='django_geo.GeoCoordinate')),
             ],
         ),
         migrations.AddField(
             model_name='location',
             name='state',
-            field=models.ForeignKey(null=True, to='geography.State', blank=True),
+            field=models.ForeignKey(null=True, to='django_geo.State', blank=True),
         ),
         migrations.AddField(
             model_name='location',
             name='zipcode',
-            field=models.ForeignKey(null=True, to='geography.Zipcode', blank=True),
+            field=models.ForeignKey(null=True, to='django_geo.Zipcode', blank=True),
         ),
         migrations.AlterUniqueTogether(
             name='geocoordinate',
@@ -117,17 +117,17 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='country',
             name='geocoordinate',
-            field=models.ForeignKey(to='geography.GeoCoordinate'),
+            field=models.ForeignKey(to='django_geo.GeoCoordinate'),
         ),
         migrations.AddField(
             model_name='city',
             name='geocoordinate',
-            field=models.ForeignKey(to='geography.GeoCoordinate'),
+            field=models.ForeignKey(to='django_geo.GeoCoordinate'),
         ),
         migrations.AddField(
             model_name='city',
             name='state',
-            field=models.ForeignKey(to='geography.State'),
+            field=models.ForeignKey(to='django_geo.State'),
         ),
         migrations.AlterUniqueTogether(
             name='zipcode',
