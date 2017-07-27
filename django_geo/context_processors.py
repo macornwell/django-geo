@@ -1,5 +1,5 @@
 from django.conf import settings
-from openfruit.geography.services import GEO_DAL
+from django_geo.services import GEO_DAL
 
 
 def google_maps_api_key(request):
