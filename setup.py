@@ -16,7 +16,7 @@ setup(
     description='A Django app for enabling geo capabilities.',
     long_description=README,
     author='Mike Cornwell',
-    install_requires=['django', 'djangorestframework', 'django_autocomplete_light'],
+    install_requires=['django', 'djangorestframework', 'django_autocomplete_light', 'six'],
     author_email='mike@mikecornwell.com',
     classifiers=[
         'Environment :: Web Environment',
