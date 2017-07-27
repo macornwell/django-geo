@@ -8,7 +8,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('geography', '0003_userlocation_user_created'),
+        ('django_geo', '0003_userlocation_user_created'),
     ]
 
     operations = [

@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('geography', '0001_initial'),
+        ('django_geo', '0001_initial'),
     ]
 
     operations = [
