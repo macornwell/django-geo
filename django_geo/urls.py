@@ -1,28 +1,38 @@
 from django_geo import views
-from django_geo.views import LocationAutocomplete, ZipcodeAutocomplete, CityAutocomplete, GeoCoordinateAutocomplete, NamedLocationAutocomplete, PublicLocationsAutocomplete, LocationList
 from django.conf.urls import url
 
 
 urlpatterns = [
     url('^autocomplete/named-location/$',
-        NamedLocationAutocomplete.as_view(),
+        views.NamedLocationAutocomplete.as_view(),
         name='named-location-autocomplete'),
     url('^autocomplete/location/$',
-        LocationAutocomplete.as_view(),
+        views.LocationAutocomplete.as_view(),
         name='location-autocomplete'),
     url('^autocomplete/public-locations/$',
-        PublicLocationsAutocomplete.as_view(),
+        views.PublicLocationsAutocomplete.as_view(),
         name='public-locations-autocomplete'),
     url('^autocomplete/zipcode/$',
-        ZipcodeAutocomplete.as_view(),
+        views.ZipcodeAutocomplete.as_view(),
         name='zipcode-autocomplete'),
     url('^autocomplete/city/$',
-        CityAutocomplete.as_view(),
+        views.CityAutocomplete.as_view(),
         name='city-autocomplete'),
     url('^autocomplete/geocoordinate/$',
-        GeoCoordinateAutocomplete.as_view(),
+        views.GeoCoordinateAutocomplete.as_view(),
         name='geocoordinate-autocomplete'),
 
     url(r'^api/v1/location/(?P<pk>[0-9]+)/$', views.LocationDetail.as_view(), name='location-detail'),
-    url(r'^api/v1/location/', LocationList.as_view(), name='location-list'),
+    url(r'^api/v1/location/', views.LocationList.as_view(), name='location-list'),
+
+    url(r'^api/v1/geocoordinate/', views.GeoCoordinateList.as_view(), name='geocoordinate-list'),
+    url(r'^api/v1/geocoordinate/(?P<pk>\d+)/$', views.GeoCoordinateDetails.as_view(), name='geocoordinate-details'),
+    url(r'^api/v1/continent/', views.ContinentList.as_view(), name='continent-list'),
+    url(r'^api/v1/continent/(?P<pk>\d+)/$', views.ContinentDetails.as_view(), name='continent-details'),
+    url(r'^api/v1/country/', views.CountryList.as_view(), name='country-list'),
+    url(r'^api/v1/country/(?P<pk>\d+)/$', views.CountryDetails.as_view(), name='country-details'),
+    url(r'^api/v1/state/', views.StateList.as_view(), name='state-list'),
+    url(r'^api/v1/state/(?P<pk>\d+)/$', views.StateDetails.as_view(), name='state-details'),
+    url(r'^api/v1/zipcode/', views.ZipcodeList.as_view(), name='zipcode-list'),
+    url(r'^api/v1/zipcode/(?P<pk>\d+)/$', views.ZipcodeDetails.as_view(), name='zipcode-details'),
 ]
