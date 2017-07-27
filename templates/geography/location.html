@@ -1,0 +1,106 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+<div class="locator">
+    <h3>Select Location</h3>
+    <div class="settings-coordinate">
+        <div>
+            <p>Current: {{ USER_GEO.location }}</p>
+        </div>
+        <span data-toggle="collapse" class="collapsed" data-target="#custom-location">
+            <input type="checkbox" data-on="Use Custom" data-off="Use Current" data-toggle="toggle"
+                   value="Use Custom"></span>
+        <div id="custom-location" class="collapse">
+            <div>
+                <p>New: <span id="new-lat-lon"></span></p>
+            </div>
+            <br>
+            <h3>Previously Selected</h3>
+            <select class="form-control">
+                {% for location in PREVIOUS_LOCATIONS %}
+                    <option>{{ location }}</option>
+                {% endfor %}
+            </select>
+            <h3>Select New</h3>
+            <div class="contrast-banner text-center">
+                <label class="radio-inline">
+                    <input class="custom-radio large-radio" id="custom-radio-button" type="radio" name="custom" value="map" data-target="#custom-map">Map<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                </label>
+                <label class="radio-inline ">
+                    <input class="custom-radio large-radio" type="radio" name="custom" value="location" data-target="#custom-zipcode">Location (Choose the Most Specific)
+                </label>
+            </div>
+
+            <div id="custom-map" hidden>
+                <div class="google-map" id="map"></div>
+            </div>
+            <div id="custom-zipcode" class="form-group" hidden>
+                <label>Select Location</label>
+                {{ LOCATION_FORM|crispy }}
+            </div>
+            <div id="custom-city" hidden>
+                <label>Search City</label>
+                <input class="form-control" type="text" placeholder="City, ST">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}"></script>
+<script>
+    $(document).ready(function(){
+        var newLatLonSpan = $('#new-lat-lon');
+
+        var setupRadio = function(){
+            var radioCollapses = $('.custom-radio');
+            var radioToHidden = [];
+            radioCollapses.each(function(){
+                var thisObj = $(this);
+                var target = $(thisObj.attr('data-target'));
+                radioToHidden.push([thisObj, target]);
+            });
+
+            radioCollapses.on("change", function(){
+                for (var index in radioToHidden){
+                    var keyPair = radioToHidden[index];
+                    var key = keyPair[0];
+                    var target = keyPair[1];
+                    if (key.is(':checked')){
+                        target.show();
+                    }
+                    else{
+                        target.hide();
+                    }
+                }
+            });
+        };
+        setupRadio();
+
+        $('#custom-radio-button').on('click', function(){
+            var initMap = function() {
+            var mapCenter = { lat: {{ USER_GEO.lat }}, lng: {{ USER_GEO.lon }}};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 6,
+                center: mapCenter
+            });
+            var marker = new google.maps.Marker({
+                position: mapCenter,
+                draggable: true,
+                map: map,
+                title: "Select Location"
+            });
+            google.maps.event.addListener(marker, 'dragend', function () {
+                var position = marker.getPosition();
+                newLatLonSpan.html('' + parseFloat(position.lat()).toFixed(5) + ' ' + parseFloat(position.lng()).toFixed(5));
+            });
+        };
+        initMap();
+        setTimeout(function(){
+            google.maps.event.trigger(map, 'resize');
+        }, 1000);
+        });
+        newLatLonSpan.html('' + {{ USER_GEO.lat }} + ' ' + {{ USER_GEO.lon }});
+    });
+</script>
+<script type="text/javascript" src="{% static 'admin/js/jquery.init.js' %}"></script>
+
+{{ LOCATION_FORM.media }}
