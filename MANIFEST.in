@@ -1,5 +1,3 @@
 include LICENSE
 include README.md
-recursive-include django_geo/*
-recursive-include django_geo/*.csv
-recursive-include django_geo/*.sql
+recursive-include django_geo/ * *.csv *.sql
