@@ -10,7 +10,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='django_geo',
     version='0.1',
-    packages=find_packages(),
+    packages=['django_geo'],
     include_package_data=True,
     license='GPLv3',  
     description='A Django app for enabling geo capabilities.',
