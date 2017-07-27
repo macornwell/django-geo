@@ -2,10 +2,19 @@ from decimal import Decimal
 from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
-from auditlog.registry import auditlog
-from openfruit.common.models import IntegerRangeField
-from openfruit.geography.managers import LocationManager, GeoCoordinateManager
-from openfruit.geography.utilities import get_standardized_coordinate
+from django_geo.managers import LocationManager, GeoCoordinateManager
+from django_geo.utilities import get_standardized_coordinate
+
+
+class IntegerRangeField(models.IntegerField):
+    def __init__(self, verbose_name=None, name=None, min_value=None, max_value=None, **kwargs):
+        self.min_value, self.max_value = min_value, max_value
+        models.IntegerField.__init__(self, verbose_name, name, **kwargs)
+
+    def formfield(self, **kwargs):
+        defaults = {'min_value': self.min_value, 'max_value':self.max_value}
+        defaults.update(kwargs)
+        return super(IntegerRangeField, self).formfield(**defaults)
 
 
 class GeoCoordinate(models.Model):
@@ -231,14 +240,3 @@ class UserLocation(models.Model):
     class Meta:
         ordering = ('last_used',)
         unique_together = ('user', 'location')
-
-
-
-
-
-auditlog.register(Continent)
-auditlog.register(Country)
-auditlog.register(City)
-auditlog.register(State)
-auditlog.register(Location)
-auditlog.register(Zipcode)
