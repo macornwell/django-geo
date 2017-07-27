@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.shortcuts import Http404
 from dal import autocomplete
 
-from rest_framework import generics, permissions, mixins
+from rest_framework import generics, permissions, mixins, filters
 from rest_framework.decorators import api_view, APIView
 from rest_framework.response import Response
 from django_geo import serializers
@@ -133,6 +133,7 @@ class ContinentList(mixins.ListModelMixin,
                   generics.GenericAPIView):
     queryset = Continent.objects.all()
     serializer_class = serializers.ContinentSerializer
+    filter_fields =  ('name', )
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -151,6 +152,7 @@ class CountryList(mixins.ListModelMixin,
                     generics.GenericAPIView):
     queryset = Country.objects.all()
     serializer_class = serializers.CountrySerializer
+    filter_fields =  ('continent__continent_id', 'name', 'abbreviation')
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -169,6 +171,7 @@ class StateList(mixins.ListModelMixin,
                 generics.GenericAPIView):
     queryset = State.objects.all()
     serializer_class = serializers.StateSerializer
+    filter_fields =  ('country__country_id', 'name')
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -187,6 +190,7 @@ class CityList(mixins.ListModelMixin,
                 generics.GenericAPIView):
     queryset = City.objects.all()
     serializer_class = serializers.CitySerializer
+    filter_fields =  ('state__state_id', 'name')
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -196,6 +200,7 @@ class CityDetails(mixins.RetrieveModelMixin,
                    generics.GenericAPIView):
     queryset = City.objects.all()
     serializer_class = serializers.CitySerializer
+    filter_fields =  ('country__country_id', 'name', '')
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
@@ -205,6 +210,8 @@ class ZipcodeList(mixins.ListModelMixin,
                generics.GenericAPIView):
     queryset = Zipcode.objects.all()
     serializer_class = serializers.ZipcodeSerializer
+    filter_fields =  ('zipcode', 'city__city_id')
+
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -235,3 +242,4 @@ class GeoCoordinateDetails(mixins.RetrieveModelMixin,
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
+
