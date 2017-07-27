@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from openfruit.geography.models import Location, City, Continent, Country, \
+from django_geo.models import Location, City, Continent, Country, \
     State, GeoCoordinate, UserLocation
-from openfruit.geography.forms import UserLocationForm, LocationForm, CityForm, GeocoordinateForm
+from django_geo.forms import UserLocationForm, LocationForm, CityForm, GeocoordinateForm
 
 
 class UserLocationAdmin(admin.ModelAdmin):
