@@ -22,7 +22,15 @@ autocomplete_urls = [
         name='geocoordinate-autocomplete'),
 ]
 
-model_details_urls = [
+model_urls = [
+    url(r'^api/v1/geocoordinate/(?P<pk>\d+)/$', views.GeoCoordinateDetails.as_view(), name='geocoordinate-detail'),
+    url(r'^api/v1/continent/(?P<pk>\d+)/$', views.ContinentDetails.as_view(), name='continent-detail'),
+    url(r'^api/v1/country/(?P<pk>\d+)/$', views.CountryDetails.as_view(), name='country-detail'),
+    url(r'^api/v1/state/(?P<pk>\d+)/$', views.StateDetails.as_view(), name='state-detail'),
+    url(r'^api/v1/city/(?P<pk>\d+)/$', views.CityDetails.as_view(), name='city-detail'),
+    url(r'^api/v1/zipcode/(?P<pk>\d+)/$', views.ZipcodeDetails.as_view(), name='zipcode-detail'),
+    url(r'^api/v1/location/(?P<pk>[0-9]+)/$', views.LocationDetail.as_view(), name='location-detail'),
+
     url(r'^api/v1/geocoordinate/', views.GeoCoordinateList.as_view(), name='geocoordinate-list'),
     url(r'^api/v1/continent/', views.ContinentList.as_view(), name='continent-list'),
     url(r'^api/v1/country/', views.CountryList.as_view(), name='country-list'),
@@ -32,12 +40,3 @@ model_details_urls = [
     url(r'^api/v1/location/', views.LocationList.as_view(), name='location-list'),
 ]
 
-model_list_urls = [
-    url(r'^api/v1/geocoordinate/(?P<pk>\d+)/$', views.GeoCoordinateDetails.as_view(), name='geocoordinate-detail'),
-    url(r'^api/v1/continent/(?P<pk>\d+)/$', views.ContinentDetails.as_view(), name='continent-detail'),
-    url(r'^api/v1/country/(?P<pk>\d+)/$', views.CountryDetails.as_view(), name='country-detail'),
-    url(r'^api/v1/state/(?P<pk>\d+)/$', views.StateDetails.as_view(), name='state-detail'),
-    url(r'^api/v1/city/(?P<pk>\d+)/$', views.CityDetails.as_view(), name='city-detail'),
-    url(r'^api/v1/zipcode/(?P<pk>\d+)/$', views.ZipcodeDetails.as_view(), name='zipcode-detail'),
-    url(r'^api/v1/location/(?P<pk>[0-9]+)/$', views.LocationDetail.as_view(), name='location-detail'),
-]
