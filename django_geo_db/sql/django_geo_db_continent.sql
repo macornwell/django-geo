@@ -1,0 +1,11 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE "django_geo_db_continent" ("continent_id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL UNIQUE);
+INSERT INTO "django_geo_db_continent" VALUES(1,'Asia');
+INSERT INTO "django_geo_db_continent" VALUES(2,'Europe');
+INSERT INTO "django_geo_db_continent" VALUES(3,'Africa');
+INSERT INTO "django_geo_db_continent" VALUES(4,'Oceania');
+INSERT INTO "django_geo_db_continent" VALUES(5,'North America');
+INSERT INTO "django_geo_db_continent" VALUES(6,'South America');
+INSERT INTO "django_geo_db_continent" VALUES(7,'Australia');
+COMMIT;
