@@ -1,0 +1,4 @@
+django
+djangorestframework
+django_autocomplete_light
+six
