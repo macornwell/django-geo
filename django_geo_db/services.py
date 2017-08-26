@@ -8,6 +8,10 @@ COUNTRIES_FILE = 'countries.csv'
 
 class GeographyDAL:
 
+    def get_country_by_name(self, name):
+        country = Country.objects.filter(name__iexact=name).first()
+        return country
+
     def get_all_named_locations(self, include_private=False):
         objects = Location.objects.filter(name__isnull=False)
         if not include_private:

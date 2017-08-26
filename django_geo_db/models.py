@@ -24,12 +24,28 @@ class GeoCoordinate(models.Model):
     lon = models.DecimalField(max_digits=8, decimal_places=5)
     generated_name = models.CharField(max_length=50, blank=True, null=True)
 
+    lat_neg = models.BooleanField(default=False)
+    lat_tens = IntegerRangeField(min_value=-9, max_value=9, blank=True, null=True)
+    lat_ones = IntegerRangeField(min_value=0, max_value=9, blank=True, null=True)
+    lat_tenths = IntegerRangeField(min_value=0, max_value=9, blank=True, null=True)
+    lat_hundredths = IntegerRangeField(min_value=0, max_value=9, blank=True, null=True)
+    lat_thousands = IntegerRangeField(min_value=-0, max_value=9, blank=True, null=True)
+
+    lon_neg = models.BooleanField(default=False)
+    lon_hundreds = IntegerRangeField(min_value=-9, max_value=9, blank=True, null=True)
+    lon_tens = IntegerRangeField(min_value=-0, max_value=9, blank=True, null=True)
+    lon_ones = IntegerRangeField(min_value=0, max_value=9, blank=True, null=True)
+    lon_tenths = IntegerRangeField(min_value=0, max_value=9, blank=True, null=True)
+    lon_hundredths = IntegerRangeField(min_value=0, max_value=9, blank=True, null=True)
+    lon_thousands = IntegerRangeField(min_value=-0, max_value=9, blank=True, null=True)
+
     def __str__(self):
         return self.generated_name or self.__get_generated_name()
 
     def save(self, *args, **kwargs):
         self.__standardize_fractionals()
         self.generated_name = self.__get_generated_name()
+        self.__generate_whole_fractionals()
         super(GeoCoordinate, self).save(*args, **kwargs)
 
     def __get_generated_name(self):
@@ -38,6 +54,71 @@ class GeoCoordinate(models.Model):
     def __standardize_fractionals(self):
         self.lat = get_standardized_coordinate(self.lat)
         self.lon = get_standardized_coordinate(self.lon)
+
+    def __generate_whole_fractionals(self):
+        try:
+            self.lat_neg, self.lat_tens, self.lat_ones, self.lat_tenths, self.lat_hundredths, self.lat_thousands, other, other2 = GeoCoordinate.split_lat_coordinate(self.lat)
+        except:
+            message = '{0} {1}'.format(self.lat, GeoCoordinate.split_lat_coordinate(self.lat))
+            raise Exception(message)
+        try:
+            self.lon_neg, self.lon_hundreds, self.lon_tens, self.lon_ones, self.lon_tenths, self.lon_hundredths, self.lon_thousands, other, other2 = GeoCoordinate.split_lon_coordinate(self.lon)
+        except:
+            message = '{0} {1}'.format(self.lon, GeoCoordinate.split_lon_coordinate(self.lon))
+            raise Exception(message)
+
+    @staticmethod
+    def __split_frac(frac):
+        coord_points = []
+        for i in range(0, len(frac)):
+            coord_points.append(int(frac[i]))
+        return coord_points
+
+    @staticmethod
+    def split_lat_coordinate(coordinate):
+        coord_points = []
+        whole, frac = str(coordinate).split('.', 1)
+        is_negative = whole[0] is '-'
+        if is_negative:
+            whole = whole[1:]
+            coord_points.append(True)
+        else:
+            coord_points.append(False)
+        whole = '{0:02d}'.format(int(whole))
+        if whole[0] == '0':
+            coord_points.append(0)
+            coord_points.append(int(whole[1]))
+        else:
+            coord_points.append(int(whole[0]))
+            coord_points.append(int(whole[1]))
+        coord_points += GeoCoordinate.__split_frac(frac)
+        return coord_points
+
+    @staticmethod
+    def split_lon_coordinate(coordinate):
+        coord_points = []
+        whole, frac = str(coordinate).split('.', 1)
+        is_negative = whole[0] is '-'
+        if is_negative:
+            whole = whole[1:]
+            coord_points.append(True)
+        else:
+            coord_points.append(False)
+        whole = '{0:03d}'.format(int(whole))
+        if whole[0] == '0':
+            coord_points.append(0)
+            if whole[1] == '0':
+                coord_points.append(0)
+            else:
+                coord_points.append(int(whole[1]))
+            coord_points.append(int(whole[2]))
+        else:
+            coord_points.append(int(whole[0]))
+            coord_points.append(int(whole[1]))
+            coord_points.append(int(whole[2]))
+        coord_points += GeoCoordinate.__split_frac(frac)
+        return coord_points
+
 
     class Meta:
         unique_together = ('lat', 'lon')
