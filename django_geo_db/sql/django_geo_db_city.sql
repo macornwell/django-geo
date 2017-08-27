@@ -1,6 +1,6 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
-CREATE TABLE "django_geo_db_city" ("city_id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL, "generated_name" varchar(50) NULL, "geocoordinate_id" integer NOT NULL REFERENCES "django_geo_db_geocoordinate" ("geocoordinate_id"), "state_id" integer NOT NULL REFERENCES "django_geo_db_state" ("state_id"), UNIQUE ("state_id", "name"));
+CREATE TABLE "django_geo_db_city" ("city_id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL, "generated_name" varchar(50) NULL, "geocoordinate_id" integer NOT NULL REFERENCES "django_geo_db_geocoordinate" ("geocoordinate_id"), "state_id" integer NOT NULL REFERENCES "django_geo_db_state" ("state_id"));
 INSERT INTO "django_geo_db_city" VALUES(1,'Portsmouth','Portsmouth, New Hampshire',294,29);
 INSERT INTO "django_geo_db_city" VALUES(2,'Holtsville','Holtsville, New York',295,32);
 INSERT INTO "django_geo_db_city" VALUES(3,'Adjuntas','Adjuntas, Puero Rico',296,47);
@@ -30347,6 +30347,7 @@ INSERT INTO "django_geo_db_city" VALUES(30343,'Metlakatla','Metlakatla, Alaska',
 INSERT INTO "django_geo_db_city" VALUES(30344,'Point Baker','Point Baker, Alaska',37871,2);
 INSERT INTO "django_geo_db_city" VALUES(30345,'Ward Cove','Ward Cove, Alaska',37872,2);
 INSERT INTO "django_geo_db_city" VALUES(30346,'Wrangell','Wrangell, Alaska',37873,2);
-CREATE INDEX "django_geo_db_city_c2ff64a1" ON "django_geo_db_city" ("geocoordinate_id");
-CREATE INDEX "django_geo_db_city_d5582625" ON "django_geo_db_city" ("state_id");
+CREATE INDEX "django_geo_db_city_geocoordinate_id_7c43548f" ON "django_geo_db_city" ("geocoordinate_id");
+CREATE INDEX "django_geo_db_city_state_id_feb1d19c" ON "django_geo_db_city" ("state_id");
+CREATE UNIQUE INDEX "django_geo_db_city_state_id_name_908fc533_uniq" ON "django_geo_db_city" ("state_id", "name");
 COMMIT;

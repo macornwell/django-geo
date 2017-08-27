@@ -92,6 +92,9 @@ class GeoCoordinate(models.Model):
             coord_points.append(int(whole[0]))
             coord_points.append(int(whole[1]))
         coord_points += GeoCoordinate.__split_frac(frac)
+        zeros_to_add = 8 - len(coord_points)
+        for i in range(0, zeros_to_add):
+            coord_points.append(0)
         return coord_points
 
     @staticmethod
@@ -117,6 +120,9 @@ class GeoCoordinate(models.Model):
             coord_points.append(int(whole[1]))
             coord_points.append(int(whole[2]))
         coord_points += GeoCoordinate.__split_frac(frac)
+        zeros_to_add = 9 - len(coord_points)
+        for i in range(0, zeros_to_add):
+            coord_points.append(0)
         return coord_points
 
 
