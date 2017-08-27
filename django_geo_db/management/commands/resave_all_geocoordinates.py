@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from openfruit.geography.models import GeoCoordinate
+from django_geo_db.models import GeoCoordinate
 from django.db.transaction import atomic
 
 
