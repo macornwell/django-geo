@@ -66,7 +66,7 @@ def generate_current_us_states_list():
     :return:
     """
     module_dir = os.path.dirname(__file__)  # get current directory
-    file_path = os.path.join(module_dir, US_STATES_FILE)
+    file_path = os.path.join(module_dir, 'data', US_STATES_FILE)
     with open(file_path) as file:
         reader = csv.DictReader(file)
         for row in reader:
@@ -84,7 +84,7 @@ def generate_current_us_cities_list():
     :return:
     """
     module_dir = os.path.dirname(__file__)  # get current directory
-    file_path = os.path.join(module_dir, US_CITIES_FILE)
+    file_path = os.path.join(module_dir, 'data', US_CITIES_FILE)
     with open(file_path) as file:
         reader = csv.DictReader(file)
         for row in reader:
@@ -104,7 +104,7 @@ def generate_countries():
     :return:
     """
     module_dir = os.path.dirname(__file__)  # get current directory
-    file_path = os.path.join(module_dir, COUNTRIES_FILE)
+    file_path = os.path.join(module_dir, 'data', COUNTRIES_FILE)
     with open(file_path) as file:
         reader = csv.DictReader(file)
         for row in reader:
