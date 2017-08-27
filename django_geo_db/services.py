@@ -46,7 +46,7 @@ class GeographyDAL:
         import googlemaps
         from django.conf import settings
         gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
-        reverse_geocode_result = gmaps.reverse_geocode((40.714224, -73.961452))
+        reverse_geocode_result = gmaps.reverse_geocode((lat, lon))
         zipcodeObj = None
         for index in range(0, len(reverse_geocode_result[0]['address_components'])):
             obj = reverse_geocode_result[0]['address_components']

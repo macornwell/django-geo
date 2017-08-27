@@ -1,6 +1,6 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
-CREATE TABLE "django_geo_db_state" ("state_id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL UNIQUE, "abbreviation" varchar(2) NOT NULL UNIQUE, "generated_name" varchar(50) NULL, "country_id" integer NOT NULL REFERENCES "django_geo_db_country" ("country_id"), "geocoordinate_id" integer NOT NULL REFERENCES "django_geo_db_geocoordinate" ("geocoordinate_id"), UNIQUE ("country_id", "name"));
+CREATE TABLE "django_geo_db_state" ("state_id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL UNIQUE, "abbreviation" varchar(2) NOT NULL UNIQUE, "generated_name" varchar(50) NULL, "country_id" integer NOT NULL REFERENCES "django_geo_db_country" ("country_id"), "geocoordinate_id" integer NOT NULL REFERENCES "django_geo_db_geocoordinate" ("geocoordinate_id"));
 INSERT INTO "django_geo_db_state" VALUES(1,'Alabama','AL','Alabama, US',222,235);
 INSERT INTO "django_geo_db_state" VALUES(2,'Alaska','AK','Alaska, US',222,236);
 INSERT INTO "django_geo_db_state" VALUES(3,'Arizona','AZ','Arizona, US',222,237);
@@ -60,6 +60,7 @@ INSERT INTO "django_geo_db_state" VALUES(56,'Washington','WA','Washington, US',2
 INSERT INTO "django_geo_db_state" VALUES(57,'West Virginia','WV','West Virginia, US',222,291);
 INSERT INTO "django_geo_db_state" VALUES(58,'Wisconsin','WI','Wisconsin, US',222,292);
 INSERT INTO "django_geo_db_state" VALUES(59,'Wyoming','WY','Wyoming, US',222,293);
-CREATE INDEX "django_geo_db_state_93bfec8a" ON "django_geo_db_state" ("country_id");
-CREATE INDEX "django_geo_db_state_c2ff64a1" ON "django_geo_db_state" ("geocoordinate_id");
+CREATE INDEX "django_geo_db_state_country_id_52369e64" ON "django_geo_db_state" ("country_id");
+CREATE INDEX "django_geo_db_state_geocoordinate_id_6ae4044a" ON "django_geo_db_state" ("geocoordinate_id");
+CREATE UNIQUE INDEX "django_geo_db_state_country_id_name_a564ed4b_uniq" ON "django_geo_db_state" ("country_id", "name");
 COMMIT;
