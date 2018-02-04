@@ -8,7 +8,3 @@ class GeoCoordinateManager(models.Manager):
         return super(GeoCoordinateManager, self).get_or_create(lat=lat, lon=lon)
 
 
-class LocationManager(models.Manager):
-
-    def public_locations(self):
-        return super(LocationManager, self).filter(name__isnull=False, is_private=False)
