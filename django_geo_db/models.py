@@ -2,7 +2,7 @@ from decimal import Decimal
 from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
-from django_geo_db.managers import LocationManager, GeoCoordinateManager
+from django_geo_db.managers import GeoCoordinateManager
 from django_geo_db.utilities import get_standardized_coordinate
 
 
@@ -221,7 +221,6 @@ class Location(models.Model):
     It is a cascading of Locational information that gets more detailed depending on
     what level of granularity is desired, the minimum being a country.
     """
-    objects = LocationManager()
     location_id = models.AutoField(primary_key=True)
     country = models.ForeignKey(Country)
     state = models.ForeignKey(State, blank=True, null=True)
@@ -229,7 +228,6 @@ class Location(models.Model):
     zipcode = models.ForeignKey(Zipcode, blank=True, null=True)
     geocoordinate = models.ForeignKey(GeoCoordinate, blank=True, null=True, help_text='This is a very specific location.')
     name = models.CharField(max_length=30, blank=True, null=True)
-    is_private = models.BooleanField(default=False, help_text='Is this a location that should not be available to be seen publically?')
     generated_name = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):

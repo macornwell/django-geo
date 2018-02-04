@@ -1,3 +1,8 @@
 include LICENSE
 include README.md
-recursive-include django_geo_db/ * *.csv *.sql *.js *.coffeescript *.map *.sh
+recursive-include django_geo_db/* *.csv *.sql 
+recursive-include django_geo_db/sql *.sql 
+recursive-include django_geo_db/scripts *.sh
+recursive-include django_geo_db/data *.csv
+recursive-include django_geo_db/static/js/django_geo_db *.js *.coffeescript *.map
+recursive-include django_geo_db/templates/django_geo_db *.html

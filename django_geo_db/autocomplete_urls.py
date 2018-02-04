@@ -1,7 +1,7 @@
-from django_geo_db import autocomplete_views
+from django_geo_db import autocomplete_views as views
 from django.conf.urls import url
 
-autocomplete_urls = [
+urlpatterns = [
     url('^autocomplete/named-location/$',
         views.NamedLocationAutocomplete.as_view(),
         name='named-location-autocomplete'),
