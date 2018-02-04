@@ -105,14 +105,14 @@ class Command(BaseCommand):
             try:
                 geoCoordinate = self.__get_geocoordinate(lat, lon)
                 keyFound = False
-                key = '{0}-{1}'.format(state, city)
+                key = '{0}-{1}'.format(state, city).lower()
                 if key not in uniqueCities:
                     uniqueCities.add(key)
                     cityObj = City.objects.create(state=stateObj, name=city, geocoordinate=geoCoordinate)
                     Location.objects.create(country=usCountry, state=stateObj, city=cityObj)
                     keyFound = False
                 if not cityObj:
-                    cityObj = City.objects.get(state=stateObj, name=city)
+                    cityObj = City.objects.get(state=stateObj, name__iexact=city)
                     keyFound = True
                 zipObj = Zipcode.objects.create(city=cityObj, zipcode=zip, geocoordinate=geoCoordinate, timezone=timezone)
                 if stateObj != cityObj.state:
@@ -125,9 +125,9 @@ class Command(BaseCommand):
                 print('Key: ' + str(key))
                 raise Exception('Exception occurred while processing Zipcode {0}'.format(zip))
         for zip, lat, lon, city, state, timezone in noLat:
-            key = '{0}-{1}'.format(state, city)
+            key = '{0}-{1}'.format(state, city).lower()
             stateObj = stateDict[state]
-            cityObj = City.objects.filter(state=stateObj, name=city).first()
+            cityObj = City.objects.filter(state=stateObj, name__iexact=city).first()
             if not cityObj:
                 cityObj = City.objects.filter(state=stateObj).first()
             zipObj = Zipcode.objects.create(city=cityObj, zipcode=zip, geocoordinate=cityObj.geocoordinate, timezone=timezone)
