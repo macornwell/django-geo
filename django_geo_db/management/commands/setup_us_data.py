@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.core.management.base import BaseCommand
 from django_geo_db.models import City, Continent, Country, \
-    GeoCoordinate, State, Location, Zipcode
+    GeoCoordinate, State, Location, Zipcode, County
 from django_geo_db.services import generate_current_us_cities_list, generate_current_us_states_list, generate_countries
 from django_geo_db.utilities import get_standardized_coordinate
 
@@ -48,7 +48,7 @@ class Command(BaseCommand):
 
         print('Populating US Cities and Zips')
         start = datetime.now()
-        self.create_all_cities_and_zipcodes()
+        self.create_all_cities_counties_and_zipcodes()
         end = datetime.now()
         print('US Cities and Zips took {0} minutes.'.format(get_minutes(end - start)))
 
@@ -88,7 +88,7 @@ class Command(BaseCommand):
         Location.objects.bulk_create(locationList)
 
 
-    def create_all_cities_and_zipcodes(self):
+    def create_all_cities_counties_and_zipcodes(self):
         count = State.objects.all().count()
         stateDict = {}
         usCountry = Country.objects.get(name='United States of America')
@@ -96,23 +96,26 @@ class Command(BaseCommand):
             stateDict[state.abbreviation] = state
         uniqueCities = set()
         noLat = []
-        for zip, lat, lon, city, state, timezone in generate_current_us_cities_list():
+        for zip, lat, lon, city, county, state, timezone in generate_current_us_cities_list():
             if not lat:
-                noLat.append((zip, lat, lon, city, state, timezone))
+                noLat.append((zip, lat, lon, city, county, state, timezone))
                 continue
             stateObj = stateDict[state]
             cityObj = None
             try:
                 geoCoordinate = self.__get_geocoordinate(lat, lon)
                 keyFound = False
-                key = '{0}-{1}'.format(state, city).lower()
+                key = '{0}-{1}-{2}'.format(state, county, city).lower()
+                countyObj = County.objects.filter(state=stateObj, name=county).first()
+                if not countyObj:
+                    countyObj = County.objects.create(state=stateObj, name=county, geocoordinate=geoCoordinate)
                 if key not in uniqueCities:
                     uniqueCities.add(key)
-                    cityObj = City.objects.create(state=stateObj, name=city, geocoordinate=geoCoordinate)
-                    Location.objects.create(country=usCountry, state=stateObj, city=cityObj)
+                    cityObj = City.objects.create(state=stateObj, county=countyObj, name=city, geocoordinate=geoCoordinate)
+                    Location.objects.create(country=usCountry, state=stateObj, county=countyObj, city=cityObj)
                     keyFound = False
                 if not cityObj:
-                    cityObj = City.objects.get(state=stateObj, name__iexact=city)
+                    cityObj = City.objects.get(state=stateObj, name__iexact=city, county=countyObj)
                     keyFound = True
                 zipObj = Zipcode.objects.create(city=cityObj, zipcode=zip, geocoordinate=geoCoordinate, timezone=timezone)
                 if stateObj != cityObj.state:
@@ -124,12 +127,15 @@ class Command(BaseCommand):
                 print('State: ' + str(state))
                 print('Key: ' + str(key))
                 raise Exception('Exception occurred while processing Zipcode {0}'.format(zip))
-        for zip, lat, lon, city, state, timezone in noLat:
-            key = '{0}-{1}'.format(state, city).lower()
+        for zip, lat, lon, city, county, state, timezone in noLat:
+            key = '{0}-{1}-{2}'.format(state, county, city).lower()
             stateObj = stateDict[state]
             cityObj = City.objects.filter(state=stateObj, name__iexact=city).first()
+            countyObj = County.objects.filter(name__iexact=county).first()
             if not cityObj:
                 cityObj = City.objects.filter(state=stateObj).first()
+            if not countyObj:
+                countyObj = County.objects.create()
             zipObj = Zipcode.objects.create(city=cityObj, zipcode=zip, geocoordinate=cityObj.geocoordinate, timezone=timezone)
             Location.objects.create(country=usCountry, state=stateObj, city=cityObj, zipcode=zipObj)
 

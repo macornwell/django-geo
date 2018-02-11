@@ -33,6 +33,7 @@ class LocationForm(forms.ModelForm):
         widgets = {
             'zipcode': ModelSelect2(url='zipcode-autocomplete'),
             'city': ModelSelect2(url='city-autocomplete'),
+            'county': ModelSelect2(url='county-autocomplete'),
             'geocoordinate': ModelSelect2(url='geocoordinate-autocomplete'),
             }
         fields = '__all__'
@@ -45,6 +46,7 @@ class CityForm(forms.ModelForm):
         model = City
         widgets = {
             'zipcode': ModelSelect2(url='zipcode-autocomplete'),
+            'county': ModelSelect2(url='county-autocomplete'),
             }
         fields = '__all__'
 
