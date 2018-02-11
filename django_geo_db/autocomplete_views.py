@@ -82,7 +82,7 @@ class CityAutocomplete(autocomplete.Select2QuerySetView):
         return qs
 
 
-class CityAutocomplete(autocomplete.Select2QuerySetView):
+class CountyAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         if not self.request.user.is_authenticated():
             return County.objects.none()
