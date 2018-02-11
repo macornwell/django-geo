@@ -8,7 +8,7 @@
 sql_tables_directory=$1
 database=$2
 
-declare -a geotables=('django_geo_db_continent' 'django_geo_db_geocoordinate' 'django_geo_db_country' 'django_geo_db_zipcode' 'django_geo_db_state' 'django_geo_db_location' 'django_geo_db_city');
+declare -a geotables=('django_geo_db_continent' 'django_geo_db_geocoordinate' 'django_geo_db_country' 'django_geo_db_zipcode' 'django_geo_db_state' 'django_geo_db_location' 'django_geo_db_city' 'django_geo_db_county');
 # Drop Geo Tables
 for table in "${geotables[@]}"
 do
