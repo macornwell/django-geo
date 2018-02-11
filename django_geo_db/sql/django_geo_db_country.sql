@@ -235,6 +235,6 @@ INSERT INTO "django_geo_db_country" VALUES(231,'Western Sahara','EH',3,231);
 INSERT INTO "django_geo_db_country" VALUES(232,'Yemen','YE',1,232);
 INSERT INTO "django_geo_db_country" VALUES(233,'Zambia','ZM',3,233);
 INSERT INTO "django_geo_db_country" VALUES(234,'Zimbabwe','ZW',3,234);
-CREATE INDEX "django_geo_db_country_continent_id_644a3941" ON "django_geo_db_country" ("continent_id");
-CREATE INDEX "django_geo_db_country_geocoordinate_id_fbeb673f" ON "django_geo_db_country" ("geocoordinate_id");
+CREATE INDEX "django_geo_db_country_071e6d87" ON "django_geo_db_country" ("continent_id");
+CREATE INDEX "django_geo_db_country_c2ff64a1" ON "django_geo_db_country" ("geocoordinate_id");
 COMMIT;
