@@ -152,7 +152,7 @@ class Country(models.Model):
 class State(models.Model):
     state_id = models.AutoField(primary_key=True)
     country = models.ForeignKey(Country)
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50)
     abbreviation = models.CharField(max_length=2, unique=True)
     geocoordinate = models.ForeignKey(GeoCoordinate)
     generated_name = models.CharField(max_length=50, blank=True, null=True)
@@ -171,9 +171,31 @@ class State(models.Model):
         unique_together = (('country', 'name'),)
 
 
+class County(models.Model):
+    county_id = models.AutoField(primary_key=True)
+    state = models.ForeignKey(State)
+    name = models.CharField(max_length=50)
+    geocoordinate = models.ForeignKey(GeoCoordinate)
+    generated_name = models.CharField(max_length=50, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        self.generated_name = self.__get_generated_name()
+        return super(County, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.generated_name or self.__get_generated_name()
+
+    def __get_generated_name(self):
+        return str('{0}, {1}'.format(self.name, self.state.abbreviation))
+
+    class Meta:
+        unique_together = (('state', 'name'),)
+
+
 class City(models.Model):
     city_id = models.AutoField(primary_key=True)
     state = models.ForeignKey(State)
+    county = models.ForeignKey(County, blank=True, null=True)
     name = models.CharField(max_length=50)
     geocoordinate = models.ForeignKey(GeoCoordinate)
     generated_name = models.CharField(max_length=50, blank=True, null=True)
@@ -183,7 +205,7 @@ class City(models.Model):
         return super(City, self).save(*args, **kwargs)
 
     class Meta:
-        unique_together = (('state', 'name'),)
+        unique_together = (('state', 'name', 'county'),)
 
     def __str__(self):
         return self.generated_name or self.__get_generated_name()
@@ -224,6 +246,7 @@ class Location(models.Model):
     location_id = models.AutoField(primary_key=True)
     country = models.ForeignKey(Country)
     state = models.ForeignKey(State, blank=True, null=True)
+    county = models.ForeignKey(County, blank=True, null=True)
     city = models.ForeignKey(City, blank=True, null=True)
     zipcode = models.ForeignKey(Zipcode, blank=True, null=True)
     geocoordinate = models.ForeignKey(GeoCoordinate, blank=True, null=True, help_text='This is a very specific location.')
@@ -243,6 +266,8 @@ class Location(models.Model):
         obj = self.zipcode
         if not obj:
             obj = self.city
+        if not obj:
+            obj = self.county
         if not obj:
             obj = self.state
         if not obj:
@@ -267,18 +292,22 @@ class Location(models.Model):
     def __set_cascading_details(self):
         if self.zipcode and not self.city:
             self.city = self.zipcode.city
-        if self.city and not self.state:
-            self.country = self.city.state
+        if self.city and not self.county:
+            self.county = self.city.county
+        if self.county and not self.state:
+            self.state = self.county.state
         if self.state and not self.country:
             self.country = self.state.country
 
     def __validate_interconnection_details(self):
         if self.state and self.state.country != self.country:
             raise Exception("The state's country does not match the selected country.")
-        if self.city and self.city.state != self.state:
+        if self.city and self.city.county != self.county:
             raise Exception("City's state does not match the selected state.")
         if self.zipcode and self.zipcode.city != self.city:
             raise Exception("Zipcode's city does not match the selected city.")
+        if self.county and self.county.state != self.state:
+            raise Exception('County does not match the selected state')
         if self.name and not self.geocoordinate:
             raise Exception('Names must have a geocoordinate.')
         if not self.name and self.geocoordinate:

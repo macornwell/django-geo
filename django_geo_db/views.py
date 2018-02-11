@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from django_geo_db import serializers
 from django_geo_db.serializers import LocationSerializer
 from django_geo_db.services import GEO_DAL
-from django_geo_db.models import Continent, Country, State, Location, City, Zipcode, GeoCoordinate, UserLocation
+from django_geo_db.models import Continent, Country, State, Location, City, Zipcode, GeoCoordinate, UserLocation, County
 
 
 class LocationDetail(APIView):
@@ -65,6 +65,25 @@ class CountryDetails(mixins.RetrieveModelMixin,
                        generics.GenericAPIView):
     queryset = Country.objects.all()
     serializer_class = serializers.CountrySerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+
+class CountyList(mixins.ListModelMixin,
+                 generics.GenericAPIView):
+    queryset = County.objects.all()
+    serializer_class = serializers.CountrySerializer
+    filter_fields =  ('state__state_id', 'name'),
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+
+class CountyDetails(mixins.RetrieveModelMixin,
+                     generics.GenericAPIView):
+    queryset = County.objects.all()
+    serializer_class = serializers.CountySerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)

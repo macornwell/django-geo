@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from django_geo_db import serializers
 from django_geo_db.serializers import LocationSerializer
 from django_geo_db.services import GEO_DAL
-from django_geo_db.models import Continent, Country, State, Location, City, Zipcode, GeoCoordinate, UserLocation
+from django_geo_db.models import Continent, Country, State, Location, City, Zipcode, GeoCoordinate, UserLocation, County
 
 
 class UsersLocationAutocomplete(autocomplete.Select2QuerySetView):
@@ -80,6 +80,22 @@ class CityAutocomplete(autocomplete.Select2QuerySetView):
                 Q(generated_name__endswith=self.q)
             )
         return qs
+
+
+class CityAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        if not self.request.user.is_authenticated():
+            return County.objects.none()
+
+        qs = County.objects.all()
+
+        if self.q:
+            qs = qs.filter(
+                Q(generated_name__istartswith=self.q) |
+                Q(generated_name__endswith=self.q)
+            )
+        return qs
+
 
 
 class ZipcodeAutocomplete(autocomplete.Select2QuerySetView):

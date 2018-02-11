@@ -2,7 +2,7 @@ import os
 import csv
 from django_geo_db.models import UserLocation, Zipcode, Location, Country
 
-US_CITIES_FILE = 'us-cities-and-zips.csv'
+US_CITIES_FILE = 'us-data-final.csv'
 US_STATES_FILE = 'us-states.csv'
 COUNTRIES_FILE = 'countries.csv'
 
@@ -78,7 +78,7 @@ def generate_current_us_states_list():
 def generate_current_us_cities_list():
     """
     Iterates through a list of all of the US cities.
-    (zip_code,latitude,longitude,city,state, timezone)
+    (zip,city,state,county,latitude,longitude,timezone,dst)
     :return:
     """
     module_dir = os.path.dirname(__file__)  # get current directory
@@ -87,12 +87,13 @@ def generate_current_us_cities_list():
         reader = csv.DictReader(file)
         for row in reader:
             state = row['state'].strip()
+            county = row['county'].strip()
             city = row['city'].strip()
             lat = row['latitude'].strip()
             lon = row['longitude'].strip()
             zip = row['zip'].strip()
             timezone = row['timezone']
-            yield (zip, lat, lon, city, state, timezone)
+            yield (zip, lat, lon, city, county, state, timezone)
 
 
 def generate_countries():
