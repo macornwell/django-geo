@@ -1,2 +1,4 @@
 #!/bin/bash
-python setup.py sdist upload -r pypi
+rm -R dist/ django_geo_db.egg-info/
+python3 setup.py sdist
+twine upload dist/*
