@@ -3,7 +3,7 @@ from django.conf import settings
 from django.template.loader import render_to_string
 
 class GeocoordinateWidget(forms.TextInput):
-    template_name = 'geocoordinate.html'
+    template_name = 'django_geo_db/geocoordinate.html'
     css = {
             'all': ('styles.css',)
         }
