@@ -1,2 +1,4 @@
 __pycache__/
 .idea/
+dist/
+django_geo_db.egg-info/
