@@ -4,7 +4,7 @@
     <div id="map" class="google-map"></div>
 </div>
 <script>
-    $(document).ready(function(){
+    var initMap = function() {
         var latBox = $('#id_lat');
         var lonBox = $('#id_lon');
         var defaultLat = {{ GM_SETTINGS.lat }};
@@ -44,4 +44,6 @@
             google.maps.event.trigger(map, 'resize');
         }, 1000);
     });
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_API_KEY}&callback=initMap">
 </script>
