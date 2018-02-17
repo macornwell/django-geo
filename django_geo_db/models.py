@@ -334,6 +334,15 @@ class Location(models.Model):
         unique_together = ('country', 'state', 'city', 'zipcode', 'geocoordinate')
 
 
+class GeographicRegion:
+    """
+    An "informal" regional area that encompasses a number of locations.
+    """
+    geographic_region_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=40)
+    locations = models.ManyToManyField(Location)
+
+
 class UserLocation(models.Model):
     """
     A location that a user has used in the past.
@@ -354,3 +363,5 @@ class UserLocation(models.Model):
     class Meta:
         ordering = ('last_used',)
         unique_together = ('user', 'location')
+
+
