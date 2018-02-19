@@ -1,12 +1,18 @@
 import os
 import csv
-from django_geo_db.models import UserLocation, Zipcode, Location, Country
+from django_geo_db.models import UserLocation, Zipcode, Location, Country, State
 
 US_CITIES_FILE = 'us-data-final.csv'
 US_STATES_FILE = 'us-states.csv'
 COUNTRIES_FILE = 'countries.csv'
 
 class GeographyDAL:
+
+    def get_us_country(self):
+        return Country.objects.get(name='United States of America')
+
+    def get_us_states(self):
+        return State.objects.filter(country=self.get_us_country()).order_by('name')
 
     def get_country_by_name(self, name):
         country = Country.objects.filter(name__iexact=name).first()
