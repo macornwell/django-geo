@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from django_geo_db.models import Location, City, Continent, Country, \
-    State, GeoCoordinate, UserLocation, County
+    State, GeoCoordinate, UserLocation, County, GeographicRegion
 from django_geo_db.forms import UserLocationForm, LocationForm, CityForm, GeocoordinateForm
 
 
@@ -25,5 +25,6 @@ admin.site.register(County)
 admin.site.register(GeoCoordinate, GeocoordinateAdmin)
 admin.site.register(UserLocation, UserLocationAdmin)
 admin.site.register(Location, LocationAdmin)
+admin.site.register(GeographicRegion)
 
 
