@@ -186,7 +186,12 @@ class County(models.Model):
         return self.generated_name or self.__get_generated_name()
 
     def __get_generated_name(self):
-        return str('{0}, {1}'.format(self.name, self.state.abbreviation))
+        value = 'County'
+        if self.state.name is 'Louisiana':
+            value = 'Parish'
+        elif self.state.name is 'Alaska':
+            value = 'Borough'
+        return str('{0} {1}, {2}'.format(self.name, value, self.state.abbreviation))
 
     class Meta:
         unique_together = (('state', 'name'),)
