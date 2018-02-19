@@ -334,7 +334,7 @@ class Location(models.Model):
         unique_together = ('country', 'state', 'city', 'zipcode', 'geocoordinate')
 
 
-class GeographicRegion:
+class GeographicRegion(models.Model):
     """
     An "informal" regional area that encompasses a number of locations.
     """
