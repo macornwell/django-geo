@@ -4,7 +4,7 @@ from django.db.transaction import atomic
 
 
 class Command(BaseCommand):
-        help = "Calls save on every GeoCoordinate, which will regenerated all auto-generated values."
+    help = "Calls save on every GeoCoordinate, which will regenerated all auto-generated values."
 
 
     @atomic
