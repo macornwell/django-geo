@@ -20,8 +20,8 @@ class IntegerRangeField(models.IntegerField):
 class GeoCoordinate(models.Model):
     objects = GeoCoordinateManager()
     geocoordinate_id = models.AutoField(primary_key=True)
-    lat = models.DecimalField(max_digits=7, decimal_places=5)
-    lon = models.DecimalField(max_digits=8, decimal_places=5)
+    lat = models.DecimalField(max_digits=8, decimal_places=6)
+    lon = models.DecimalField(max_digits=9, decimal_places=6)
     generated_name = models.CharField(max_length=50, blank=True, null=True)
 
     lat_neg = models.BooleanField(default=False)
@@ -30,6 +30,7 @@ class GeoCoordinate(models.Model):
     lat_tenths = IntegerRangeField(min_value=0, max_value=9, blank=True, null=True)
     lat_hundredths = IntegerRangeField(min_value=0, max_value=9, blank=True, null=True)
     lat_thousands = IntegerRangeField(min_value=-0, max_value=9, blank=True, null=True)
+    lat_ten_thousands = IntegerRangeField(min_value=0, max_value=9, blank=True, null=True)
 
     lon_neg = models.BooleanField(default=False)
     lon_hundreds = IntegerRangeField(min_value=-9, max_value=9, blank=True, null=True)
@@ -38,6 +39,7 @@ class GeoCoordinate(models.Model):
     lon_tenths = IntegerRangeField(min_value=0, max_value=9, blank=True, null=True)
     lon_hundredths = IntegerRangeField(min_value=0, max_value=9, blank=True, null=True)
     lon_thousands = IntegerRangeField(min_value=-0, max_value=9, blank=True, null=True)
+    lon_ten_thousands = IntegerRangeField(min_value=0, max_value=9, blank=True, null=True)
 
     def __str__(self):
         return self.generated_name or self.__get_generated_name()
@@ -57,12 +59,12 @@ class GeoCoordinate(models.Model):
 
     def __generate_whole_fractionals(self):
         try:
-            self.lat_neg, self.lat_tens, self.lat_ones, self.lat_tenths, self.lat_hundredths, self.lat_thousands, other, other2 = GeoCoordinate.split_lat_coordinate(self.lat)
+            self.lat_neg, self.lat_tens, self.lat_ones, self.lat_tenths, self.lat_hundredths, self.lat_thousands, self.lat_ten_thousands, other2 = GeoCoordinate.split_lat_coordinate(self.lat)
         except:
             message = '{0} {1}'.format(self.lat, GeoCoordinate.split_lat_coordinate(self.lat))
             raise Exception(message)
         try:
-            self.lon_neg, self.lon_hundreds, self.lon_tens, self.lon_ones, self.lon_tenths, self.lon_hundredths, self.lon_thousands, other, other2 = GeoCoordinate.split_lon_coordinate(self.lon)
+            self.lon_neg, self.lon_hundreds, self.lon_tens, self.lon_ones, self.lon_tenths, self.lon_hundredths, self.lon_thousands, self.lon_ten_thousands, other2 = GeoCoordinate.split_lon_coordinate(self.lon)
         except:
             message = '{0} {1}'.format(self.lon, GeoCoordinate.split_lon_coordinate(self.lon))
             raise Exception(message)
