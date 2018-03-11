@@ -1,6 +1,7 @@
 import os, io
 import csv
 import json
+import logging
 import urllib.request
 
 from django.contrib.staticfiles.templatetags.staticfiles import static
@@ -13,6 +14,8 @@ from django_geo_db.math import Translations
 from django_geo_db.models import UserLocation, Zipcode, Location, Country, \
     State, LocationMap, LocationBounds, LocationMapType
 import os
+
+logger = logging.getLogger(__name__)
 
 
 MAP_STAR_PERCENTAGE = 0.05
@@ -260,6 +263,7 @@ class LocationMapGenerator:
         url = self.__get_url(location_type, location, is_base_map=False)
 
         # 2. Save to media Storage
+        logging.info('Saving to Media Storage with url: ' + url)
         x = default_storage.save(url, combined_image)
         return url
 
@@ -292,6 +296,7 @@ class LocationMapGenerator:
         url = static(url)
         if 'http' not in url:
             url = self.domain + url
+        logging.info('Get_base_map with url: ' + url)
         response = urllib.request.urlopen(url)
         data = response.read()
         return url, data
