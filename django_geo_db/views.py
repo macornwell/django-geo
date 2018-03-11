@@ -1,15 +1,13 @@
-from django.db.models import Q
-from django.shortcuts import Http404
 from django.conf import settings
-
-from rest_framework import generics, permissions, mixins, filters, status
+from django.shortcuts import Http404
+from rest_framework import permissions, mixins, filters, generics, status
 from rest_framework.decorators import api_view, APIView
 from rest_framework.response import Response
 from django_geo_db import serializers
-from django_geo_db.serializers import LocationSerializer, LocationMapSerializer, LocationMapTypeSerializer
+from django_geo_db.serializers import LocationSerializer, LocationMapTypeSerializer, LocationMapSerializer
 from django_geo_db.services import GEO_DAL, LocationMapGenerator
-from django_geo_db.models import Continent, Country, State, Location, \
-    City, Zipcode, GeoCoordinate, UserLocation, County, LocationMapType
+from django_geo_db.models import Continent, Country, State, Location, City, \
+    Zipcode, GeoCoordinate, UserLocation, County, LocationMapType, LocationMap
 
 
 class LocationDetail(APIView):

@@ -81,4 +81,3 @@ class LocationMapTypeSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('type',)
 
 
-

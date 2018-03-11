@@ -1,11 +1,10 @@
-import os
-from decimal import Decimal
+from django.contrib.auth.models import User
+from django_geo_db.utilities import BoundingBox, LatLon
 from datetime import datetime
-from django.core.files.images import get_image_dimensions
 from django.db import models
 from django.contrib.auth.models import User
 from django_geo_db.managers import GeoCoordinateManager
-from django_geo_db.utilities import get_standardized_coordinate, BoundingBox, LatLon
+from django_geo_db.utilities import get_standardized_coordinate
 
 
 class IntegerRangeField(models.IntegerField):

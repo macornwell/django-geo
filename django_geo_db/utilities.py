@@ -7,7 +7,6 @@ def get_lat_lon_from_string(latLonString):
     lon = get_standardized_coordinate(lon)
     return (Decimal(lat), Decimal(lon))
 
-
 def get_standardized_coordinate(latOrLon):
     objInt, objFrac = str(latOrLon).split('.', 1)
     objFrac = str(objFrac)[0:5]
