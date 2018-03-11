@@ -1,13 +1,15 @@
 from django.db.models import Q
 from django.shortcuts import Http404
+from django.conf import settings
 
-from rest_framework import generics, permissions, mixins, filters
+from rest_framework import generics, permissions, mixins, filters, status
 from rest_framework.decorators import api_view, APIView
 from rest_framework.response import Response
 from django_geo_db import serializers
-from django_geo_db.serializers import LocationSerializer
-from django_geo_db.services import GEO_DAL
-from django_geo_db.models import Continent, Country, State, Location, City, Zipcode, GeoCoordinate, UserLocation, County
+from django_geo_db.serializers import LocationSerializer, LocationMapSerializer, LocationMapTypeSerializer
+from django_geo_db.services import GEO_DAL, LocationMapGenerator
+from django_geo_db.models import Continent, Country, State, Location, \
+    City, Zipcode, GeoCoordinate, UserLocation, County, LocationMapType
 
 
 class LocationDetail(APIView):
@@ -19,14 +21,13 @@ class LocationDetail(APIView):
 
     def get(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = LocationSerializer(snippet)
+        serializer = LocationSerializer(snippet, context={'request': request})
         return Response(serializer.data)
 
 
 class LocationList(generics.ListAPIView):
     serializer_class = LocationSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-
 
     def get_queryset(self):
         return GEO_DAL.get_all_named_locations()
@@ -165,3 +166,72 @@ class GeoCoordinateDetails(mixins.RetrieveModelMixin,
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
+
+class LocationMap(APIView):
+    """
+    Queries for LocationMap objects.
+
+    Possible Queries:
+    /location-map/?type=simple&country=United States of America
+    /location-map/?type=simple&country=United States of America
+    /location-map/?type=simple&country=United States of America&state=California
+    /location-map/?type=simple&country=United States of America&state=California&county=San Diego
+    /location-map/?type=simple&country=United States of America&state=California&city=San Diego
+    /location-map/?type=simple&country=United States of America&state=California&county=San Diego&city=San Diego
+    /location-map/?type=simple&country=United States of America&state=California&county=San Diego&city=San Diego&zipcode=91932
+    /location-map/?type=simple&country=United States of America&zipcode=91932
+
+    Example Request:
+    /location-map/?country=United States of America&state=California&city=San Diego
+
+    Example Result
+    {
+    }
+
+    """
+
+    def __validate_query_params(self, country, state, county, city, zipcode, map_type):
+        if not country:
+            return 'Must include country in request.'
+        if county and not state:
+            return 'Must have state with a county request.'
+        if city and not state:
+            return 'Must have state with a city request.'
+        if not map_type:
+            return 'No Map Type provided.'
+
+    def post(self, request):
+        map_type = request.query_params.get('type', None)
+        country = request.query_params.get('country', None)
+        state = request.query_params.get('state', None)
+        county = request.query_params.get('county', None)
+        city = request.query_params.get('city', None)
+        zipcode = request.query_params.get('zipcode', None)
+        error_message = self.__validate_query_params(country, state, county, city, zipcode, map_type)
+        if error_message:
+            return Response({'error': error_message}, status=status.HTTP_400_BAD_REQUEST)
+        location = GEO_DAL.get_location(country, state, county, city, zipcode)
+        if not location:
+            return Response({'error': 'Location was not found.'}, status=status.HTTP_404_NOT_FOUND)
+        domain = request.build_absolute_uri('/')[0:-1]
+        map_type = GEO_DAL.get_map_type(map_type)
+        location_map = LocationMapGenerator(domain).get_or_generate_location_map(map_type, location)
+        serializer = LocationMapSerializer(location_map, context={'request': request})
+        data = serializer.data
+        url = data['map_file_url']
+        if 'static' not in url:
+            data['map_file_url'] = request.build_absolute_uri(settings.MEDIA_URL + data['map_file_url'])
+        return Response(data)
+
+
+class LocationMapTypeDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return LocationMapType.objects.get(pk=pk)
+        except LocationMapType.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        serializer = LocationMapTypeSerializer(snippet)
+        return Response(serializer.data)

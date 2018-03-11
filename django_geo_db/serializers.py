@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from django_geo_db.models import Location, GeoCoordinate, Zipcode, Continent, Country, State, City, County
+from django_geo_db.models import Location, GeoCoordinate, Zipcode, Continent, Country, State, City, County, \
+                                 LocationMap, LocationMapType
 
 
 class GeoCoordinateSerializer(serializers.HyperlinkedModelSerializer):
@@ -57,12 +58,27 @@ class LocationSerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedIdentityField('location-detail')
 
     def get_lat(self, obj):
-        return str(obj.geocoordinate.lat)
+        return str(obj.get_geocoordinate().lat)
 
     def get_lon(self, obj):
-        return str(obj.geocoordinate.lon)
+        return str(obj.get_geocoordinate().lon)
 
     class Meta:
         model = Location
         fields = ('location_id', 'country', 'city', 'county', 'state', 'zipcode', 'geocoordinate', 'lat', 'lon', 'name', 'generated_name', 'url')
+
+
+class LocationMapSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = LocationMap
+        fields = ('type', 'map_file_url', 'location')
+
+
+class LocationMapTypeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = LocationMapType
+        fields = ('type',)
+
+
 

@@ -1,9 +1,11 @@
+import os
 from decimal import Decimal
 from datetime import datetime
+from django.core.files.images import get_image_dimensions
 from django.db import models
 from django.contrib.auth.models import User
 from django_geo_db.managers import GeoCoordinateManager
-from django_geo_db.utilities import get_standardized_coordinate
+from django_geo_db.utilities import get_standardized_coordinate, BoundingBox, LatLon
 
 
 class IntegerRangeField(models.IntegerField):
@@ -372,3 +374,57 @@ class UserLocation(models.Model):
         unique_together = ('user', 'location')
 
 
+class LocationBounds(models.Model):
+    """
+    The bounds of any location.
+    """
+    location_bounds_id = models.AutoField(primary_key=True)
+    location = models.ForeignKey(Location)
+    max_lat = models.DecimalField(max_digits=8, decimal_places=6)
+    min_lat = models.DecimalField(max_digits=8, decimal_places=6)
+    max_lon = models.DecimalField(max_digits=9, decimal_places=6)
+    min_lon = models.DecimalField(max_digits=9, decimal_places=6)
+
+    def get_bounding_box(self):
+        ne = LatLon()
+        ne.lat = self.max_lat
+        ne.lon = self.max_lon
+        sw = LatLon()
+        sw.lat = self.min_lat
+        sw.lon = self.min_lon
+        return BoundingBox(ne, sw)
+
+    def __str__(self):
+        return '{location}: {max_lat}:{min_lat} {max_lon}:{min_lon}'.format(
+            location=self.location, max_lat=self.max_lat, min_lat=self.min_lat,
+            max_lon=self.max_lon, min_lon=self.min_lon)
+
+
+class LocationMapType(models.Model):
+    location_map_type_id = models.AutoField(primary_key=True)
+    type = models.CharField(max_length=30, unique=True)
+
+    def __str__(self):
+        return str(self.type)
+
+    class Meta:
+        ordering = ('type', )
+
+
+class LocationMap(models.Model):
+    """
+    A rendered map of a location.
+    """
+    location_map_id = models.AutoField(primary_key=True)
+    type = models.ForeignKey(LocationMapType)
+    map_file_url = models.URLField()
+    location = models.ForeignKey(Location)
+
+    def save(self, *args, **kwargs):
+        return super(LocationMap, self).save(args, kwargs)
+
+    def __str__(self):
+        return '{0}: {1}'.format(str(type), str(self.location))
+
+    class Meta:
+        unique_together = (('type', 'location'),)

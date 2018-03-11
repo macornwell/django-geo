@@ -19,5 +19,9 @@ urlpatterns = [
     url(r'^state/', views.StateList.as_view(), name='state-list'),
     url(r'^zipcode/', views.ZipcodeList.as_view(), name='zipcode-list'),
     url(r'^location/', views.LocationList.as_view(), name='location-list'),
+
+
+    url(r'^location-map/$', views.LocationMap.as_view(), name='location-map'),
+    url(r'^location-map-type/(?P<pk>[0-9]+)/$', views.LocationMapTypeDetail.as_view(), name='locationmaptype-detail'),
 ]
 

@@ -7,6 +7,7 @@ def get_lat_lon_from_string(latLonString):
     lon = get_standardized_coordinate(lon)
     return (Decimal(lat), Decimal(lon))
 
+
 def get_standardized_coordinate(latOrLon):
     objInt, objFrac = str(latOrLon).split('.', 1)
     objFrac = str(objFrac)[0:5]
@@ -43,7 +44,6 @@ class BoundingBox:
     def __init__(self, ne, sw):
         self.__north_east = ne
         self.__south_west = sw
-
 
     def get_north_east(self):
         return self.__north_east
@@ -155,3 +155,45 @@ class GeoResolutionAlgorithm:
                     result.append(-1)
         return result
 
+
+class BoundingBoxAndMap:
+    """
+    A class that allows the interactions of a GeoCoordinate bounding
+    box with it's presentation as a coordinate space Map.
+    This allows translations between the two such as finding the x,y of an arbitrary GeoCoordinate.
+    """
+    bounding_box = None
+    width = None
+    height = None
+
+    def get_coordinate_space(self, lat, lon):
+        """
+        Converts a GeoCoordinate's lat lon into coordinate space x,y
+        Notes: (0,0) is the top left corner also the North West Corner.
+        Lat = Y and Lon = X
+        :param lat:
+        :param lon:
+        :return:  (x,y)
+        """
+        # Note: Lat = Y & Lon = X
+        # Step 1: Move the north west corner of the Bounding Box to (0,0)
+        se = self.bounding_box.get_south_east()
+        bb_max_lat = se.lat
+        bb_max_lon = se.lon
+        nw = self.bounding_box.get_north_west()
+        bb_min_lat = nw.lat
+        bb_min_lon = nw.lon
+
+        change_y = bb_min_lat * -1
+        change_x = bb_min_lon * -1
+        bb_small_lat = bb_max_lat + change_y
+        bb_small_lon = bb_max_lon + change_x
+
+        # Step 2 Move coordinate with the same vector as the bounding box.
+        new_coord_lat = lat + change_y
+        new_coord_lon = lon + change_x
+
+        # Step 3 Apply A Linear Proportion to the coordinate's location in the original bounding box, with the final one.
+        new_y = new_coord_lat * self.height / bb_small_lat
+        new_x = new_coord_lon * self.width / bb_small_lon
+        return int(new_x), int(new_y)
