@@ -290,14 +290,16 @@ class LocationMapGenerator:
     def __get_base_map(self, type, location):
         url = 'img/' + self.__get_url(type, location)
         url = static(url)
-        url = self.domain + url
+        if 'http' not in url:
+            url = self.domain + url
         response = urllib.request.urlopen(url)
         data = response.read()
         return url, data
 
     def __get_star(self):
         url = static('img/django_geo_db/star.png')
-        url = self.domain + url
+        if 'http' not in url:
+            url = self.domain + url
         response = urllib.request.urlopen(url)
         data = response.read()
         return data
