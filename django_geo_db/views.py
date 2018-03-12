@@ -220,6 +220,7 @@ class LocationMap(APIView):
             location_map = LocationMapGenerator(domain).get_location_map_by_location_name(map_type, location)
         else:
             location = GEO_DAL.get_location(country, state, county, city, zipcode)
+            print(location)
             location_map = LocationMapGenerator(domain).get_or_generate_location_map(map_type, location)
         if not location:
             return Response({'error': 'Location was not found.'}, status=status.HTTP_404_NOT_FOUND)
