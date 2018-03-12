@@ -56,6 +56,7 @@ class LocationSerializer(serializers.ModelSerializer):
     lat = serializers.SerializerMethodField()
     lon = serializers.SerializerMethodField()
     url = serializers.HyperlinkedIdentityField('location-detail')
+    country = serializers.SerializerMethodField()
     county = serializers.SerializerMethodField()
     state = serializers.SerializerMethodField()
     city = serializers.SerializerMethodField()
@@ -70,6 +71,9 @@ class LocationSerializer(serializers.ModelSerializer):
 
     def get_geocoordinate(self, obj):
         return obj.get_geocoordinate()
+
+    def get_country(self, obj):
+        return obj.name
 
     def get_state(self, obj):
         if obj.state:
