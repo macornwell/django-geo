@@ -60,12 +60,16 @@ class LocationSerializer(serializers.ModelSerializer):
     state = serializers.SerializerMethodField()
     city = serializers.SerializerMethodField()
     zipcode = serializers.SerializerMethodField()
+    geocoordinate = serializers.SerializerMethodField()
 
     def get_lat(self, obj):
         return str(obj.get_geocoordinate().lat)
 
     def get_lon(self, obj):
         return str(obj.get_geocoordinate().lon)
+
+    def get_geocoordinate(self, obj):
+        return obj.get_geocoordinate()
 
     def get_state(self, obj):
         if obj.state:
