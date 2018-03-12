@@ -184,6 +184,9 @@ class LocationMap(APIView):
 
     Example Result
     {
+        "type": "http://localhost:8000/location-map-type/1/",
+        "map_file_url": "http://localhost:8000/media/django_geo_db/maps/simple/united-states-of-america/alabama-brewton.png",
+        "location": "http://localhost:8000/location/160403/"
     }
 
     """

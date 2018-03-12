@@ -15,7 +15,7 @@ from django_geo_db.models import UserLocation, Zipcode, Location, Country, \
 import os
 
 
-MAP_STAR_PERCENTAGE = 0.05
+MAP_STAR_PERCENTAGE = 0.10
 US_CITIES_FILE = 'us-data-final.csv'
 US_STATES_FILE = 'us-states.csv'
 COUNTRIES_FILE = 'countries.csv'
