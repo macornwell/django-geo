@@ -68,16 +68,24 @@ class LocationSerializer(serializers.ModelSerializer):
         return str(obj.get_geocoordinate().lon)
 
     def get_state(self, obj):
-        return obj.name
+        if obj.state:
+            return obj.state.name
+        return None
 
     def get_county(self, obj):
-        return obj.name
+        if obj.county:
+            return obj.county.name
+        return None
 
     def get_zipcode(self, obj):
-        return obj.zipcode
+        if obj.zipcode:
+            return obj.zipcode.zipcode
+        return None
 
     def get_city(self, obj):
-        return obj.name
+        if obj.city:
+            return obj.city.name
+        return None
 
     class Meta:
         model = Location
