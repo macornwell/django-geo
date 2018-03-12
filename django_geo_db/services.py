@@ -40,6 +40,10 @@ class GeographyDAL:
             result = result.filter(city__name__iexact=city_name)
         return result.first()
 
+    def get_named_location(self, country_name, name):
+        result = Location.objects.filter(country__name__iexact=country_name, name=name).first()
+        return result
+
     def get_us_country(self):
         return Country.objects.get(name='United States of America')
 
@@ -181,6 +185,19 @@ class LocationMapGenerator:
     def __init__(self, domain):
         self.domain = domain
 
+    def get_location_map_by_location_name(self, type, location):
+        map = LocationMap.objects.filter(location=location, type=type).first()
+        if not map:
+            url = 'img/django_geo_db/maps/{0}/{1}/{2}.png'.format(type, location.country.name.replace(' ', '-').lower(),
+                                                                  location.name.replace(' ', '-').lower())
+            url, base_map = self.__get_map(url)
+            map = LocationMap()
+            map.location = location
+            map.type = type
+            map.map_file_url = url
+            pass
+        return map
+
     def get_or_generate_location_map(self, type, location):
         map = LocationMap.objects.filter(location=location, type=type).first()
         if not map:
@@ -197,6 +214,8 @@ class LocationMapGenerator:
                 coord_obj = location.county.geocoordinate
             if location.state:
                 location_bounds_location_obj = Location.objects.get(state=location.state, city=None)
+            if coord_obj and not location_bounds_location_obj:
+                location_bounds_location_obj = location
             location_bounds = None
             if location_bounds_location_obj:
                 location_bounds = LocationBounds.objects.get(location=location_bounds_location_obj)
@@ -263,6 +282,10 @@ class LocationMapGenerator:
         x = default_storage.save(url, combined_image)
         return url
 
+    def __get_url_for_named_location(self, type, name):
+        url = 'django_geo_db/maps/{type}/{name}.png'.format(type=type, name=name)
+        return url
+
     def __get_url(self, type, location, is_base_map=True):
         url = 'django_geo_db/maps/{type}/{country}/'.format(
             type=type, country=location.country.name.lower().replace(' ', '-'))
@@ -282,19 +305,28 @@ class LocationMapGenerator:
             url += location.state.name.lower().replace(' ', '-')
         elif location.county:
             url += location.county.name.lower().replace(' ', '-')
+        elif location.name:
+            url += location.name.lower().replace(' ', '-')
         else:
             url += location.country.name.lower().replace(' ', '-')
         url += '.png'
         return url
 
-    def __get_base_map(self, type, location):
-        url = 'img/' + self.__get_url(type, location)
+    def __get_map(self, url):
         url = static(url)
         if 'http' not in url:
             url = self.domain + url
         response = urllib.request.urlopen(url)
         data = response.read()
         return url, data
+
+    def __get_map_for_named_location(self, type, name):
+        url = 'img/' + self.__get_url_for_named_location(type, name)
+        return self.__get_map(url)
+
+    def __get_base_map(self, type, location):
+        url = 'img/' + self.__get_url(type, location)
+        return self.__get_map(url)
 
     def __get_star(self):
         url = static('img/django_geo_db/star.png')

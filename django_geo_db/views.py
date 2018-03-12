@@ -178,6 +178,7 @@ class LocationMap(APIView):
     /location-map/?type=simple&country=United States of America&state=California&county=San Diego&city=San Diego
     /location-map/?type=simple&country=United States of America&state=California&county=San Diego&city=San Diego&zipcode=91932
     /location-map/?type=simple&country=United States of America&zipcode=91932
+    /location-map/?type=simple&country=United States of America&name=Appalachia
 
     Example Request:
     /location-map/?country=United States of America&state=California&city=San Diego
@@ -208,15 +209,20 @@ class LocationMap(APIView):
         county = request.query_params.get('county', None)
         city = request.query_params.get('city', None)
         zipcode = request.query_params.get('zipcode', None)
+        name = request.query_params.get('name', None)
         error_message = self.__validate_query_params(country, state, county, city, zipcode, map_type)
         if error_message:
             return Response({'error': error_message}, status=status.HTTP_400_BAD_REQUEST)
-        location = GEO_DAL.get_location(country, state, county, city, zipcode)
+        map_type = GEO_DAL.get_map_type(map_type)
+        domain = request.build_absolute_uri('/')[0:-1]
+        if name:
+            location = GEO_DAL.get_named_location(country, name)
+            location_map = LocationMapGenerator(domain).get_location_map_by_location_name(map_type, location)
+        else:
+            location = GEO_DAL.get_location(country, state, county, city, zipcode)
+            location_map = LocationMapGenerator(domain).get_or_generate_location_map(map_type, location)
         if not location:
             return Response({'error': 'Location was not found.'}, status=status.HTTP_404_NOT_FOUND)
-        domain = request.build_absolute_uri('/')[0:-1]
-        map_type = GEO_DAL.get_map_type(map_type)
-        location_map = LocationMapGenerator(domain).get_or_generate_location_map(map_type, location)
         serializer = LocationMapSerializer(location_map, context={'request': request})
         data = serializer.data
         url = data['map_file_url']
