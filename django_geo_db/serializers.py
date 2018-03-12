@@ -70,7 +70,7 @@ class LocationSerializer(serializers.ModelSerializer):
         return str(obj.get_geocoordinate().lon)
 
     def get_geocoordinate(self, obj):
-        return obj.get_geocoordinate()
+        return str(obj.get_geocoordinate())
 
     def get_country(self, obj):
         return obj.name
