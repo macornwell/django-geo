@@ -61,7 +61,6 @@ class LocationSerializer(serializers.ModelSerializer):
     state = serializers.SerializerMethodField()
     city = serializers.SerializerMethodField()
     zipcode = serializers.SerializerMethodField()
-    geocoordinate = serializers.SerializerMethodField()
 
     def get_lat(self, obj):
         return str(obj.get_geocoordinate().lat)
@@ -69,11 +68,8 @@ class LocationSerializer(serializers.ModelSerializer):
     def get_lon(self, obj):
         return str(obj.get_geocoordinate().lon)
 
-    def get_geocoordinate(self, obj):
-        return str(obj.get_geocoordinate())
-
     def get_country(self, obj):
-        return obj.name
+        return obj.country.name
 
     def get_state(self, obj):
         if obj.state:
@@ -97,7 +93,7 @@ class LocationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Location
-        fields = ('location_id', 'country', 'city', 'county', 'state', 'zipcode', 'geocoordinate', 'lat', 'lon', 'name', 'generated_name', 'url')
+        fields = ('location_id', 'country', 'city', 'county', 'state', 'zipcode', 'lat', 'lon', 'name', 'generated_name', 'url')
 
 
 class LocationMapSerializer(serializers.HyperlinkedModelSerializer):
