@@ -56,12 +56,28 @@ class LocationSerializer(serializers.ModelSerializer):
     lat = serializers.SerializerMethodField()
     lon = serializers.SerializerMethodField()
     url = serializers.HyperlinkedIdentityField('location-detail')
+    county = serializers.SerializerMethodField()
+    state = serializers.SerializerMethodField()
+    city = serializers.SerializerMethodField()
+    zipcode = serializers.SerializerMethodField()
 
     def get_lat(self, obj):
         return str(obj.get_geocoordinate().lat)
 
     def get_lon(self, obj):
         return str(obj.get_geocoordinate().lon)
+
+    def get_state(self, obj):
+        return obj.name
+
+    def get_county(self, obj):
+        return obj.name
+
+    def get_zipcode(self, obj):
+        return obj.zipcode
+
+    def get_city(self, obj):
+        return obj.name
 
     class Meta:
         model = Location
