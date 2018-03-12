@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand
 from django_geo_db.models import LocationMap
-from django_geo_db.services import get_us_states_boundaries
 from django.core.files.storage import default_storage
 from django.db import transaction
 
