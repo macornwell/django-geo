@@ -195,7 +195,7 @@ class LocationMapGenerator:
             map.location = location
             map.type = type
             map.map_file_url = url
-            pass
+            map.save()
         return map
 
     def get_or_generate_location_map(self, type, location):
@@ -279,6 +279,7 @@ class LocationMapGenerator:
         url = self.__get_url(location_type, location, is_base_map=False)
 
         # 2. Save to media Storage
+        print(url)
         x = default_storage.save(url, combined_image)
         return url
 
@@ -292,6 +293,8 @@ class LocationMapGenerator:
         if location.geocoordinate and not is_base_map:
             url += str(location.geocoordinate)
         elif location.zipcode and not is_base_map:
+            state = location.state.name.lower().replace(' ', '-')
+            url += state + '-'
             url += str(location.zipcode.zipcode)
         elif location.city and not is_base_map:
             state = location.state.name.lower().replace(' ', '-')
@@ -316,6 +319,7 @@ class LocationMapGenerator:
         url = static(url)
         if 'http' not in url:
             url = self.domain + url
+        print(url)
         response = urllib.request.urlopen(url)
         data = response.read()
         return url, data
