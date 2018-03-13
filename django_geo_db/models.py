@@ -152,6 +152,20 @@ class Country(models.Model):
         return self.name
 
 
+class Region(models.Model):
+    """
+    An "informal" regional area somewhere between a country and a state in size.
+    The geocoordinate for this should not be taken too seriously, but is roughly the "center."
+    """
+    geographic_region_id = models.AutoField(primary_key=True)
+    country = models.ForeignKey(Country)
+    name = models.CharField(max_length=40)
+    geocoordinate = models.ForeignKey(GeoCoordinate)
+
+    def __str__(self):
+        return '{0} {1}'.format(self.name, self.country.name)
+
+
 class State(models.Model):
     state_id = models.AutoField(primary_key=True)
     country = models.ForeignKey(Country)
@@ -250,9 +264,13 @@ class Location(models.Model):
     This is the object that should be a foreign key to MOST geolocated objects.
     It is a cascading of Locational information that gets more detailed depending on
     what level of granularity is desired, the minimum being a country.
+
+    Exceptions:
+    Regions - Regions are special case entities that are not required to fill out since they are not political boundaries.
     """
     location_id = models.AutoField(primary_key=True)
     country = models.ForeignKey(Country)
+    region = models.ForeignKey(Region, blank=True, null=True)
     state = models.ForeignKey(State, blank=True, null=True)
     county = models.ForeignKey(County, blank=True, null=True)
     city = models.ForeignKey(City, blank=True, null=True)
@@ -278,6 +296,8 @@ class Location(models.Model):
             obj = self.county
         if not obj:
             obj = self.state
+        if not obj:
+            obj = self.region
         if not obj:
             obj = self.country
         return obj.geocoordinate
@@ -306,8 +326,13 @@ class Location(models.Model):
             self.state = self.county.state
         if self.state and not self.country:
             self.country = self.state.country
+        if self.region and not self.country:
+            self.country = self.region.country
 
     def __validate_interconnection_details(self):
+        if self.region:
+            if self.state or self.county or self.city or self.zipcode or self.geocoordinate:
+                raise Exception('Region must not be used for detailed locations.')
         if self.state and self.state.country != self.country:
             raise Exception("The state's country does not match the selected country.")
         if self.city and self.city.county != self.county:
@@ -334,21 +359,14 @@ class Location(models.Model):
             value = '{0}, {1}'.format(self.city.name, self.state.abbreviation)
         elif self.state:
             value = '{0}, {1}'.format(self.state.name, self.country.name)
+        elif self.region:
+            value = str(self.region)
         else:
             value = '{0}'.format(self.country.name)
         return value
 
     class Meta:
-        unique_together = ('country', 'state', 'city', 'zipcode', 'geocoordinate')
-
-
-class GeographicRegion(models.Model):
-    """
-    An "informal" regional area that encompasses a number of locations.
-    """
-    geographic_region_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=40)
-    locations = models.ManyToManyField(Location)
+        unique_together = (('country', 'state', 'city', 'zipcode', 'geocoordinate'), ('country', 'region'))
 
 
 class UserLocation(models.Model):
@@ -423,7 +441,16 @@ class LocationMap(models.Model):
         return super(LocationMap, self).save(args, kwargs)
 
     def __str__(self):
-        return '{0}: {1}'.format(str(type), str(self.location))
+        return '{0}: {1}'.format(str(self.type), str(self.location))
 
     class Meta:
         unique_together = (('type', 'location'),)
+
+
+class GeographicShape(models.Model):
+    """
+    An arbitrary shape enclosed by GeoCoordinates
+    """
+    geographic_shape_id = models.AutoField(primary_key=True)
+    geocoordinates = models.ManyToManyField(GeoCoordinate)
+    name = models.CharField(max_length=40, unique=True)

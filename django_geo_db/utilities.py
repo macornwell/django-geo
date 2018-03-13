@@ -196,3 +196,24 @@ class BoundingBoxAndMap:
         new_y = new_coord_lat * self.height / bb_small_lat
         new_x = new_coord_lon * self.width / bb_small_lon
         return int(new_x), int(new_y)
+
+
+class GeographicRayTest:
+    """
+    Determines if a Geo Coordinate is located inside an arbitrary area.
+    """
+    def coordinate_is_inside_area(lat, lon, coord_list):
+
+        length = len(coord_list)
+        north_boundary = None
+        south_boundary = None
+        west_boundary = None
+        east_boundary = None
+
+        for i in range(length):
+            if i == length - 1:
+                break
+            a = coord_list[i]
+            b = coord_list[i+2]
+
+            pass
