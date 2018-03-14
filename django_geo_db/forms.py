@@ -1,6 +1,6 @@
 from django import forms
 from dal.autocomplete import ModelSelect2
-from django_geo_db.models import UserLocation, City, Location, GeoCoordinate, Region
+from django_geo_db.models import UserLocation, City, Location, GeoCoordinate, Region, LocationMap
 from django_geo_db.widgets import GeocoordinateWidget
 
 
@@ -39,7 +39,6 @@ class LocationForm(forms.ModelForm):
         fields = '__all__'
 
 
-
 class RegionForm(forms.ModelForm):
     class Meta:
         model = Region
@@ -50,6 +49,13 @@ class RegionForm(forms.ModelForm):
         fields = '__all__'
 
 
+class LocationMapForm(forms.ModelForm):
+    class Meta:
+        model = LocationMap
+        widgets = {
+            'location': ModelSelect2(url='location-autocomplete'),
+            }
+        fields = '__all__'
 
 
 class CityForm(forms.ModelForm):
