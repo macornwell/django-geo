@@ -232,7 +232,7 @@ class LocationMapGenerator:
             elif location.county:
                 coord_obj = location.county.geocoordinate
             if location.state:
-                location_bounds_location_obj = Location.objects.get(state=location.state, city=None)
+                location_bounds_location_obj = Location.objects.get(state=location.state, county=None, city=None)
             if coord_obj and not location_bounds_location_obj:
                 location_bounds_location_obj = location
             location_bounds = None
@@ -298,7 +298,6 @@ class LocationMapGenerator:
         url = self.__get_url(location_type, location, is_base_map=False)
 
         # 2. Save to media Storage
-        print(url)
         x = default_storage.save(url, combined_image)
         return url
 
@@ -338,7 +337,6 @@ class LocationMapGenerator:
         url = static(url)
         if 'http' not in url:
             url = self.domain + url
-        print(url)
         response = urllib.request.urlopen(url)
         data = response.read()
         return url, data
