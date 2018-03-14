@@ -14055,19 +14055,19 @@ zip,city,state,county,latitude,longitude,timezone,dst
 32976,Sebastian,FL,Brevard,27.877504,-80.51457,-5,1
 32978,Sebastian,FL,Indian River,27.709049,-80.572557,-5,1
 33001,Long Key,FL,Monroe,24.841814,-80.79405,-5,1
-33002,Hialeah,FL,Miami-Dade,25.558428,-80.458168,-5,1
+33002,Hialeah,FL,Miami Dade,25.558428,-80.458168,-5,1
 33004,Dania,FL,Broward,26.051916,-80.14526,-5,1
 33008,Hallandale,FL,Broward,26.145724,-80.448254,-5,1
 33009,Hallandale,FL,Broward,25.987069,-80.15004,-5,1
-33010,Hialeah,FL,Miami-Dade,25.832374,-80.27874,-5,1
-33011,Hialeah,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33012,Hialeah,FL,Miami-Dade,25.864773,-80.30069,-5,1
-33013,Hialeah,FL,Miami-Dade,25.860373,-80.27174,-5,1
-33014,Hialeah,FL,Miami-Dade,25.902172,-80.30732,-5,1
-33015,Hialeah,FL,Miami-Dade,25.938687,-80.3182,-5,1
-33016,Hialeah,FL,Miami-Dade,25.887983,-80.33284,-5,1
-33017,Hialeah,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33018,Hialeah,FL,Miami-Dade,25.895557,-80.35509,-5,1
+33010,Hialeah,FL,Miami Dade,25.832374,-80.27874,-5,1
+33011,Hialeah,FL,Miami Dade,25.558428,-80.458168,-5,1
+33012,Hialeah,FL,Miami Dade,25.864773,-80.30069,-5,1
+33013,Hialeah,FL,Miami Dade,25.860373,-80.27174,-5,1
+33014,Hialeah,FL,Miami Dade,25.902172,-80.30732,-5,1
+33015,Hialeah,FL,Miami Dade,25.938687,-80.3182,-5,1
+33016,Hialeah,FL,Miami Dade,25.887983,-80.33284,-5,1
+33017,Hialeah,FL,Miami Dade,25.558428,-80.458168,-5,1
+33018,Hialeah,FL,Miami Dade,25.895557,-80.35509,-5,1
 33019,Hollywood,FL,Broward,26.018967,-80.12231,-5,1
 33020,Hollywood,FL,Broward,26.016984,-80.14925,-5,1
 33021,Hollywood,FL,Broward,26.023634,-80.18922,-5,1
@@ -14079,15 +14079,15 @@ zip,city,state,county,latitude,longitude,timezone,dst
 33027,Hollywood,FL,Broward,25.981409,-80.34491,-5,1
 33028,Pembroke Pines,FL,Broward,26.018418,-80.34798,-5,1
 33029,Hollywood,FL,Broward,26.006373,-80.40212,-5,1
-33030,Homestead,FL,Miami-Dade,25.479438,-80.48687,-5,1
-33031,Homestead,FL,Miami-Dade,25.526214,-80.49632,-5,1
-33032,Homestead,FL,Miami-Dade,25.524528,-80.40521,-5,1
-33033,Homestead,FL,Miami-Dade,25.487988,-80.42692,-5,1
-33034,Homestead,FL,Miami-Dade,25.431506,-80.51382,-5,1
-33035,Homestead,FL,Miami-Dade,25.457913,-80.44781,-5,1
+33030,Homestead,FL,Miami Dade,25.479438,-80.48687,-5,1
+33031,Homestead,FL,Miami Dade,25.526214,-80.49632,-5,1
+33032,Homestead,FL,Miami Dade,25.524528,-80.40521,-5,1
+33033,Homestead,FL,Miami Dade,25.487988,-80.42692,-5,1
+33034,Homestead,FL,Miami Dade,25.431506,-80.51382,-5,1
+33035,Homestead,FL,Miami Dade,25.457913,-80.44781,-5,1
 33036,Islamorada,FL,Monroe,24.91828,-80.63676,-5,1
 33037,Key Largo,FL,Monroe,25.137661,-80.40735,-5,1
-33039,Homestead,FL,Miami-Dade,25.558428,-80.458168,-5,1
+33039,Homestead,FL,Miami Dade,25.558428,-80.458168,-5,1
 33040,Key West,FL,Monroe,24.567593,-81.7566,-5,1
 33041,Key West,FL,Monroe,25.100957,-81.568862,-5,1
 33042,Summerland Key,FL,Monroe,24.663121,-81.48694,-5,1
@@ -14097,9 +14097,9 @@ zip,city,state,county,latitude,longitude,timezone,dst
 33050,Marathon,FL,Monroe,24.731758,-81.0278,-5,1
 33051,Key Colony Beach,FL,Monroe,24.72339,-81.020281,-5,1
 33052,Marathon Shores,FL,Monroe,24.723283,-81.063249,-5,1
-33054,Opa Locka,FL,Miami-Dade,25.909039,-80.24945,-5,1
-33055,Opa Locka,FL,Miami-Dade,25.94422,-80.2773,-5,1
-33056,Opa Locka,FL,Miami-Dade,25.946754,-80.24962,-5,1
+33054,Opa Locka,FL,Miami Dade,25.909039,-80.24945,-5,1
+33055,Opa Locka,FL,Miami Dade,25.94422,-80.2773,-5,1
+33056,Opa Locka,FL,Miami Dade,25.946754,-80.24962,-5,1
 33060,Pompano Beach,FL,Broward,26.232009,-80.12211,-5,1
 33061,Pompano Beach,FL,Broward,26.253909,-80.134216,-5,1
 33062,Pompano Beach,FL,Broward,26.236792,-80.09594,-5,1
@@ -14122,114 +14122,114 @@ zip,city,state,county,latitude,longitude,timezone,dst
 33082,Pembroke Pines,FL,Broward,26.145724,-80.448254,-5,1
 33083,Hollywood,FL,Broward,26.145724,-80.448254,-5,1
 33084,Pembroke Pines,FL,Broward,26.289057,-80.129816,-5,1
-33090,Homestead,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33092,Homestead,FL,Miami-Dade,25.558428,-80.458168,-5,1
+33090,Homestead,FL,Miami Dade,25.558428,-80.458168,-5,1
+33092,Homestead,FL,Miami Dade,25.558428,-80.458168,-5,1
 33093,Pompano Beach,FL,Broward,26.145724,-80.448254,-5,1
 33097,Pompano Beach,FL,Broward,26.145724,-80.448254,-5,1
-33101,Miami,FL,Miami-Dade,25.779076,-80.19782,-5,1
-33102,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33107,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33109,Miami Beach,FL,Miami-Dade,25.759474,-80.13907,-5,1
-33110,Miami,FL,Miami-Dade,25.846874,-80.20827,-5,1
-33111,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33114,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33116,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33119,Miami Beach,FL,Miami-Dade,25.784526,-80.131967,-5,1
-33121,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33122,Miami,FL,Miami-Dade,25.799962,-80.31775,-5,1
-33124,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33125,Miami,FL,Miami-Dade,25.782176,-80.23607,-5,1
-33126,Miami,FL,Miami-Dade,25.777977,-80.29718,-5,1
-33127,Miami,FL,Miami-Dade,25.813808,-80.2058,-5,1
-33128,Miami,FL,Miami-Dade,25.777143,-80.20225,-5,1
-33129,Miami,FL,Miami-Dade,25.757227,-80.20656,-5,1
-33130,Miami,FL,Miami-Dade,25.768277,-80.20339,-5,1
-33131,Miami,FL,Miami-Dade,25.767368,-80.1893,-5,1
-33132,Miami,FL,Miami-Dade,25.784326,-80.18753,-5,1
-33133,Miami,FL,Miami-Dade,25.730678,-80.2441,-5,1
-33134,Miami,FL,Miami-Dade,25.753927,-80.27034,-5,1
-33135,Miami,FL,Miami-Dade,25.766577,-80.23576,-5,1
-33136,Miami,FL,Miami-Dade,25.786326,-80.2029,-5,1
-33137,Miami,FL,Miami-Dade,25.817325,-80.19046,-5,1
-33138,Miami,FL,Miami-Dade,25.853184,-80.18622,-5,1
-33139,Miami Beach,FL,Miami-Dade,25.784276,-80.14126,-5,1
-33140,Miami Beach,FL,Miami-Dade,25.814225,-80.13085,-5,1
-33141,Miami Beach,FL,Miami-Dade,25.858573,-80.12973,-5,1
-33142,Miami,FL,Miami-Dade,25.812625,-80.2369,-5,1
-33143,Miami,FL,Miami-Dade,25.702929,-80.29642,-5,1
-33144,Miami,FL,Miami-Dade,25.76226,-80.30839,-5,1
-33145,Miami,FL,Miami-Dade,25.753177,-80.23327,-5,1
-33146,Miami,FL,Miami-Dade,25.720728,-80.27255,-5,1
-33147,Miami,FL,Miami-Dade,25.850124,-80.23773,-5,1
-33148,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33149,Key Biscayne,FL,Miami-Dade,25.700966,-80.16195,-5,1
-33150,Miami,FL,Miami-Dade,25.851974,-80.20566,-5,1
-33151,Miami,FL,Miami-Dade,25.832074,-80.20942,-5,1
-33152,Miami,FL,Miami-Dade,25.795476,-80.312873,-5,1
-33153,Miami,FL,Miami-Dade,25.865523,-80.193619,-5,1
-33154,Miami,FL,Miami-Dade,25.881391,-80.1276,-5,1
-33155,Miami,FL,Miami-Dade,25.739011,-80.30685,-5,1
-33156,Miami,FL,Miami-Dade,25.66558,-80.30688,-5,1
-33157,Miami,FL,Miami-Dade,25.606583,-80.34859,-5,1
-33158,Miami,FL,Miami-Dade,25.637132,-80.31641,-5,1
-33159,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33160,North Miami Beach,FL,Miami-Dade,25.941535,-80.13861,-5,1
-33161,Miami,FL,Miami-Dade,25.893372,-80.18164,-5,1
-33162,Miami,FL,Miami-Dade,25.929571,-80.17839,-5,1
-33163,Miami,FL,Miami-Dade,25.94497,-80.21452,-5,1
-33164,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33165,Miami,FL,Miami-Dade,25.734828,-80.3583,-5,1
-33166,Miami,FL,Miami-Dade,25.824725,-80.30476,-5,1
-33167,Miami,FL,Miami-Dade,25.885739,-80.23264,-5,1
-33168,Miami,FL,Miami-Dade,25.892185,-80.21032,-5,1
-33169,Miami,FL,Miami-Dade,25.94267,-80.21276,-5,1
-33170,Miami,FL,Miami-Dade,25.559785,-80.41664,-5,1
-33172,Miami,FL,Miami-Dade,25.786634,-80.36151,-5,1
-33173,Miami,FL,Miami-Dade,25.702429,-80.36184,-5,1
-33174,Miami,FL,Miami-Dade,25.763044,-80.35919,-5,1
-33175,Miami,FL,Miami-Dade,25.733204,-80.41197,-5,1
-33176,Miami,FL,Miami-Dade,25.653431,-80.35999,-5,1
-33177,Miami,FL,Miami-Dade,25.595983,-80.40234,-5,1
-33178,Miami,FL,Miami-Dade,25.837696,-80.36947,-5,1
-33179,Miami,FL,Miami-Dade,25.95872,-80.17941,-5,1
-33180,Miami,FL,Miami-Dade,25.962069,-80.14465,-5,1
-33181,Miami,FL,Miami-Dade,25.897372,-80.16048,-5,1
-33182,Miami,FL,Miami-Dade,25.781127,-80.40467,-5,1
-33183,Miami,FL,Miami-Dade,25.699968,-80.40811,-5,1
-33184,Miami,FL,Miami-Dade,25.759184,-80.40773,-5,1
-33185,Miami,FL,Miami-Dade,25.723173,-80.43995,-5,1
-33186,Miami,FL,Miami-Dade,25.662292,-80.40947,-5,1
-33187,Miami,FL,Miami-Dade,25.596234,-80.4765,-5,1
-33188,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33189,Miami,FL,Miami-Dade,25.574834,-80.3467,-5,1
-33190,Miami,FL,Miami-Dade,25.56071,-80.3494,-5,1
-33192,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33193,Miami,FL,Miami-Dade,25.70028,-80.44721,-5,1
-33194,Miami,FL,Miami-Dade,25.745549,-80.4651,-5,1
-33195,Miami,FL,Miami-Dade,25.772876,-80.187019,-5,1
-33196,Miami,FL,Miami-Dade,25.650232,-80.45925,-5,1
-33197,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33199,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33231,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33233,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33234,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33238,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33239,Miami Beach,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33242,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33243,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33245,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33247,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33255,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33256,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33257,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33261,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33265,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33266,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33269,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33280,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33283,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33296,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
-33299,Miami,FL,Miami-Dade,25.558428,-80.458168,-5,1
+33101,Miami,FL,Miami Dade,25.779076,-80.19782,-5,1
+33102,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33107,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33109,Miami Beach,FL,Miami Dade,25.759474,-80.13907,-5,1
+33110,Miami,FL,Miami Dade,25.846874,-80.20827,-5,1
+33111,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33114,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33116,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33119,Miami Beach,FL,Miami Dade,25.784526,-80.131967,-5,1
+33121,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33122,Miami,FL,Miami Dade,25.799962,-80.31775,-5,1
+33124,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33125,Miami,FL,Miami Dade,25.782176,-80.23607,-5,1
+33126,Miami,FL,Miami Dade,25.777977,-80.29718,-5,1
+33127,Miami,FL,Miami Dade,25.813808,-80.2058,-5,1
+33128,Miami,FL,Miami Dade,25.777143,-80.20225,-5,1
+33129,Miami,FL,Miami Dade,25.757227,-80.20656,-5,1
+33130,Miami,FL,Miami Dade,25.768277,-80.20339,-5,1
+33131,Miami,FL,Miami Dade,25.767368,-80.1893,-5,1
+33132,Miami,FL,Miami Dade,25.784326,-80.18753,-5,1
+33133,Miami,FL,Miami Dade,25.730678,-80.2441,-5,1
+33134,Miami,FL,Miami Dade,25.753927,-80.27034,-5,1
+33135,Miami,FL,Miami Dade,25.766577,-80.23576,-5,1
+33136,Miami,FL,Miami Dade,25.786326,-80.2029,-5,1
+33137,Miami,FL,Miami Dade,25.817325,-80.19046,-5,1
+33138,Miami,FL,Miami Dade,25.853184,-80.18622,-5,1
+33139,Miami Beach,FL,Miami Dade,25.784276,-80.14126,-5,1
+33140,Miami Beach,FL,Miami Dade,25.814225,-80.13085,-5,1
+33141,Miami Beach,FL,Miami Dade,25.858573,-80.12973,-5,1
+33142,Miami,FL,Miami Dade,25.812625,-80.2369,-5,1
+33143,Miami,FL,Miami Dade,25.702929,-80.29642,-5,1
+33144,Miami,FL,Miami Dade,25.76226,-80.30839,-5,1
+33145,Miami,FL,Miami Dade,25.753177,-80.23327,-5,1
+33146,Miami,FL,Miami Dade,25.720728,-80.27255,-5,1
+33147,Miami,FL,Miami Dade,25.850124,-80.23773,-5,1
+33148,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33149,Key Biscayne,FL,Miami Dade,25.700966,-80.16195,-5,1
+33150,Miami,FL,Miami Dade,25.851974,-80.20566,-5,1
+33151,Miami,FL,Miami Dade,25.832074,-80.20942,-5,1
+33152,Miami,FL,Miami Dade,25.795476,-80.312873,-5,1
+33153,Miami,FL,Miami Dade,25.865523,-80.193619,-5,1
+33154,Miami,FL,Miami Dade,25.881391,-80.1276,-5,1
+33155,Miami,FL,Miami Dade,25.739011,-80.30685,-5,1
+33156,Miami,FL,Miami Dade,25.66558,-80.30688,-5,1
+33157,Miami,FL,Miami Dade,25.606583,-80.34859,-5,1
+33158,Miami,FL,Miami Dade,25.637132,-80.31641,-5,1
+33159,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33160,North Miami Beach,FL,Miami Dade,25.941535,-80.13861,-5,1
+33161,Miami,FL,Miami Dade,25.893372,-80.18164,-5,1
+33162,Miami,FL,Miami Dade,25.929571,-80.17839,-5,1
+33163,Miami,FL,Miami Dade,25.94497,-80.21452,-5,1
+33164,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33165,Miami,FL,Miami Dade,25.734828,-80.3583,-5,1
+33166,Miami,FL,Miami Dade,25.824725,-80.30476,-5,1
+33167,Miami,FL,Miami Dade,25.885739,-80.23264,-5,1
+33168,Miami,FL,Miami Dade,25.892185,-80.21032,-5,1
+33169,Miami,FL,Miami Dade,25.94267,-80.21276,-5,1
+33170,Miami,FL,Miami Dade,25.559785,-80.41664,-5,1
+33172,Miami,FL,Miami Dade,25.786634,-80.36151,-5,1
+33173,Miami,FL,Miami Dade,25.702429,-80.36184,-5,1
+33174,Miami,FL,Miami Dade,25.763044,-80.35919,-5,1
+33175,Miami,FL,Miami Dade,25.733204,-80.41197,-5,1
+33176,Miami,FL,Miami Dade,25.653431,-80.35999,-5,1
+33177,Miami,FL,Miami Dade,25.595983,-80.40234,-5,1
+33178,Miami,FL,Miami Dade,25.837696,-80.36947,-5,1
+33179,Miami,FL,Miami Dade,25.95872,-80.17941,-5,1
+33180,Miami,FL,Miami Dade,25.962069,-80.14465,-5,1
+33181,Miami,FL,Miami Dade,25.897372,-80.16048,-5,1
+33182,Miami,FL,Miami Dade,25.781127,-80.40467,-5,1
+33183,Miami,FL,Miami Dade,25.699968,-80.40811,-5,1
+33184,Miami,FL,Miami Dade,25.759184,-80.40773,-5,1
+33185,Miami,FL,Miami Dade,25.723173,-80.43995,-5,1
+33186,Miami,FL,Miami Dade,25.662292,-80.40947,-5,1
+33187,Miami,FL,Miami Dade,25.596234,-80.4765,-5,1
+33188,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33189,Miami,FL,Miami Dade,25.574834,-80.3467,-5,1
+33190,Miami,FL,Miami Dade,25.56071,-80.3494,-5,1
+33192,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33193,Miami,FL,Miami Dade,25.70028,-80.44721,-5,1
+33194,Miami,FL,Miami Dade,25.745549,-80.4651,-5,1
+33195,Miami,FL,Miami Dade,25.772876,-80.187019,-5,1
+33196,Miami,FL,Miami Dade,25.650232,-80.45925,-5,1
+33197,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33199,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33231,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33233,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33234,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33238,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33239,Miami Beach,FL,Miami Dade,25.558428,-80.458168,-5,1
+33242,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33243,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33245,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33247,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33255,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33256,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33257,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33261,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33265,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33266,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33269,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33280,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33283,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33296,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
+33299,Miami,FL,Miami Dade,25.558428,-80.458168,-5,1
 33301,Fort Lauderdale,FL,Broward,26.121114,-80.13187,-5,1
 33302,Fort Lauderdale,FL,Broward,26.145724,-80.448254,-5,1
 33303,Fort Lauderdale,FL,Broward,26.196911,-80.095165,-5,1
@@ -27320,7 +27320,7 @@ zip,city,state,county,latitude,longitude,timezone,dst
 62651,Jacksonville,IL,Morgan,39.698311,-90.26153,-6,1
 62655,Kilbourne,IL,Mason,40.147371,-90.00698,-6,1
 62656,Lincoln,IL,Logan,40.149927,-89.36746,-6,1
-62659,Lincoln'S New Salem,IL,Menard,40.031115,-89.786723,-6,1
+62659,Lincolns New Salem,IL,Menard,40.031115,-89.786723,-6,1
 62660,Literberry,IL,Morgan,39.858933,-90.200747,-6,1
 62661,Loami,IL,Sangamon,39.669508,-89.84805,-6,1
 62662,Lowder,IL,Sangamon,39.749457,-89.606017,-6,1
@@ -33035,7 +33035,7 @@ zip,city,state,county,latitude,longitude,timezone,dst
 76123,Fort Worth,TX,Tarrant,32.623807,-97.37548,-6,1
 76124,Fort Worth,TX,Tarrant,32.771419,-97.291484,-6,1
 76126,Fort Worth,TX,Tarrant,32.649476,-97.49124,-6,1
-76127,Naval Air Station/ Jrb,TX,Tarrant,32.772063,-97.42165,-6,1
+76127,Naval Air Station Jrb,TX,Tarrant,32.772063,-97.42165,-6,1
 76129,Fort Worth,TX,Tarrant,32.771419,-97.291484,-6,1
 76130,Fort Worth,TX,Tarrant,32.771419,-97.291484,-6,1
 76131,Fort Worth,TX,Tarrant,32.873017,-97.34622,-6,1
@@ -40356,7 +40356,7 @@ zip,city,state,county,latitude,longitude,timezone,dst
 96097,Yreka,CA,Siskiyou,41.749249,-122.64479,-8,1
 96099,Redding,CA,Shasta,40.704337,-122.387808,-8,1
 96101,Alturas,CA,Modoc,41.439363,-120.58771,-8,1
-96103,Blairsden-Graeagle,CA,Plumas,39.779486,-120.64058,-8,1
+96103,Blairsden Graeagle,CA,Plumas,39.779486,-120.64058,-8,1
 96104,Cedarville,CA,Modoc,41.527226,-120.13826,-8,1
 96105,Chilcoot,CA,Plumas,39.862832,-120.17303,-8,1
 96106,Clio,CA,Plumas,39.743835,-120.58114,-8,1

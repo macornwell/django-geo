@@ -1,4 +1,5 @@
 import os, io
+from decimal import Decimal
 import csv
 import json
 import urllib.request
@@ -11,7 +12,7 @@ from PIL import Image
 from django_geo_db.utilities import BoundingBoxAndMap
 from django_geo_db.math import Translations
 from django_geo_db.models import UserLocation, Zipcode, Location, Country, \
-    State, LocationMap, LocationBounds, LocationMapType
+    State, LocationMap, LocationBounds, LocationMapType, GeoCoordinate
 import os
 
 
@@ -80,6 +81,22 @@ class GeographyDAL:
         country = state.country
         location, created = Location.objects.get_or_create(country=country, state=state, city=city, zipcode=zipcode, geocoordinate=coordinate, name=name)
         return location
+
+    def get_or_create_geocoordinate(self, lat, lon):
+        lat_neg, lat_tens, lat_ones, lat_tenths, lat_hundredths, lat_thousands, lat_ten_thousands, other2 = GeoCoordinate.split_lat_coordinate(str(lat))
+        lon_neg, lon_hundreds, lon_tens, lon_ones, lon_tenths, lon_hundredths, lon_thousands, lon_ten_thousands, other2 = GeoCoordinate.split_lon_coordinate(str(lon))
+        coord = GeoCoordinate.objects.filter(lat_neg=lat_neg, lat_tens=lat_tens, lat_ones=lat_ones,
+                                             lat_tenths=lat_tenths, lat_hundredths=lat_hundredths,
+                                             lat_thousands=lat_thousands, lat_ten_thousands=lat_ten_thousands,
+                                             lon_neg=lon_neg, lon_hundreds=lon_hundreds, lon_tens=lon_tens,
+                                             lon_ones=lon_ones, lon_tenths=lon_tenths, lon_hundredths=lon_hundredths,
+                                             lon_ten_thousands=lon_ten_thousands).first()
+        if not coord:
+            coord = GeoCoordinate()
+            coord.lat = lat
+            coord.lon = lon
+            coord.save()
+        return coord
 
     def geocode_zipcode_from_lat_lon(self, lat, lon):
         """

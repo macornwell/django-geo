@@ -109,6 +109,7 @@ class Command(BaseCommand):
                 countyObj = County.objects.filter(state=stateObj, name=county).first()
                 if not countyObj:
                     countyObj = County.objects.create(state=stateObj, name=county, geocoordinate=geoCoordinate)
+                    Location.objects.create(country=usCountry, state=stateObj, county=countyObj)
                 if key not in uniqueCities:
                     uniqueCities.add(key)
                     cityObj = City.objects.create(state=stateObj, county=countyObj, name=city, geocoordinate=geoCoordinate)
@@ -120,24 +121,29 @@ class Command(BaseCommand):
                 zipObj = Zipcode.objects.create(city=cityObj, zipcode=zip, geocoordinate=geoCoordinate, timezone=timezone)
                 if stateObj != cityObj.state:
                     raise Exception('{0} is not {1} in city {2}. KeyFound {3}. Key {4}'.format(stateObj, cityObj.state, cityObj, keyFound, key))
-                Location.objects.create(country=usCountry, state=stateObj, city=cityObj, zipcode=zipObj)
+                Location.objects.create(country=usCountry, county=countyObj, state=stateObj, city=cityObj, zipcode=zipObj)
             except:
                 print('zip: ' + zip)
                 print('StateObj: ' + str(stateObj))
                 print('State: ' + str(state))
                 print('Key: ' + str(key))
                 raise Exception('Exception occurred while processing Zipcode {0}'.format(zip))
-        for zip, lat, lon, city, county, state, timezone in noLat:
-            key = '{0}-{1}-{2}'.format(state, county, city).lower()
-            stateObj = stateDict[state]
-            cityObj = City.objects.filter(state=stateObj, name__iexact=city).first()
-            countyObj = County.objects.filter(name__iexact=county).first()
-            if not cityObj:
-                cityObj = City.objects.filter(state=stateObj).first()
-            if not countyObj:
-                countyObj = County.objects.create()
-            zipObj = Zipcode.objects.create(city=cityObj, zipcode=zip, geocoordinate=cityObj.geocoordinate, timezone=timezone)
-            Location.objects.create(country=usCountry, state=stateObj, city=cityObj, zipcode=zipObj)
+        if noLat:
+            print(noLat)
+            raise Exception('Should not have invalid data')
+            for zip, lat, lon, city, county, state, timezone in noLat:
+                key = '{0}-{1}-{2}'.format(state, county, city).lower()
+                stateObj = stateDict[state]
+                cityObj = City.objects.filter(state=stateObj, name__iexact=city).first()
+                countyObj = County.objects.filter(state=stateObj, name__iexact=county).first()
+                if not cityObj:
+                    cityObj = City.objects.filter(country=usCountry, state=stateObj).first()
+                if not countyObj:
+                    countyObj = County.objects.create(state=stateObj, name=county, geocoordinate=geoCoordinate)
+                    Location.objects.create(country=usCountry, state=stateObj, county=countyObj)
+                    countyObj = County.objects.create()
+                zipObj = Zipcode.objects.create(city=cityObj, zipcode=zip, geocoordinate=cityObj.geocoordinate, timezone=timezone)
+                Location.objects.create(country=usCountry, state=stateObj, city=cityObj, zipcode=zipObj)
 
 
 

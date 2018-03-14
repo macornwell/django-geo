@@ -276,8 +276,8 @@ class Location(models.Model):
     city = models.ForeignKey(City, blank=True, null=True)
     zipcode = models.ForeignKey(Zipcode, blank=True, null=True)
     geocoordinate = models.ForeignKey(GeoCoordinate, blank=True, null=True, help_text='This is a very specific location.')
-    name = models.CharField(max_length=30, blank=True, null=True)
-    generated_name = models.CharField(max_length=50, blank=True, null=True)
+    name = models.CharField(max_length=50, blank=True, null=True)
+    generated_name = models.CharField(max_length=90, blank=True, null=True)
 
     def __str__(self):
         return self.generated_name or self.__get_generated_name()
@@ -357,6 +357,8 @@ class Location(models.Model):
             value = '{0}, {1} {2}'.format(self.city.name, self.state.abbreviation, self.zipcode.zipcode)
         elif self.city:
             value = '{0}, {1}'.format(self.city.name, self.state.abbreviation)
+        elif self.county:
+            value = '{0}, {1}'.format(self.county.name, self.state.abbreviation)
         elif self.state:
             value = '{0}, {1}'.format(self.state.name, self.country.name)
         elif self.region:
