@@ -27,7 +27,7 @@ class GeographyDAL:
     def get_map_type(self, map_type):
         return LocationMapType.objects.get(type=map_type)
 
-    def get_location(self, country_name, state_name=None, county_name=None, city_name=None, zipcode=None):
+    def get_location(self, country_name, state_name=None, county_name=None, city_name=None, zipcode=None, name=None):
         result = Location.objects.filter(country__name__iexact=country_name)
         if zipcode:
             result = result.filter(zipcode__zipcode=zipcode).first()
@@ -38,10 +38,12 @@ class GeographyDAL:
             result = result.filter(county__name__iexact=county_name)
         if city_name:
             result = result.filter(city__name__iexact=city_name)
+        if name:
+            result = result.filter(name__iexact=name)
         return result.first()
 
-    def get_named_location(self, country_name, name):
-        result = Location.objects.filter(country__name__iexact=country_name, name=name).first()
+    def get_region(self, country_name, region):
+        result = Location.objects.filter(country__name__iexact=country_name, region__name__iexact=region).first()
         return result
 
     def get_us_country(self):
@@ -185,11 +187,11 @@ class LocationMapGenerator:
     def __init__(self, domain):
         self.domain = domain
 
-    def get_location_map_by_location_name(self, type, location):
+    def get_regional_map(self, type, location):
         map = LocationMap.objects.filter(location=location, type=type).first()
         if not map:
             url = 'img/django_geo_db/maps/{0}/{1}/{2}.png'.format(type, location.country.name.replace(' ', '-').lower(),
-                                                                  location.name.replace(' ', '-').lower())
+                                                                  location.region.name.replace(' ', '-').lower())
             url, base_map = self.__get_map(url)
             map = LocationMap()
             map.location = location

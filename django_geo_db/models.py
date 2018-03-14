@@ -163,7 +163,7 @@ class Region(models.Model):
     geocoordinate = models.ForeignKey(GeoCoordinate)
 
     def __str__(self):
-        return '{0} {1}'.format(self.name, self.country.name)
+        return '{0}, {1}'.format(self.name, self.country.abbreviation)
 
 
 class State(models.Model):
