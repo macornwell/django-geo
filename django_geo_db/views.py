@@ -255,17 +255,14 @@ class PlotMap(APIView):
     Plots markers on a map.
 
     Examples:
-    /plot/simple/country/united-states-of-america/united-states-of-america/ll_1=30.1235 -90.1234&ll_2=30.1545 -90.15123&marker=star&size_percent=0.05
+    /plot/simple/country/united-states-of-america/united-states-of-america/&marker=star&size_percent=0.05
 
-    /plot/simple/country/united-states-of-america/united-states-of-america/
-    &ll_1=30.1235 -90.1234
-    &ll_2=30.1545 -90.15123
-    &marker=star
-    &size_percent=0.05
+    Body Params:
+    ll_1=30.1235 -90.1234&ll_2=30.1545 -90.15123
 
     """
 
-    def get(self, request, map_type, location_type, country_name, location_name):
+    def post(self, request, map_type, location_type, country_name, location_name):
         domain = request.build_absolute_uri('/')[0:-1]
 
         country_name = country_name.replace('-', ' ')
@@ -289,7 +286,7 @@ class PlotMap(APIView):
 
         marker = request.query_params.get('marker', 'star')
         size_percent = float(request.query_params.get('size_percent', 0.05))
-        coords = [LatLon.parse_string(request.query_params[p]) for p in request.query_params if p.startswith('ll_')]
+        coords = [LatLon.parse_string(request.POST[p]) for p in request.POST if p.startswith('ll_')]
         marked_map = MarkedMap(storage, map_data, bounds)
 
         markers = {
