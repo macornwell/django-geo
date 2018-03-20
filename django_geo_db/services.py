@@ -1,5 +1,4 @@
-import os, io
-from decimal import Decimal
+import os
 import csv
 import json
 import urllib.request
@@ -7,16 +6,13 @@ import urllib.request
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.files.storage import default_storage
 
-from PIL import Image
+from django_geo_db.utilities import MarkedMap
+from django_geo_db.storage import DataStorage
 
-from django_geo_db.utilities import BoundingBoxAndMap
-from django_geo_db.math import Translations
 from django_geo_db.models import UserLocation, Zipcode, Location, Country, \
     State, LocationMap, LocationBounds, LocationMapType, GeoCoordinate
-import os
 
 
-MAP_STAR_PERCENTAGE = 0.10
 US_CITIES_FILE = 'us-data-final.csv'
 US_STATES_FILE = 'us-states.csv'
 COUNTRIES_FILE = 'countries.csv'
@@ -244,7 +240,7 @@ class LocationMapGenerator:
             map.location = location
             map.type = type
             if coord_obj:
-                combined_image = self.__generate_detail_map_image(base_map, type, location, location_bounds, coord_obj)
+                combined_image = self.__add_star_to_base_map(base_map, location_bounds, coord_obj)
                 new_url = self.__save_map_and_return_url_of_detailed_map(type, location, combined_image)
                 map.map_file_url = new_url
             else:  # This is the situation where the original base_map needs an entry, but no work is needed.
@@ -252,45 +248,10 @@ class LocationMapGenerator:
             map.save()
         return map
 
-    def __generate_detail_map_image(self, base_map, type, location, location_bounds, coord_obj):
-        if not location_bounds:
-            raise Exception('Must have a LocationBounds for {0}'.format(str(location)))
-
-        # 1. Get Star, translate star to be the standard size relative to picture size.
-        coord_star = self.__get_star()
-
-        map_file = io.BytesIO(base_map)
-        map_image = Image.open(map_file)
-        map_width, map_height = map_image.size
-
-        star_x, star_y = Translations.rectangle_reduction(map_width, map_width, MAP_STAR_PERCENTAGE)
-        changed_star_file = io.BytesIO()
-        with io.BytesIO(coord_star) as star_file:
-            im = Image.open(star_file)
-            im.thumbnail((star_x, star_y), Image.ANTIALIAS)
-            im.save(changed_star_file, "PNG")
-
-        # 2. Find the (x,y) for the coordinate that will be the center point of the star on the map.
-        bb_and_map = BoundingBoxAndMap()
-        bb_and_map.width = map_width
-        bb_and_map.height = map_height
-        bb_and_map.bounding_box = location_bounds.get_bounding_box()
-        center_x, center_y = bb_and_map.get_coordinate_space(coord_obj.lat, coord_obj.lon)
-
-        # 3. Instead of using the center we need to offset it to the bottom left corner of the star.
-        half_x = star_x // 2
-        half_y = star_y // 2
-        pos_x = center_x - half_x
-        pos_y = center_y - half_y
-
-        # 4. Combine Base Map and Star
-        overlay = Image.open(changed_star_file).convert("RGBA")
-        image_copy = map_image.copy()
-        position = (pos_x, pos_y)
-        image_copy.paste(overlay, position, mask=overlay)
-        combined_image = io.BytesIO()
-        image_copy.save(combined_image, format="PNG")
-
+    def __add_star_to_base_map(self, base_map_bytes, location_bounds, coord_obj):
+        storage = DataStorage(self.domain)
+        map = MarkedMap(storage, base_map_bytes, location_bounds)
+        combined_image = map.add_star_to_base_map(coord_obj, marker_size=0.05)
         return combined_image
 
     def __save_map_and_return_url_of_detailed_map(self, location_type, location, combined_image):
@@ -348,11 +309,3 @@ class LocationMapGenerator:
     def __get_base_map(self, type, location):
         url = 'img/' + self.__get_url(type, location)
         return self.__get_map(url)
-
-    def __get_star(self):
-        url = static('img/django_geo_db/star.png')
-        if 'http' not in url:
-            url = self.domain + url
-        response = urllib.request.urlopen(url)
-        data = response.read()
-        return data

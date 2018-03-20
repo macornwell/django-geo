@@ -1,11 +1,19 @@
+import io
 from decimal import Decimal
 import random
+from PIL import Image
+
+from django_geo_db.math import Translations
+
+MAP_STAR_PERCENTAGE = 0.10
+
 
 def get_lat_lon_from_string(latLonString):
     lat,lon = latLonString.split(' ')
     lat = get_standardized_coordinate(lat)
     lon = get_standardized_coordinate(lon)
     return (Decimal(lat), Decimal(lon))
+
 
 def get_standardized_coordinate(latOrLon):
     objInt, objFrac = str(latOrLon).split('.', 1)
@@ -217,3 +225,56 @@ class GeographicRayTest:
             b = coord_list[i+2]
 
             pass
+
+
+class MarkedMap:
+    """
+    A map that is marked on.
+    """
+
+    def __init__(self, data_storage, map_bytes, location_bounds):
+        self.data_storage = data_storage
+        self.map_bytes = map_bytes
+        self.location_bounds = location_bounds
+
+    def __get_star(self):
+        return self.data_storage.get_star()
+
+    def add_star_to_base_map(self, coord_obj, marker_size=MAP_STAR_PERCENTAGE):
+        # 1. Get Star, translate star to be the standard size relative to picture size.
+        coord_star = self.__get_star()
+
+        map_file = io.BytesIO(self.map_bytes)
+        map_image = Image.open(map_file)
+        map_width, map_height = map_image.size
+
+        star_x, star_y = Translations.rectangle_reduction(map_width, map_height, marker_size)
+        changed_star_file = io.BytesIO()
+        with io.BytesIO(coord_star) as star_file:
+            im = Image.open(star_file)
+            im.thumbnail((star_x, star_y), Image.ANTIALIAS)
+            im.save(changed_star_file, "PNG")
+
+        # 2. Find the (x,y) for the coordinate that will be the center point of the star on the map.
+        bb_and_map = BoundingBoxAndMap()
+        bb_and_map.width = map_width
+        bb_and_map.height = map_height
+        bb_and_map.bounding_box = self.location_bounds.get_bounding_box()
+        center_x, center_y = bb_and_map.get_coordinate_space(coord_obj.lat, coord_obj.lon)
+
+        # 3. Instead of using the center we need to offset it to the bottom left corner of the star.
+        star_image = Image.open(changed_star_file)
+        star_width, star_height = star_image.size
+        half_x = star_width // 2
+        half_y = star_height // 2
+        pos_x = center_x - half_x
+        pos_y = center_y - half_y
+
+        # 4. Combine Base Map and Star
+        overlay = Image.open(changed_star_file).convert("RGBA")
+        image_copy = map_image.copy()
+        position = (pos_x, pos_y)
+        image_copy.paste(overlay, position, mask=overlay)
+        combined_image = io.BytesIO()
+        image_copy.save(combined_image, format="PNG")
+        return combined_image

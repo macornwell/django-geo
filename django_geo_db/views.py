@@ -1,5 +1,7 @@
+import io
 from django.conf import settings
-from django.shortcuts import Http404
+from django.shortcuts import Http404, HttpResponse
+from wsgiref.util import FileWrapper
 from rest_framework import permissions, mixins, filters, generics, status
 from rest_framework.decorators import api_view, APIView
 from rest_framework.response import Response
@@ -7,7 +9,9 @@ from django_geo_db import serializers
 from django_geo_db.serializers import LocationSerializer, LocationMapTypeSerializer, LocationMapSerializer
 from django_geo_db.services import GEO_DAL, LocationMapGenerator
 from django_geo_db.models import Continent, Country, State, Location, City, \
-    Zipcode, GeoCoordinate, UserLocation, County, LocationMapType, LocationMap
+    Zipcode, GeoCoordinate, UserLocation, County, LocationMapType, LocationMap, LocationBounds
+from django_geo_db.storage import DataStorage
+from django_geo_db.utilities import MarkedMap, LatLon
 
 
 class LocationDetail(APIView):
@@ -165,7 +169,7 @@ class GeoCoordinateDetails(mixins.RetrieveModelMixin,
         return self.retrieve(request, *args, **kwargs)
 
 
-class LocationMap(APIView):
+class LocationMapView(APIView):
     """
     Queries for LocationMap objects.
 
@@ -244,3 +248,64 @@ class LocationMapTypeDetail(APIView):
         snippet = self.get_object(pk)
         serializer = LocationMapTypeSerializer(snippet)
         return Response(serializer.data)
+
+
+class PlotMap(APIView):
+    """
+    Plots markers on a map.
+
+    Examples:
+    /plot/simple/country/united-states-of-america/united-states-of-america/ll_1=30.1235 -90.1234&ll_2=30.1545 -90.15123&marker=star&size_percent=0.05
+
+    /plot/simple/country/united-states-of-america/united-states-of-america/
+    &ll_1=30.1235 -90.1234
+    &ll_2=30.1545 -90.15123
+    &marker=star
+    &size_percent=0.05
+
+    """
+
+    def get(self, request, map_type, location_type, country_name, location_name):
+        domain = request.build_absolute_uri('/')[0:-1]
+
+        country_name = country_name.replace('-', ' ')
+        obj = location_name.replace('-', ' ')
+        country_obj = Country.objects.get(name__iexact=country_name)
+        location = None
+        if location_type == 'country':
+            location = Location.objects.get(country=country_obj, state=None, region=None, name=None)
+        elif location_type == 'region':
+            location = Location.objects.get(country=country_obj, state=None, region__name__iexact=obj, name=None)
+        elif location_type == 'state':
+            location = Location.objects.get(country=country_obj, state__name__iexact=obj,
+                                            region=None, name=None, county=None, zipcode=None, city=None)
+        bounds = LocationBounds.objects.get(location=location)
+
+        map_type = LocationMapType.objects.get(type=map_type)
+        location_type = LocationMap.objects.get(location=location, type=map_type)
+
+        storage = DataStorage(domain)
+        map_data = storage.get_static_or_media_data(location_type.map_file_url)
+
+        marker = request.query_params.get('marker', 'star')
+        size_percent = float(request.query_params.get('size_percent', 0.05))
+        coords = [LatLon.parse_string(request.query_params[p]) for p in request.query_params if p.startswith('ll_')]
+        marked_map = MarkedMap(storage, map_data, bounds)
+
+        markers = {
+            'star': 'add_star_to_base_map',
+        }
+
+        combined = map_data
+        for coord in coords:
+            method_name = markers[marker]
+            combined = getattr(marked_map, method_name)(coord, marker_size=size_percent).getvalue()
+            # Recreate the object to use the updated map because we're adding many marks to it.
+            marked_map = MarkedMap(storage, combined, bounds)
+
+        wrapper = FileWrapper(io.BytesIO(combined))
+        response = HttpResponse(wrapper, content_type="application/octet-stream")
+        response['Content-Disposition'] = 'attachment; filename="map.png"'
+        return response
+
+
