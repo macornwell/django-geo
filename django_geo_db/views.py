@@ -9,7 +9,7 @@ from django_geo_db import serializers
 from django_geo_db.serializers import LocationSerializer, LocationMapTypeSerializer, LocationMapSerializer
 from django_geo_db.services import GEO_DAL, LocationMapGenerator
 from django_geo_db.models import Continent, Country, State, Location, City, \
-    Zipcode, GeoCoordinate, UserLocation, County, LocationMapType, LocationMap, LocationBounds
+    Zipcode, GeoCoordinate, UserLocation, County, LocationMapType, LocationMap, LocationBounds, StateRegion
 from django_geo_db.storage import DataStorage
 from django_geo_db.utilities import MarkedMap, LatLon
 
@@ -164,6 +164,25 @@ class GeoCoordinateDetails(mixins.RetrieveModelMixin,
                      generics.GenericAPIView):
     queryset = GeoCoordinate.objects.all()
     serializer_class = serializers.GeoCoordinateSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+
+class StateRegionList(mixins.ListModelMixin,
+                      generics.GenericAPIView):
+    queryset = StateRegion.objects.all()
+    serializer_class = serializers.StateRegionSerializer
+    filter_fields = ('name', 'state_id')
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+
+class StateRegionDetails(mixins.RetrieveModelMixin,
+                         generics.GenericAPIView):
+    queryset = StateRegion.objects.all()
+    serializer_class = serializers.StateRegionSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)

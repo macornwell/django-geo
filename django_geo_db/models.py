@@ -456,3 +456,19 @@ class GeographicShape(models.Model):
     geographic_shape_id = models.AutoField(primary_key=True)
     geocoordinates = models.ManyToManyField(GeoCoordinate)
     name = models.CharField(max_length=40, unique=True)
+
+
+class StateRegion(models.Model):
+    """
+    A region of a state. Often East, Central, West or North, South or Mountain, Piedmont, Coast. Etc.
+    """
+    state_region_id = models.AutoField(primary_key=True)
+    state = models.ForeignKey(State)
+    name = models.CharField(max_length=30)
+    counties = models.ManyToManyField(County)
+
+    def __str__(self):
+        return '{0}:{1}'.format(self.state.name, self.name)
+
+    class Meta:
+        unique_together = (('state', 'name'),)

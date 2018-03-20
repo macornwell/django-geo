@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^city/(?P<pk>\d+)/$', views.CityDetails.as_view(), name='city-detail'),
     url(r'^zipcode/(?P<pk>\d+)/$', views.ZipcodeDetails.as_view(), name='zipcode-detail'),
     url(r'^location/(?P<pk>[0-9]+)/$', views.LocationDetail.as_view(), name='location-detail'),
+    url(r'^state-region/(?P<pk>[0-9]+)/$', views.StateRegionDetails.as_view(), name='state-region-detail'),
 
     url(r'^geocoordinate/', views.GeoCoordinateList.as_view(), name='geocoordinate-list'),
     url(r'^continent/', views.ContinentList.as_view(), name='continent-list'),
@@ -19,6 +20,7 @@ urlpatterns = [
     url(r'^state/', views.StateList.as_view(), name='state-list'),
     url(r'^zipcode/', views.ZipcodeList.as_view(), name='zipcode-list'),
     url(r'^location/', views.LocationList.as_view(), name='location-list'),
+    url(r'^state-region/', views.StateRegionList.as_view(), name='state-region-list'),
 
 
     url(r'^location-map/$', views.LocationMapView.as_view(), name='location-map'),

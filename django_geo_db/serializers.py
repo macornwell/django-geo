@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django_geo_db.models import Location, GeoCoordinate, Zipcode, Continent, Country, State, City, County, \
-                                 LocationMap, LocationMapType
+                                 LocationMap, LocationMapType, StateRegion
 
 
 class GeoCoordinateSerializer(serializers.HyperlinkedModelSerializer):
@@ -43,6 +43,19 @@ class CitySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = City
         fields = ('city_id', 'state', 'county', 'name', 'geocoordinate', 'generated_name', 'url')
+
+
+class StateRegionSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField('state-region-detail')
+
+    counties = serializers.SerializerMethodField()
+
+    def get_counties(self, obj):
+        return sorted([c.name for c in obj.counties.all()])
+
+    class Meta:
+        model = StateRegion
+        fields = ('state_region_id', 'state', 'name', 'counties', 'url')
 
 
 class ZipcodeSerializer(serializers.HyperlinkedModelSerializer):
