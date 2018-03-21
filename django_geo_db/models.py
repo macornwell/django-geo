@@ -157,7 +157,7 @@ class Region(models.Model):
     An "informal" regional area somewhere between a country and a state in size.
     The geocoordinate for this should not be taken too seriously, but is roughly the "center."
     """
-    geographic_region_id = models.AutoField(primary_key=True)
+    region_id = models.AutoField(primary_key=True)
     country = models.ForeignKey(Country)
     name = models.CharField(max_length=40)
     geocoordinate = models.ForeignKey(GeoCoordinate)
