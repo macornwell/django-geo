@@ -1,681 +1,681 @@
-"country","state","region","county"
-"United States of America","Alabama","North","Bibb"
-"United States of America","Alabama","North","Blount"
-"United States of America","Alabama","North","Calhoun"
-"United States of America","Alabama","North","Chambers"
-"United States of America","Alabama","North","Cherokee"
-"United States of America","Alabama","North","Chilton"
-"United States of America","Alabama","North","Clay"
-"United States of America","Alabama","North","Cleburne"
-"United States of America","Alabama","North","Colbert"
-"United States of America","Alabama","North","Coosa"
-"United States of America","Alabama","North","Cullman"
-"United States of America","Alabama","North","De Kalb"
-"United States of America","Alabama","North","Etowah"
-"United States of America","Alabama","North","Fayette"
-"United States of America","Alabama","North","Jackson"
-"United States of America","Alabama","North","Jefferson"
-"United States of America","Alabama","North","Jefferson"
-"United States of America","Alabama","North","Lamar"
-"United States of America","Alabama","North","Lauderdale"
-"United States of America","Alabama","North","Lawrence"
-"United States of America","Alabama","North","Limestone"
-"United States of America","Alabama","North","Madison"
-"United States of America","Alabama","North","Marion"
-"United States of America","Alabama","North","Marshall"
-"United States of America","Alabama","North","Morgan"
-"United States of America","Alabama","North","Pickens"
-"United States of America","Alabama","North","Randolph"
-"United States of America","Alabama","North","Saint Clair"
-"United States of America","Alabama","North","Shelby"
-"United States of America","Alabama","North","Talladega"
-"United States of America","Alabama","North","Tallapoosa"
-"United States of America","Alabama","North","Tuscaloosa"
-"United States of America","Alabama","North","Walker"
-"United States of America","Alabama","North","Winston"
-"United States of America","Alabama","South","Autauga"
-"United States of America","Alabama","South","Baldwin"
-"United States of America","Alabama","South","Barbour"
-"United States of America","Alabama","South","Bullock"
-"United States of America","Alabama","South","Butler"
-"United States of America","Alabama","South","Choctaw"
-"United States of America","Alabama","South","Clarke"
-"United States of America","Alabama","South","Coffee"
-"United States of America","Alabama","South","Conecuh"
-"United States of America","Alabama","South","Covington"
-"United States of America","Alabama","South","Crenshaw"
-"United States of America","Alabama","South","Dale"
-"United States of America","Alabama","South","Dallas"
-"United States of America","Alabama","South","Elmore"
-"United States of America","Alabama","South","Escambia"
-"United States of America","Alabama","South","Geneva"
-"United States of America","Alabama","South","Greene"
-"United States of America","Alabama","South","Hale"
-"United States of America","Alabama","South","Henry"
-"United States of America","Alabama","South","Houston"
-"United States of America","Alabama","South","Lee"
-"United States of America","Alabama","South","Lowndes"
-"United States of America","Alabama","South","Macon"
-"United States of America","Alabama","South","Marengo"
-"United States of America","Alabama","South","Mobile"
-"United States of America","Alabama","South","Monroe"
-"United States of America","Alabama","South","Montgomery"
-"United States of America","Alabama","South","Perry"
-"United States of America","Alabama","South","Pike"
-"United States of America","Alabama","South","Russell"
-"United States of America","Alabama","South","Sumter"
-"United States of America","Alabama","South","Washington"
-"United States of America","Alabama","South","Wilcox"
-"United States of America","Georgia","Central","Baldwin"
-"United States of America","Georgia","Central","Bibb"
-"United States of America","Georgia","Central","Bleckley"
-"United States of America","Georgia","Central","Bulloch"
-"United States of America","Georgia","Central","Burke"
-"United States of America","Georgia","Central","Butts"
-"United States of America","Georgia","Central","Candler"
-"United States of America","Georgia","Central","Chattahoochee"
-"United States of America","Georgia","Central","Clayton"
-"United States of America","Georgia","Central","Columbia"
-"United States of America","Georgia","Central","Coweta"
-"United States of America","Georgia","Central","Crawford"
-"United States of America","Georgia","Central","Emanuel"
-"United States of America","Georgia","Central","Fayette"
-"United States of America","Georgia","Central","Glascock"
-"United States of America","Georgia","Central","Greene"
-"United States of America","Georgia","Central","Hancock"
-"United States of America","Georgia","Central","Harris"
-"United States of America","Georgia","Central","Heard"
-"United States of America","Georgia","Central","Henry"
-"United States of America","Georgia","Central","Houston"
-"United States of America","Georgia","Central","Jasper"
-"United States of America","Georgia","Central","Jefferson"
-"United States of America","Georgia","Central","Jenkins"
-"United States of America","Georgia","Central","Johnson"
-"United States of America","Georgia","Central","Jones"
-"United States of America","Georgia","Central","Lamar"
-"United States of America","Georgia","Central","Laurens"
-"United States of America","Georgia","Central","Macon"
-"United States of America","Georgia","Central","Marion"
-"United States of America","Georgia","Central","McDuffie"
-"United States of America","Georgia","Central","Meriwether"
-"United States of America","Georgia","Central","Monroe"
-"United States of America","Georgia","Central","Morgan"
-"United States of America","Georgia","Central","Muscogee"
-"United States of America","Georgia","Central","Newton"
-"United States of America","Georgia","Central","Peach"
-"United States of America","Georgia","Central","Pike"
-"United States of America","Georgia","Central","Putnam"
-"United States of America","Georgia","Central","Richmond"
-"United States of America","Georgia","Central","Schley"
-"United States of America","Georgia","Central","Screven"
-"United States of America","Georgia","Central","Spalding"
-"United States of America","Georgia","Central","Talbot"
-"United States of America","Georgia","Central","Taliaferro"
-"United States of America","Georgia","Central","Taylor"
-"United States of America","Georgia","Central","Treutlen"
-"United States of America","Georgia","Central","Troup"
-"United States of America","Georgia","Central","Twiggs"
-"United States of America","Georgia","Central","Upson"
-"United States of America","Georgia","Central","Warren"
-"United States of America","Georgia","Central","Washington"
-"United States of America","Georgia","Central","Wilkinson"
-"United States of America","Georgia","North","Banks"
-"United States of America","Georgia","North","Barrow"
-"United States of America","Georgia","North","Bartow"
-"United States of America","Georgia","North","Carroll"
-"United States of America","Georgia","North","Catoosa"
-"United States of America","Georgia","North","Chattooga"
-"United States of America","Georgia","North","Cherokee"
-"United States of America","Georgia","North","Clarke"
-"United States of America","Georgia","North","Cobb"
-"United States of America","Georgia","North","Dade"
-"United States of America","Georgia","North","Dawson"
-"United States of America","Georgia","North","DeKalb"
-"United States of America","Georgia","North","Douglas"
-"United States of America","Georgia","North","Elbert"
-"United States of America","Georgia","North","Fannin"
-"United States of America","Georgia","North","Floyd"
-"United States of America","Georgia","North","Forsyth"
-"United States of America","Georgia","North","Franklin"
-"United States of America","Georgia","North","Fulton"
-"United States of America","Georgia","North","Gilmer"
-"United States of America","Georgia","North","Gordon"
-"United States of America","Georgia","North","Gwinnett"
-"United States of America","Georgia","North","Habersham"
-"United States of America","Georgia","North","Hall"
-"United States of America","Georgia","North","Haralson"
-"United States of America","Georgia","North","Hart"
-"United States of America","Georgia","North","Jackson"
-"United States of America","Georgia","North","Lincoln"
-"United States of America","Georgia","North","Lumpkin"
-"United States of America","Georgia","North","Madison"
-"United States of America","Georgia","North","Murray"
-"United States of America","Georgia","North","Oconee"
-"United States of America","Georgia","North","Oglethorpe"
-"United States of America","Georgia","North","Paulding"
-"United States of America","Georgia","North","Pickens"
-"United States of America","Georgia","North","Polk"
-"United States of America","Georgia","North","Rabun"
-"United States of America","Georgia","North","Rockdale"
-"United States of America","Georgia","North","Stephens"
-"United States of America","Georgia","North","Towns"
-"United States of America","Georgia","North","Union"
-"United States of America","Georgia","North","Walker"
-"United States of America","Georgia","North","Walton"
-"United States of America","Georgia","North","White"
-"United States of America","Georgia","North","Whitfield"
-"United States of America","Georgia","North","Wilkes"
-"United States of America","Georgia","South","Appling"
-"United States of America","Georgia","South","Atkinson"
-"United States of America","Georgia","South","Bacon"
-"United States of America","Georgia","South","Baker"
-"United States of America","Georgia","South","Ben Hill"
-"United States of America","Georgia","South","Berrien"
-"United States of America","Georgia","South","Brantley"
-"United States of America","Georgia","South","Brooks"
-"United States of America","Georgia","South","Bryan"
-"United States of America","Georgia","South","Calhoun"
-"United States of America","Georgia","South","Camden"
-"United States of America","Georgia","South","Charlton"
-"United States of America","Georgia","South","Chatham"
-"United States of America","Georgia","South","Clay"
-"United States of America","Georgia","South","Clinch"
-"United States of America","Georgia","South","Coffee"
-"United States of America","Georgia","South","Colquitt"
-"United States of America","Georgia","South","Cook"
-"United States of America","Georgia","South","Crisp"
-"United States of America","Georgia","South","Decatur"
-"United States of America","Georgia","South","Dodge"
-"United States of America","Georgia","South","Dooly"
-"United States of America","Georgia","South","Dougherty"
-"United States of America","Georgia","South","Early"
-"United States of America","Georgia","South","Echols"
-"United States of America","Georgia","South","Effingham"
-"United States of America","Georgia","South","Evans"
-"United States of America","Georgia","South","Glynn"
-"United States of America","Georgia","South","Grady"
-"United States of America","Georgia","South","Irwin"
-"United States of America","Georgia","South","Jeff Davis"
-"United States of America","Georgia","South","Lanier"
-"United States of America","Georgia","South","Lee"
-"United States of America","Georgia","South","Liberty"
-"United States of America","Georgia","South","Long"
-"United States of America","Georgia","South","Lowndes"
-"United States of America","Georgia","South","Mcintosh"
-"United States of America","Georgia","South","Miller"
-"United States of America","Georgia","South","Mitchell"
-"United States of America","Georgia","South","Montgomery"
-"United States of America","Georgia","South","Pierce"
-"United States of America","Georgia","South","Pulaski"
-"United States of America","Georgia","South","Quitman"
-"United States of America","Georgia","South","Randolph"
-"United States of America","Georgia","South","Seminole"
-"United States of America","Georgia","South","Stewart"
-"United States of America","Georgia","South","Sumter"
-"United States of America","Georgia","South","Tattnall"
-"United States of America","Georgia","South","Telfair"
-"United States of America","Georgia","South","Terrell"
-"United States of America","Georgia","South","Thomas"
-"United States of America","Georgia","South","Tift"
-"United States of America","Georgia","South","Toombs"
-"United States of America","Georgia","South","Turner"
-"United States of America","Georgia","South","Ware"
-"United States of America","Georgia","South","Wayne"
-"United States of America","Georgia","South","Webster"
-"United States of America","Georgia","South","Wheeler"
-"United States of America","Georgia","South","Wilcox"
-"United States of America","Georgia","South","Worth"
-"United States of America","Mississippi","North","Alcorn"
-"United States of America","Mississippi","North","Attala"
-"United States of America","Mississippi","North","Benton"
-"United States of America","Mississippi","North","Bolivar"
-"United States of America","Mississippi","North","Calhoun"
-"United States of America","Mississippi","North","Carroll"
-"United States of America","Mississippi","North","Chickasaw"
-"United States of America","Mississippi","North","Choctaw"
-"United States of America","Mississippi","North","Clay"
-"United States of America","Mississippi","North","Coahoma"
-"United States of America","Mississippi","North","De Soto"
-"United States of America","Mississippi","North","Grenada"
-"United States of America","Mississippi","North","Humphreys"
-"United States of America","Mississippi","North","Itawamba"
-"United States of America","Mississippi","North","Lafayette"
-"United States of America","Mississippi","North","Lee"
-"United States of America","Mississippi","North","Leflore"
-"United States of America","Mississippi","North","Lowndes"
-"United States of America","Mississippi","North","Marshall"
-"United States of America","Mississippi","North","Monroe"
-"United States of America","Mississippi","North","Montgomery"
-"United States of America","Mississippi","North","Oktibbeha"
-"United States of America","Mississippi","North","Panola"
-"United States of America","Mississippi","North","Pontotoc"
-"United States of America","Mississippi","North","Prentiss"
-"United States of America","Mississippi","North","Quitman"
-"United States of America","Mississippi","North","Sunflower"
-"United States of America","Mississippi","North","Tallahatchie"
-"United States of America","Mississippi","North","Tate"
-"United States of America","Mississippi","North","Tippah"
-"United States of America","Mississippi","North","Tishomingo"
-"United States of America","Mississippi","North","Tunica"
-"United States of America","Mississippi","North","Union"
-"United States of America","Mississippi","North","Washington"
-"United States of America","Mississippi","North","Webster"
-"United States of America","Mississippi","North","Winston"
-"United States of America","Mississippi","North","Yalobusha"
-"United States of America","Mississippi","South","Adams"
-"United States of America","Mississippi","South","Amite"
-"United States of America","Mississippi","South","Claiborne"
-"United States of America","Mississippi","South","Clarke"
-"United States of America","Mississippi","South","Copiah"
-"United States of America","Mississippi","South","Covington"
-"United States of America","Mississippi","South","Forrest"
-"United States of America","Mississippi","South","Franklin"
-"United States of America","Mississippi","South","George"
-"United States of America","Mississippi","South","Greene"
-"United States of America","Mississippi","South","Hancock"
-"United States of America","Mississippi","South","Harrison"
-"United States of America","Mississippi","South","Hinds"
-"United States of America","Mississippi","South","Holmes"
-"United States of America","Mississippi","South","Issaquena"
-"United States of America","Mississippi","South","Jackson"
-"United States of America","Mississippi","South","Jasper"
-"United States of America","Mississippi","South","Jefferson"
-"United States of America","Mississippi","South","Jefferson Davis"
-"United States of America","Mississippi","South","Jones"
-"United States of America","Mississippi","South","Kemper"
-"United States of America","Mississippi","South","Lamar"
-"United States of America","Mississippi","South","Lauderdale"
-"United States of America","Mississippi","South","Lawrence"
-"United States of America","Mississippi","South","Leake"
-"United States of America","Mississippi","South","Lincoln"
-"United States of America","Mississippi","South","Madison"
-"United States of America","Mississippi","South","Marion"
-"United States of America","Mississippi","South","Neshoba"
-"United States of America","Mississippi","South","Newton"
-"United States of America","Mississippi","South","Noxubee"
-"United States of America","Mississippi","South","Pearl River"
-"United States of America","Mississippi","South","Perry"
-"United States of America","Mississippi","South","Pike"
-"United States of America","Mississippi","South","Rankin"
-"United States of America","Mississippi","South","Scott"
-"United States of America","Mississippi","South","Sharkey"
-"United States of America","Mississippi","South","Simpson"
-"United States of America","Mississippi","South","Smith"
-"United States of America","Mississippi","South","Stone"
-"United States of America","Mississippi","South","Walthall"
-"United States of America","Mississippi","South","Warren"
-"United States of America","Mississippi","South","Wayne"
-"United States of America","Mississippi","South","Wilkinson"
-"United States of America","Mississippi","South","Yazoo"
-"United States of America","North Carolina","Coastal Plains","Beaufort"
-"United States of America","North Carolina","Coastal Plains","Bertie"
-"United States of America","North Carolina","Coastal Plains","Bladen"
-"United States of America","North Carolina","Coastal Plains","Brunswick"
-"United States of America","North Carolina","Coastal Plains","Camden"
-"United States of America","North Carolina","Coastal Plains","Carteret"
-"United States of America","North Carolina","Coastal Plains","Chowan"
-"United States of America","North Carolina","Coastal Plains","Columbus"
-"United States of America","North Carolina","Coastal Plains","Craven"
-"United States of America","North Carolina","Coastal Plains","Cumberland"
-"United States of America","North Carolina","Coastal Plains","Currituck"
-"United States of America","North Carolina","Coastal Plains","Dare"
-"United States of America","North Carolina","Coastal Plains","Duplin"
-"United States of America","North Carolina","Coastal Plains","Edgecombe"
-"United States of America","North Carolina","Coastal Plains","Gates"
-"United States of America","North Carolina","Coastal Plains","Greene"
-"United States of America","North Carolina","Coastal Plains","Halifax"
-"United States of America","North Carolina","Coastal Plains","Harnett"
-"United States of America","North Carolina","Coastal Plains","Hertford"
-"United States of America","North Carolina","Coastal Plains","Hoke"
-"United States of America","North Carolina","Coastal Plains","Hyde"
-"United States of America","North Carolina","Coastal Plains","Johnston"
-"United States of America","North Carolina","Coastal Plains","Jones"
-"United States of America","North Carolina","Coastal Plains","Lenoir"
-"United States of America","North Carolina","Coastal Plains","Martin"
-"United States of America","North Carolina","Coastal Plains","Nash"
-"United States of America","North Carolina","Coastal Plains","New Hanover"
-"United States of America","North Carolina","Coastal Plains","Northampton"
-"United States of America","North Carolina","Coastal Plains","Onslow"
-"United States of America","North Carolina","Coastal Plains","Pamlico"
-"United States of America","North Carolina","Coastal Plains","Pasquotank"
-"United States of America","North Carolina","Coastal Plains","Pender"
-"United States of America","North Carolina","Coastal Plains","Perquimans"
-"United States of America","North Carolina","Coastal Plains","Pitt"
-"United States of America","North Carolina","Coastal Plains","Robeson"
-"United States of America","North Carolina","Coastal Plains","Sampson"
-"United States of America","North Carolina","Coastal Plains","Scotland"
-"United States of America","North Carolina","Coastal Plains","Tyrrell"
-"United States of America","North Carolina","Coastal Plains","Washington"
-"United States of America","North Carolina","Coastal Plains","Wayne"
-"United States of America","North Carolina","Coastal Plains","Wilson"
-"United States of America","North Carolina","Mountains","Alleghany"
-"United States of America","North Carolina","Mountains","Ashe"
-"United States of America","North Carolina","Mountains","Avery"
-"United States of America","North Carolina","Mountains","Buncombe"
-"United States of America","North Carolina","Mountains","Burke"
-"United States of America","North Carolina","Mountains","Caldwell"
-"United States of America","North Carolina","Mountains","Cherokee"
-"United States of America","North Carolina","Mountains","Clay"
-"United States of America","North Carolina","Mountains","Graham"
-"United States of America","North Carolina","Mountains","Haywood"
-"United States of America","North Carolina","Mountains","Henderson"
-"United States of America","North Carolina","Mountains","Jackson"
-"United States of America","North Carolina","Mountains","Macon"
-"United States of America","North Carolina","Mountains","Madison"
-"United States of America","North Carolina","Mountains","McDowell"
-"United States of America","North Carolina","Mountains","Mitchell"
-"United States of America","North Carolina","Mountains","Polk"
-"United States of America","North Carolina","Mountains","Rutherford"
-"United States of America","North Carolina","Mountains","Swain"
-"United States of America","North Carolina","Mountains","Transylvania"
-"United States of America","North Carolina","Mountains","Watauga"
-"United States of America","North Carolina","Mountains","Wilkes"
-"United States of America","North Carolina","Mountains","Yancey"
-"United States of America","North Carolina","Piedmont","Alamance"
-"United States of America","North Carolina","Piedmont","Alexander"
-"United States of America","North Carolina","Piedmont","Anson"
-"United States of America","North Carolina","Piedmont","Cabarrus"
-"United States of America","North Carolina","Piedmont","Caswell"
-"United States of America","North Carolina","Piedmont","Catawba"
-"United States of America","North Carolina","Piedmont","Chatham"
-"United States of America","North Carolina","Piedmont","Cleveland"
-"United States of America","North Carolina","Piedmont","Davidson"
-"United States of America","North Carolina","Piedmont","Davie"
-"United States of America","North Carolina","Piedmont","Durham"
-"United States of America","North Carolina","Piedmont","Forsyth"
-"United States of America","North Carolina","Piedmont","Franklin"
-"United States of America","North Carolina","Piedmont","Gaston"
-"United States of America","North Carolina","Piedmont","Granville"
-"United States of America","North Carolina","Piedmont","Guilford"
-"United States of America","North Carolina","Piedmont","Iredell"
-"United States of America","North Carolina","Piedmont","Lee"
-"United States of America","North Carolina","Piedmont","Lincoln"
-"United States of America","North Carolina","Piedmont","Mecklenburg"
-"United States of America","North Carolina","Piedmont","Montgomery"
-"United States of America","North Carolina","Piedmont","Moore"
-"United States of America","North Carolina","Piedmont","Orange"
-"United States of America","North Carolina","Piedmont","Person"
-"United States of America","North Carolina","Piedmont","Randolph"
-"United States of America","North Carolina","Piedmont","Richmond"
-"United States of America","North Carolina","Piedmont","Rockingham"
-"United States of America","North Carolina","Piedmont","Rowan"
-"United States of America","North Carolina","Piedmont","Stanly"
-"United States of America","North Carolina","Piedmont","Stokes"
-"United States of America","North Carolina","Piedmont","Surry"
-"United States of America","North Carolina","Piedmont","Union"
-"United States of America","North Carolina","Piedmont","Vance"
-"United States of America","North Carolina","Piedmont","Wake"
-"United States of America","North Carolina","Piedmont","Warren"
-"United States of America","North Carolina","Piedmont","Yadkin"
-"United States of America","South Carolina","Low Country","Allendale"
-"United States of America","South Carolina","Low Country","Bamberg"
-"United States of America","South Carolina","Low Country","Beaufort"
-"United States of America","South Carolina","Low Country","Berkeley"
-"United States of America","South Carolina","Low Country","Calhoun"
-"United States of America","South Carolina","Low Country","Charleston"
-"United States of America","South Carolina","Low Country","Colleton"
-"United States of America","South Carolina","Low Country","Dorchester"
-"United States of America","South Carolina","Low Country","Hampton"
-"United States of America","South Carolina","Low Country","Jasper"
-"United States of America","South Carolina","Low Country","Orangeburg"
-"United States of America","South Carolina","Midlands","Aiken"
-"United States of America","South Carolina","Midlands","Barnwell"
-"United States of America","South Carolina","Midlands","Chester"
-"United States of America","South Carolina","Midlands","Edgefield"
-"United States of America","South Carolina","Midlands","Fairfield"
-"United States of America","South Carolina","Midlands","Kershaw"
-"United States of America","South Carolina","Midlands","Lancaster"
-"United States of America","South Carolina","Midlands","Lexington"
-"United States of America","South Carolina","Midlands","Newberry"
-"United States of America","South Carolina","Midlands","Richland"
-"United States of America","South Carolina","Midlands","Saluda"
-"United States of America","South Carolina","Midlands","York"
-"United States of America","South Carolina","Pee Dee","Chesterfield"
-"United States of America","South Carolina","Pee Dee","Clarendon"
-"United States of America","South Carolina","Pee Dee","Darlington"
-"United States of America","South Carolina","Pee Dee","Dillon"
-"United States of America","South Carolina","Pee Dee","Florence"
-"United States of America","South Carolina","Pee Dee","Georgetown"
-"United States of America","South Carolina","Pee Dee","Horry"
-"United States of America","South Carolina","Pee Dee","Lee"
-"United States of America","South Carolina","Pee Dee","Marion"
-"United States of America","South Carolina","Pee Dee","Marlboro"
-"United States of America","South Carolina","Pee Dee","Sumter"
-"United States of America","South Carolina","Pee Dee","Williamsburg"
-"United States of America","South Carolina","Upstate","Abbeville"
-"United States of America","South Carolina","Upstate","Anderson"
-"United States of America","South Carolina","Upstate","Cherokee"
-"United States of America","South Carolina","Upstate","Greenville"
-"United States of America","South Carolina","Upstate","Greenwood"
-"United States of America","South Carolina","Upstate","Laurens"
-"United States of America","South Carolina","Upstate","McCormick"
-"United States of America","South Carolina","Upstate","Oconee"
-"United States of America","South Carolina","Upstate","Pickens"
-"United States of America","South Carolina","Upstate","Spartanburg"
-"United States of America","South Carolina","Upstate","Union"
-"United States of America","Tennessee","Central","Bedford"
-"United States of America","Tennessee","Central","Cannon"
-"United States of America","Tennessee","Central","Cheatham"
-"United States of America","Tennessee","Central","Clay"
-"United States of America","Tennessee","Central","Coffee"
-"United States of America","Tennessee","Central","Davidson"
-"United States of America","Tennessee","Central","DeKalb"
-"United States of America","Tennessee","Central","Franklin"
-"United States of America","Tennessee","Central","Giles"
-"United States of America","Tennessee","Central","Grundy"
-"United States of America","Tennessee","Central","Jackson"
-"United States of America","Tennessee","Central","Lincoln"
-"United States of America","Tennessee","Central","Macon"
-"United States of America","Tennessee","Central","Marion"
-"United States of America","Tennessee","Central","Marshall"
-"United States of America","Tennessee","Central","Maury"
-"United States of America","Tennessee","Central","Moore"
-"United States of America","Tennessee","Central","Overton"
-"United States of America","Tennessee","Central","Pickett"
-"United States of America","Tennessee","Central","Putnam"
-"United States of America","Tennessee","Central","Robertson"
-"United States of America","Tennessee","Central","Rutherford"
-"United States of America","Tennessee","Central","Sequatchie"
-"United States of America","Tennessee","Central","Smith"
-"United States of America","Tennessee","Central","Sumner"
-"United States of America","Tennessee","Central","Trousdale"
-"United States of America","Tennessee","Central","Van Buren"
-"United States of America","Tennessee","Central","Warren"
-"United States of America","Tennessee","Central","White"
-"United States of America","Tennessee","Central","Williamson"
-"United States of America","Tennessee","Central","Wilson"
-"United States of America","Tennessee","Eastern","Anderson"
-"United States of America","Tennessee","Eastern","Bledsoe"
-"United States of America","Tennessee","Eastern","Blount"
-"United States of America","Tennessee","Eastern","Bradley"
-"United States of America","Tennessee","Eastern","Campbell"
-"United States of America","Tennessee","Eastern","Carter"
-"United States of America","Tennessee","Eastern","Claiborne"
-"United States of America","Tennessee","Eastern","Cocke"
-"United States of America","Tennessee","Eastern","Cumberland"
-"United States of America","Tennessee","Eastern","Fentress"
-"United States of America","Tennessee","Eastern","Grainger"
-"United States of America","Tennessee","Eastern","Greene"
-"United States of America","Tennessee","Eastern","Hamblen"
-"United States of America","Tennessee","Eastern","Hamilton"
-"United States of America","Tennessee","Eastern","Hancock"
-"United States of America","Tennessee","Eastern","Hawkins"
-"United States of America","Tennessee","Eastern","Jefferson"
-"United States of America","Tennessee","Eastern","Johnson"
-"United States of America","Tennessee","Eastern","Knox"
-"United States of America","Tennessee","Eastern","Loudon"
-"United States of America","Tennessee","Eastern","McMinn"
-"United States of America","Tennessee","Eastern","Meigs"
-"United States of America","Tennessee","Eastern","Monroe"
-"United States of America","Tennessee","Eastern","Morgan"
-"United States of America","Tennessee","Eastern","Polk"
-"United States of America","Tennessee","Eastern","Rhea"
-"United States of America","Tennessee","Eastern","Roane"
-"United States of America","Tennessee","Eastern","Scott"
-"United States of America","Tennessee","Eastern","Sevier"
-"United States of America","Tennessee","Eastern","Sullivan"
-"United States of America","Tennessee","Eastern","Unicoi"
-"United States of America","Tennessee","Eastern","Union"
-"United States of America","Tennessee","Eastern","Washington"
-"United States of America","Tennessee","West","Benton"
-"United States of America","Tennessee","West","Carroll"
-"United States of America","Tennessee","West","Chester"
-"United States of America","Tennessee","West","Crockett"
-"United States of America","Tennessee","West","Decatur"
-"United States of America","Tennessee","West","Dickson"
-"United States of America","Tennessee","West","Dyer"
-"United States of America","Tennessee","West","Fayette"
-"United States of America","Tennessee","West","Gibson"
-"United States of America","Tennessee","West","Hardeman"
-"United States of America","Tennessee","West","Hardin"
-"United States of America","Tennessee","West","Haywood"
-"United States of America","Tennessee","West","Henderson"
-"United States of America","Tennessee","West","Henry"
-"United States of America","Tennessee","West","Hickman"
-"United States of America","Tennessee","West","Houston"
-"United States of America","Tennessee","West","Humphreys"
-"United States of America","Tennessee","West","Lake"
-"United States of America","Tennessee","West","Lauderdale"
-"United States of America","Tennessee","West","Lawrence"
-"United States of America","Tennessee","West","Lewis"
-"United States of America","Tennessee","West","Madison"
-"United States of America","Tennessee","West","McNairy"
-"United States of America","Tennessee","West","Montgomery"
-"United States of America","Tennessee","West","Obion"
-"United States of America","Tennessee","West","Perry"
-"United States of America","Tennessee","West","Shelby"
-"United States of America","Tennessee","West","Stewart"
-"United States of America","Tennessee","West","Tipton"
-"United States of America","Tennessee","West","Wayne"
-"United States of America","Tennessee","West","Weakley"
-"United States of America","Virginia","Coastal Plains","Accomack"
-"United States of America","Virginia","Coastal Plains","Alexandria City"
-"United States of America","Virginia","Coastal Plains","Caroline"
-"United States of America","Virginia","Coastal Plains","Charles City"
-"United States of America","Virginia","Coastal Plains","Chesapeake City"
-"United States of America","Virginia","Coastal Plains","Chesterfield"
-"United States of America","Virginia","Coastal Plains","Colonial Heights City"
-"United States of America","Virginia","Coastal Plains","Dinwiddie"
-"United States of America","Virginia","Coastal Plains","Emporia City"
-"United States of America","Virginia","Coastal Plains","Essex"
-"United States of America","Virginia","Coastal Plains","Fairfax"
-"United States of America","Virginia","Coastal Plains","Fairfax City"
-"United States of America","Virginia","Coastal Plains","Falls Church City"
-"United States of America","Virginia","Coastal Plains","Franklin City"
-"United States of America","Virginia","Coastal Plains","Greensville"
-"United States of America","Virginia","Coastal Plains","Hampton City"
-"United States of America","Virginia","Coastal Plains","Hanover"
-"United States of America","Virginia","Coastal Plains","Henrico"
-"United States of America","Virginia","Coastal Plains","Hopewell City"
-"United States of America","Virginia","Coastal Plains","Isle of Wight"
-"United States of America","Virginia","Coastal Plains","James City"
-"United States of America","Virginia","Coastal Plains","King and Queen"
-"United States of America","Virginia","Coastal Plains","King George"
-"United States of America","Virginia","Coastal Plains","King William"
-"United States of America","Virginia","Coastal Plains","Lancaster"
-"United States of America","Virginia","Coastal Plains","Manassas City"
-"United States of America","Virginia","Coastal Plains","Manassas Park City"
-"United States of America","Virginia","Coastal Plains","Mathews"
-"United States of America","Virginia","Coastal Plains","Middlesex"
-"United States of America","Virginia","Coastal Plains","New Kent"
-"United States of America","Virginia","Coastal Plains","Newport News City"
-"United States of America","Virginia","Coastal Plains","Norfolk City"
-"United States of America","Virginia","Coastal Plains","Northampton"
-"United States of America","Virginia","Coastal Plains","Northumberland"
-"United States of America","Virginia","Coastal Plains","Petersburg City"
-"United States of America","Virginia","Coastal Plains","Poquoson City"
-"United States of America","Virginia","Coastal Plains","Portsmouth City"
-"United States of America","Virginia","Coastal Plains","Prince George"
-"United States of America","Virginia","Coastal Plains","Prince William"
-"United States of America","Virginia","Coastal Plains","Richmond"
-"United States of America","Virginia","Coastal Plains","Richmond City"
-"United States of America","Virginia","Coastal Plains","Southampton"
-"United States of America","Virginia","Coastal Plains","Stafford"
-"United States of America","Virginia","Coastal Plains","Suffolk City"
-"United States of America","Virginia","Coastal Plains","Surry"
-"United States of America","Virginia","Coastal Plains","Sussex"
-"United States of America","Virginia","Coastal Plains","Virginia Beach City"
-"United States of America","Virginia","Coastal Plains","Westmoreland"
-"United States of America","Virginia","Coastal Plains","Williamsburg City"
-"United States of America","Virginia","Coastal Plains","York"
-"United States of America","Virginia","Mountain","Alleghany"
-"United States of America","Virginia","Mountain","Augusta"
-"United States of America","Virginia","Mountain","Bath"
-"United States of America","Virginia","Mountain","Bland"
-"United States of America","Virginia","Mountain","Botetourt"
-"United States of America","Virginia","Mountain","Bristol"
-"United States of America","Virginia","Mountain","Buchanan"
-"United States of America","Virginia","Mountain","Buena Vista City"
-"United States of America","Virginia","Mountain","Carroll"
-"United States of America","Virginia","Mountain","Clarke"
-"United States of America","Virginia","Mountain","Clifton Forge City"
-"United States of America","Virginia","Mountain","Covington City"
-"United States of America","Virginia","Mountain","Craig"
-"United States of America","Virginia","Mountain","Dickenson"
-"United States of America","Virginia","Mountain","Floyd"
-"United States of America","Virginia","Mountain","Frederick"
-"United States of America","Virginia","Mountain","Galax City"
-"United States of America","Virginia","Mountain","Giles"
-"United States of America","Virginia","Mountain","Grayson"
-"United States of America","Virginia","Mountain","Harrisonburg City"
-"United States of America","Virginia","Mountain","Highland"
-"United States of America","Virginia","Mountain","Lee"
-"United States of America","Virginia","Mountain","Lexington City"
-"United States of America","Virginia","Mountain","Montgomery"
-"United States of America","Virginia","Mountain","Norton City"
-"United States of America","Virginia","Mountain","Page"
-"United States of America","Virginia","Mountain","Pulaski"
-"United States of America","Virginia","Mountain","Radford"
-"United States of America","Virginia","Mountain","Roanoke"
-"United States of America","Virginia","Mountain","Roanoke City"
-"United States of America","Virginia","Mountain","Rockbridge"
-"United States of America","Virginia","Mountain","Rockingham"
-"United States of America","Virginia","Mountain","Russell"
-"United States of America","Virginia","Mountain","Salem"
-"United States of America","Virginia","Mountain","Scott"
-"United States of America","Virginia","Mountain","Shenandoah"
-"United States of America","Virginia","Mountain","Smyth"
-"United States of America","Virginia","Mountain","Staunton City"
-"United States of America","Virginia","Mountain","Tazewell"
-"United States of America","Virginia","Mountain","Warren"
-"United States of America","Virginia","Mountain","Washington"
-"United States of America","Virginia","Mountain","Waynesboro City"
-"United States of America","Virginia","Mountain","Winchester City"
-"United States of America","Virginia","Mountain","Wise"
-"United States of America","Virginia","Mountain","Wythe"
-"United States of America","Virginia","Piedmont","Albemarle"
-"United States of America","Virginia","Piedmont","Amelia"
-"United States of America","Virginia","Piedmont","Amherst"
-"United States of America","Virginia","Piedmont","Appomattox"
-"United States of America","Virginia","Piedmont","Bedford"
-"United States of America","Virginia","Piedmont","Bedford City"
-"United States of America","Virginia","Piedmont","Brunswick"
-"United States of America","Virginia","Piedmont","Buckingham"
-"United States of America","Virginia","Piedmont","Campbell"
-"United States of America","Virginia","Piedmont","Charlottesville City"
-"United States of America","Virginia","Piedmont","Culpeper"
-"United States of America","Virginia","Piedmont","Cumberland"
-"United States of America","Virginia","Piedmont","Danville City"
-"United States of America","Virginia","Piedmont","Fauquier"
-"United States of America","Virginia","Piedmont","Fluvanna"
-"United States of America","Virginia","Piedmont","Franklin"
-"United States of America","Virginia","Piedmont","Fredericksburg City"
-"United States of America","Virginia","Piedmont","Goochland"
-"United States of America","Virginia","Piedmont","Greene"
-"United States of America","Virginia","Piedmont","Halifax"
-"United States of America","Virginia","Piedmont","Henry"
-"United States of America","Virginia","Piedmont","Loudoun"
-"United States of America","Virginia","Piedmont","Louisa"
-"United States of America","Virginia","Piedmont","Lunenburg"
-"United States of America","Virginia","Piedmont","Lynchburg City"
-"United States of America","Virginia","Piedmont","Madison"
-"United States of America","Virginia","Piedmont","Martinsville City"
-"United States of America","Virginia","Piedmont","Mecklenburg"
-"United States of America","Virginia","Piedmont","Nelson"
-"United States of America","Virginia","Piedmont","Nottoway"
-"United States of America","Virginia","Piedmont","Orange"
-"United States of America","Virginia","Piedmont","Patrick"
-"United States of America","Virginia","Piedmont","Pittsylvania"
-"United States of America","Virginia","Piedmont","Powhatan"
-"United States of America","Virginia","Piedmont","Rappahannock"
-"United States of America","Virginia","Piedmont","Spotsylvania"
+country,state,region,county
+United States of America,Alabama,Central,Autauga
+United States of America,Alabama,Central,Bibb
+United States of America,Alabama,Central,Chambers
+United States of America,Alabama,Central,Chilton
+United States of America,Alabama,Central,Clay
+United States of America,Alabama,Central,Coosa
+United States of America,Alabama,Central,Elmore
+United States of America,Alabama,Central,Greene
+United States of America,Alabama,Central,Hale
+United States of America,Alabama,Central,Lee
+United States of America,Alabama,Central,Perry
+United States of America,Alabama,Central,Pickens
+United States of America,Alabama,Central,Randolph
+United States of America,Alabama,Central,Shelby
+United States of America,Alabama,Central,Sumter
+United States of America,Alabama,Central,Talladega
+United States of America,Alabama,Central,Tallapoosa
+United States of America,Alabama,Central,Tuscaloosa
+United States of America,Alabama,North,Blount
+United States of America,Alabama,North,Calhoun
+United States of America,Alabama,North,Cherokee
+United States of America,Alabama,North,Cleburne
+United States of America,Alabama,North,Colbert
+United States of America,Alabama,North,Cullman
+United States of America,Alabama,North,De Kalb
+United States of America,Alabama,North,Etowah
+United States of America,Alabama,North,Fayette
+United States of America,Alabama,North,Jackson
+United States of America,Alabama,North,Jefferson
+United States of America,Alabama,North,Jefferson
+United States of America,Alabama,North,Lamar
+United States of America,Alabama,North,Lauderdale
+United States of America,Alabama,North,Lawrence
+United States of America,Alabama,North,Limestone
+United States of America,Alabama,North,Madison
+United States of America,Alabama,North,Marion
+United States of America,Alabama,North,Marshall
+United States of America,Alabama,North,Morgan
+United States of America,Alabama,North,Saint Clair
+United States of America,Alabama,North,Walker
+United States of America,Alabama,North,Winston
+United States of America,Alabama,South,Baldwin
+United States of America,Alabama,South,Barbour
+United States of America,Alabama,South,Bullock
+United States of America,Alabama,South,Butler
+United States of America,Alabama,South,Choctaw
+United States of America,Alabama,South,Clarke
+United States of America,Alabama,South,Coffee
+United States of America,Alabama,South,Conecuh
+United States of America,Alabama,South,Covington
+United States of America,Alabama,South,Crenshaw
+United States of America,Alabama,South,Dale
+United States of America,Alabama,South,Dallas
+United States of America,Alabama,South,Escambia
+United States of America,Alabama,South,Geneva
+United States of America,Alabama,South,Henry
+United States of America,Alabama,South,Houston
+United States of America,Alabama,South,Lowndes
+United States of America,Alabama,South,Macon
+United States of America,Alabama,South,Marengo
+United States of America,Alabama,South,Mobile
+United States of America,Alabama,South,Monroe
+United States of America,Alabama,South,Montgomery
+United States of America,Alabama,South,Pike
+United States of America,Alabama,South,Russell
+United States of America,Alabama,South,Washington
+United States of America,Alabama,South,Wilcox
+United States of America,Georgia,Coastal Plains,Appling
+United States of America,Georgia,Coastal Plains,Atkinson
+United States of America,Georgia,Coastal Plains,Bacon
+United States of America,Georgia,Coastal Plains,Baker
+United States of America,Georgia,Coastal Plains,Ben Hill
+United States of America,Georgia,Coastal Plains,Berrien
+United States of America,Georgia,Coastal Plains,Bleckley
+United States of America,Georgia,Coastal Plains,Brantley
+United States of America,Georgia,Coastal Plains,Brooks
+United States of America,Georgia,Coastal Plains,Bryan
+United States of America,Georgia,Coastal Plains,Burke
+United States of America,Georgia,Coastal Plains,Calhoun
+United States of America,Georgia,Coastal Plains,Camden
+United States of America,Georgia,Coastal Plains,Charlton
+United States of America,Georgia,Coastal Plains,Chatham
+United States of America,Georgia,Coastal Plains,Chattahoochee
+United States of America,Georgia,Coastal Plains,Clay
+United States of America,Georgia,Coastal Plains,Clinch
+United States of America,Georgia,Coastal Plains,Coffee
+United States of America,Georgia,Coastal Plains,Colquitt
+United States of America,Georgia,Coastal Plains,Cook
+United States of America,Georgia,Coastal Plains,Crisp
+United States of America,Georgia,Coastal Plains,Decatur
+United States of America,Georgia,Coastal Plains,Dodge
+United States of America,Georgia,Coastal Plains,Dooly
+United States of America,Georgia,Coastal Plains,Dougherty
+United States of America,Georgia,Coastal Plains,Early
+United States of America,Georgia,Coastal Plains,Echols
+United States of America,Georgia,Coastal Plains,Effingham
+United States of America,Georgia,Coastal Plains,Emanuel
+United States of America,Georgia,Coastal Plains,Evans
+United States of America,Georgia,Coastal Plains,Glascock
+United States of America,Georgia,Coastal Plains,Glynn
+United States of America,Georgia,Coastal Plains,Grady
+United States of America,Georgia,Coastal Plains,Houston
+United States of America,Georgia,Coastal Plains,Irwin
+United States of America,Georgia,Coastal Plains,Jeff Davis
+United States of America,Georgia,Coastal Plains,Jefferson
+United States of America,Georgia,Coastal Plains,Jenkins
+United States of America,Georgia,Coastal Plains,Johnson
+United States of America,Georgia,Coastal Plains,Lanier
+United States of America,Georgia,Coastal Plains,Laurens
+United States of America,Georgia,Coastal Plains,Lee
+United States of America,Georgia,Coastal Plains,Liberty
+United States of America,Georgia,Coastal Plains,Long
+United States of America,Georgia,Coastal Plains,Lowndes
+United States of America,Georgia,Coastal Plains,Macon
+United States of America,Georgia,Coastal Plains,Marion
+United States of America,Georgia,Coastal Plains,Mcintosh
+United States of America,Georgia,Coastal Plains,Miller
+United States of America,Georgia,Coastal Plains,Mitchell
+United States of America,Georgia,Coastal Plains,Montgomery
+United States of America,Georgia,Coastal Plains,Peach
+United States of America,Georgia,Coastal Plains,Pierce
+United States of America,Georgia,Coastal Plains,Pulaski
+United States of America,Georgia,Coastal Plains,Quitman
+United States of America,Georgia,Coastal Plains,Randolph
+United States of America,Georgia,Coastal Plains,Schley
+United States of America,Georgia,Coastal Plains,Screven
+United States of America,Georgia,Coastal Plains,Seminole
+United States of America,Georgia,Coastal Plains,Stewart
+United States of America,Georgia,Coastal Plains,Sumter
+United States of America,Georgia,Coastal Plains,Tattnall
+United States of America,Georgia,Coastal Plains,Telfair
+United States of America,Georgia,Coastal Plains,Terrell
+United States of America,Georgia,Coastal Plains,Thomas
+United States of America,Georgia,Coastal Plains,Tift
+United States of America,Georgia,Coastal Plains,Toombs
+United States of America,Georgia,Coastal Plains,Treutlen
+United States of America,Georgia,Coastal Plains,Turner
+United States of America,Georgia,Coastal Plains,Ware
+United States of America,Georgia,Coastal Plains,Washington
+United States of America,Georgia,Coastal Plains,Wayne
+United States of America,Georgia,Coastal Plains,Webster
+United States of America,Georgia,Coastal Plains,Wheeler
+United States of America,Georgia,Coastal Plains,Wilcox
+United States of America,Georgia,Coastal Plains,Wilkinson
+United States of America,Georgia,Coastal Plains,Worth
+United States of America,Georgia,Mountain,Banks
+United States of America,Georgia,Mountain,Bartow
+United States of America,Georgia,Mountain,Catoosa
+United States of America,Georgia,Mountain,Chattooga
+United States of America,Georgia,Mountain,Cherokee
+United States of America,Georgia,Mountain,Dade
+United States of America,Georgia,Mountain,Dawson
+United States of America,Georgia,Mountain,Fannin
+United States of America,Georgia,Mountain,Floyd
+United States of America,Georgia,Mountain,Forsyth
+United States of America,Georgia,Mountain,Franklin
+United States of America,Georgia,Mountain,Gilmer
+United States of America,Georgia,Mountain,Gordon
+United States of America,Georgia,Mountain,Habersham
+United States of America,Georgia,Mountain,Haralson
+United States of America,Georgia,Mountain,Hart
+United States of America,Georgia,Mountain,Lumpkin
+United States of America,Georgia,Mountain,Murray
+United States of America,Georgia,Mountain,Pickens
+United States of America,Georgia,Mountain,Polk
+United States of America,Georgia,Mountain,Rabun
+United States of America,Georgia,Mountain,Stephens
+United States of America,Georgia,Mountain,Towns
+United States of America,Georgia,Mountain,Union
+United States of America,Georgia,Mountain,Walker
+United States of America,Georgia,Mountain,White
+United States of America,Georgia,Mountain,Whitfield
+United States of America,Georgia,Piedmont,Baldwin
+United States of America,Georgia,Piedmont,Barrow
+United States of America,Georgia,Piedmont,Bibb
+United States of America,Georgia,Piedmont,Bulloch
+United States of America,Georgia,Piedmont,Butts
+United States of America,Georgia,Piedmont,Candler
+United States of America,Georgia,Piedmont,Carroll
+United States of America,Georgia,Piedmont,Clarke
+United States of America,Georgia,Piedmont,Clayton
+United States of America,Georgia,Piedmont,Cobb
+United States of America,Georgia,Piedmont,Columbia
+United States of America,Georgia,Piedmont,Coweta
+United States of America,Georgia,Piedmont,Crawford
+United States of America,Georgia,Piedmont,DeKalb
+United States of America,Georgia,Piedmont,Douglas
+United States of America,Georgia,Piedmont,Elbert
+United States of America,Georgia,Piedmont,Fayette
+United States of America,Georgia,Piedmont,Fulton
+United States of America,Georgia,Piedmont,Greene
+United States of America,Georgia,Piedmont,Gwinnett
+United States of America,Georgia,Piedmont,Hall
+United States of America,Georgia,Piedmont,Hancock
+United States of America,Georgia,Piedmont,Harris
+United States of America,Georgia,Piedmont,Heard
+United States of America,Georgia,Piedmont,Henry
+United States of America,Georgia,Piedmont,Jackson
+United States of America,Georgia,Piedmont,Jasper
+United States of America,Georgia,Piedmont,Jones
+United States of America,Georgia,Piedmont,Lamar
+United States of America,Georgia,Piedmont,Lincoln
+United States of America,Georgia,Piedmont,Madison
+United States of America,Georgia,Piedmont,McDuffie
+United States of America,Georgia,Piedmont,Meriwether
+United States of America,Georgia,Piedmont,Monroe
+United States of America,Georgia,Piedmont,Morgan
+United States of America,Georgia,Piedmont,Muscogee
+United States of America,Georgia,Piedmont,Newton
+United States of America,Georgia,Piedmont,Oconee
+United States of America,Georgia,Piedmont,Oglethorpe
+United States of America,Georgia,Piedmont,Paulding
+United States of America,Georgia,Piedmont,Pike
+United States of America,Georgia,Piedmont,Putnam
+United States of America,Georgia,Piedmont,Richmond
+United States of America,Georgia,Piedmont,Rockdale
+United States of America,Georgia,Piedmont,Spalding
+United States of America,Georgia,Piedmont,Talbot
+United States of America,Georgia,Piedmont,Taliaferro
+United States of America,Georgia,Piedmont,Taylor
+United States of America,Georgia,Piedmont,Troup
+United States of America,Georgia,Piedmont,Twiggs
+United States of America,Georgia,Piedmont,Upson
+United States of America,Georgia,Piedmont,Walton
+United States of America,Georgia,Piedmont,Warren
+United States of America,Georgia,Piedmont,Wilkes
+United States of America,Mississippi,North,Alcorn
+United States of America,Mississippi,North,Attala
+United States of America,Mississippi,North,Benton
+United States of America,Mississippi,North,Bolivar
+United States of America,Mississippi,North,Calhoun
+United States of America,Mississippi,North,Carroll
+United States of America,Mississippi,North,Chickasaw
+United States of America,Mississippi,North,Choctaw
+United States of America,Mississippi,North,Clay
+United States of America,Mississippi,North,Coahoma
+United States of America,Mississippi,North,De Soto
+United States of America,Mississippi,North,Grenada
+United States of America,Mississippi,North,Humphreys
+United States of America,Mississippi,North,Itawamba
+United States of America,Mississippi,North,Lafayette
+United States of America,Mississippi,North,Lee
+United States of America,Mississippi,North,Leflore
+United States of America,Mississippi,North,Lowndes
+United States of America,Mississippi,North,Marshall
+United States of America,Mississippi,North,Monroe
+United States of America,Mississippi,North,Montgomery
+United States of America,Mississippi,North,Oktibbeha
+United States of America,Mississippi,North,Panola
+United States of America,Mississippi,North,Pontotoc
+United States of America,Mississippi,North,Prentiss
+United States of America,Mississippi,North,Quitman
+United States of America,Mississippi,North,Sunflower
+United States of America,Mississippi,North,Tallahatchie
+United States of America,Mississippi,North,Tate
+United States of America,Mississippi,North,Tippah
+United States of America,Mississippi,North,Tishomingo
+United States of America,Mississippi,North,Tunica
+United States of America,Mississippi,North,Union
+United States of America,Mississippi,North,Washington
+United States of America,Mississippi,North,Webster
+United States of America,Mississippi,North,Winston
+United States of America,Mississippi,North,Yalobusha
+United States of America,Mississippi,South,Adams
+United States of America,Mississippi,South,Amite
+United States of America,Mississippi,South,Claiborne
+United States of America,Mississippi,South,Clarke
+United States of America,Mississippi,South,Copiah
+United States of America,Mississippi,South,Covington
+United States of America,Mississippi,South,Forrest
+United States of America,Mississippi,South,Franklin
+United States of America,Mississippi,South,George
+United States of America,Mississippi,South,Greene
+United States of America,Mississippi,South,Hancock
+United States of America,Mississippi,South,Harrison
+United States of America,Mississippi,South,Hinds
+United States of America,Mississippi,South,Holmes
+United States of America,Mississippi,South,Issaquena
+United States of America,Mississippi,South,Jackson
+United States of America,Mississippi,South,Jasper
+United States of America,Mississippi,South,Jefferson
+United States of America,Mississippi,South,Jefferson Davis
+United States of America,Mississippi,South,Jones
+United States of America,Mississippi,South,Kemper
+United States of America,Mississippi,South,Lamar
+United States of America,Mississippi,South,Lauderdale
+United States of America,Mississippi,South,Lawrence
+United States of America,Mississippi,South,Leake
+United States of America,Mississippi,South,Lincoln
+United States of America,Mississippi,South,Madison
+United States of America,Mississippi,South,Marion
+United States of America,Mississippi,South,Neshoba
+United States of America,Mississippi,South,Newton
+United States of America,Mississippi,South,Noxubee
+United States of America,Mississippi,South,Pearl River
+United States of America,Mississippi,South,Perry
+United States of America,Mississippi,South,Pike
+United States of America,Mississippi,South,Rankin
+United States of America,Mississippi,South,Scott
+United States of America,Mississippi,South,Sharkey
+United States of America,Mississippi,South,Simpson
+United States of America,Mississippi,South,Smith
+United States of America,Mississippi,South,Stone
+United States of America,Mississippi,South,Walthall
+United States of America,Mississippi,South,Warren
+United States of America,Mississippi,South,Wayne
+United States of America,Mississippi,South,Wilkinson
+United States of America,Mississippi,South,Yazoo
+United States of America,North Carolina,Coastal Plains,Beaufort
+United States of America,North Carolina,Coastal Plains,Bertie
+United States of America,North Carolina,Coastal Plains,Bladen
+United States of America,North Carolina,Coastal Plains,Brunswick
+United States of America,North Carolina,Coastal Plains,Camden
+United States of America,North Carolina,Coastal Plains,Carteret
+United States of America,North Carolina,Coastal Plains,Chowan
+United States of America,North Carolina,Coastal Plains,Columbus
+United States of America,North Carolina,Coastal Plains,Craven
+United States of America,North Carolina,Coastal Plains,Cumberland
+United States of America,North Carolina,Coastal Plains,Currituck
+United States of America,North Carolina,Coastal Plains,Dare
+United States of America,North Carolina,Coastal Plains,Duplin
+United States of America,North Carolina,Coastal Plains,Edgecombe
+United States of America,North Carolina,Coastal Plains,Gates
+United States of America,North Carolina,Coastal Plains,Greene
+United States of America,North Carolina,Coastal Plains,Halifax
+United States of America,North Carolina,Coastal Plains,Harnett
+United States of America,North Carolina,Coastal Plains,Hertford
+United States of America,North Carolina,Coastal Plains,Hoke
+United States of America,North Carolina,Coastal Plains,Hyde
+United States of America,North Carolina,Coastal Plains,Johnston
+United States of America,North Carolina,Coastal Plains,Jones
+United States of America,North Carolina,Coastal Plains,Lenoir
+United States of America,North Carolina,Coastal Plains,Martin
+United States of America,North Carolina,Coastal Plains,Nash
+United States of America,North Carolina,Coastal Plains,New Hanover
+United States of America,North Carolina,Coastal Plains,Northampton
+United States of America,North Carolina,Coastal Plains,Onslow
+United States of America,North Carolina,Coastal Plains,Pamlico
+United States of America,North Carolina,Coastal Plains,Pasquotank
+United States of America,North Carolina,Coastal Plains,Pender
+United States of America,North Carolina,Coastal Plains,Perquimans
+United States of America,North Carolina,Coastal Plains,Pitt
+United States of America,North Carolina,Coastal Plains,Robeson
+United States of America,North Carolina,Coastal Plains,Sampson
+United States of America,North Carolina,Coastal Plains,Scotland
+United States of America,North Carolina,Coastal Plains,Tyrrell
+United States of America,North Carolina,Coastal Plains,Washington
+United States of America,North Carolina,Coastal Plains,Wayne
+United States of America,North Carolina,Coastal Plains,Wilson
+United States of America,North Carolina,Mountains,Alleghany
+United States of America,North Carolina,Mountains,Ashe
+United States of America,North Carolina,Mountains,Avery
+United States of America,North Carolina,Mountains,Buncombe
+United States of America,North Carolina,Mountains,Burke
+United States of America,North Carolina,Mountains,Caldwell
+United States of America,North Carolina,Mountains,Cherokee
+United States of America,North Carolina,Mountains,Clay
+United States of America,North Carolina,Mountains,Graham
+United States of America,North Carolina,Mountains,Haywood
+United States of America,North Carolina,Mountains,Henderson
+United States of America,North Carolina,Mountains,Jackson
+United States of America,North Carolina,Mountains,Macon
+United States of America,North Carolina,Mountains,Madison
+United States of America,North Carolina,Mountains,McDowell
+United States of America,North Carolina,Mountains,Mitchell
+United States of America,North Carolina,Mountains,Polk
+United States of America,North Carolina,Mountains,Rutherford
+United States of America,North Carolina,Mountains,Swain
+United States of America,North Carolina,Mountains,Transylvania
+United States of America,North Carolina,Mountains,Watauga
+United States of America,North Carolina,Mountains,Wilkes
+United States of America,North Carolina,Mountains,Yancey
+United States of America,North Carolina,Piedmont,Alamance
+United States of America,North Carolina,Piedmont,Alexander
+United States of America,North Carolina,Piedmont,Anson
+United States of America,North Carolina,Piedmont,Cabarrus
+United States of America,North Carolina,Piedmont,Caswell
+United States of America,North Carolina,Piedmont,Catawba
+United States of America,North Carolina,Piedmont,Chatham
+United States of America,North Carolina,Piedmont,Cleveland
+United States of America,North Carolina,Piedmont,Davidson
+United States of America,North Carolina,Piedmont,Davie
+United States of America,North Carolina,Piedmont,Durham
+United States of America,North Carolina,Piedmont,Forsyth
+United States of America,North Carolina,Piedmont,Franklin
+United States of America,North Carolina,Piedmont,Gaston
+United States of America,North Carolina,Piedmont,Granville
+United States of America,North Carolina,Piedmont,Guilford
+United States of America,North Carolina,Piedmont,Iredell
+United States of America,North Carolina,Piedmont,Lee
+United States of America,North Carolina,Piedmont,Lincoln
+United States of America,North Carolina,Piedmont,Mecklenburg
+United States of America,North Carolina,Piedmont,Montgomery
+United States of America,North Carolina,Piedmont,Moore
+United States of America,North Carolina,Piedmont,Orange
+United States of America,North Carolina,Piedmont,Person
+United States of America,North Carolina,Piedmont,Randolph
+United States of America,North Carolina,Piedmont,Richmond
+United States of America,North Carolina,Piedmont,Rockingham
+United States of America,North Carolina,Piedmont,Rowan
+United States of America,North Carolina,Piedmont,Stanly
+United States of America,North Carolina,Piedmont,Stokes
+United States of America,North Carolina,Piedmont,Surry
+United States of America,North Carolina,Piedmont,Union
+United States of America,North Carolina,Piedmont,Vance
+United States of America,North Carolina,Piedmont,Wake
+United States of America,North Carolina,Piedmont,Warren
+United States of America,North Carolina,Piedmont,Yadkin
+United States of America,South Carolina,Low Country,Allendale
+United States of America,South Carolina,Low Country,Bamberg
+United States of America,South Carolina,Low Country,Beaufort
+United States of America,South Carolina,Low Country,Berkeley
+United States of America,South Carolina,Low Country,Calhoun
+United States of America,South Carolina,Low Country,Charleston
+United States of America,South Carolina,Low Country,Colleton
+United States of America,South Carolina,Low Country,Dorchester
+United States of America,South Carolina,Low Country,Hampton
+United States of America,South Carolina,Low Country,Jasper
+United States of America,South Carolina,Low Country,Orangeburg
+United States of America,South Carolina,Midlands,Aiken
+United States of America,South Carolina,Midlands,Barnwell
+United States of America,South Carolina,Midlands,Chester
+United States of America,South Carolina,Midlands,Edgefield
+United States of America,South Carolina,Midlands,Fairfield
+United States of America,South Carolina,Midlands,Kershaw
+United States of America,South Carolina,Midlands,Lancaster
+United States of America,South Carolina,Midlands,Lexington
+United States of America,South Carolina,Midlands,Newberry
+United States of America,South Carolina,Midlands,Richland
+United States of America,South Carolina,Midlands,Saluda
+United States of America,South Carolina,Midlands,York
+United States of America,South Carolina,Pee Dee,Chesterfield
+United States of America,South Carolina,Pee Dee,Clarendon
+United States of America,South Carolina,Pee Dee,Darlington
+United States of America,South Carolina,Pee Dee,Dillon
+United States of America,South Carolina,Pee Dee,Florence
+United States of America,South Carolina,Pee Dee,Georgetown
+United States of America,South Carolina,Pee Dee,Horry
+United States of America,South Carolina,Pee Dee,Lee
+United States of America,South Carolina,Pee Dee,Marion
+United States of America,South Carolina,Pee Dee,Marlboro
+United States of America,South Carolina,Pee Dee,Sumter
+United States of America,South Carolina,Pee Dee,Williamsburg
+United States of America,South Carolina,Upstate,Abbeville
+United States of America,South Carolina,Upstate,Anderson
+United States of America,South Carolina,Upstate,Cherokee
+United States of America,South Carolina,Upstate,Greenville
+United States of America,South Carolina,Upstate,Greenwood
+United States of America,South Carolina,Upstate,Laurens
+United States of America,South Carolina,Upstate,McCormick
+United States of America,South Carolina,Upstate,Oconee
+United States of America,South Carolina,Upstate,Pickens
+United States of America,South Carolina,Upstate,Spartanburg
+United States of America,South Carolina,Upstate,Union
+United States of America,Tennessee,Central,Bedford
+United States of America,Tennessee,Central,Cannon
+United States of America,Tennessee,Central,Cheatham
+United States of America,Tennessee,Central,Clay
+United States of America,Tennessee,Central,Coffee
+United States of America,Tennessee,Central,Davidson
+United States of America,Tennessee,Central,DeKalb
+United States of America,Tennessee,Central,Franklin
+United States of America,Tennessee,Central,Giles
+United States of America,Tennessee,Central,Grundy
+United States of America,Tennessee,Central,Jackson
+United States of America,Tennessee,Central,Lincoln
+United States of America,Tennessee,Central,Macon
+United States of America,Tennessee,Central,Marion
+United States of America,Tennessee,Central,Marshall
+United States of America,Tennessee,Central,Maury
+United States of America,Tennessee,Central,Moore
+United States of America,Tennessee,Central,Overton
+United States of America,Tennessee,Central,Pickett
+United States of America,Tennessee,Central,Putnam
+United States of America,Tennessee,Central,Robertson
+United States of America,Tennessee,Central,Rutherford
+United States of America,Tennessee,Central,Sequatchie
+United States of America,Tennessee,Central,Smith
+United States of America,Tennessee,Central,Sumner
+United States of America,Tennessee,Central,Trousdale
+United States of America,Tennessee,Central,Van Buren
+United States of America,Tennessee,Central,Warren
+United States of America,Tennessee,Central,White
+United States of America,Tennessee,Central,Williamson
+United States of America,Tennessee,Central,Wilson
+United States of America,Tennessee,Eastern,Anderson
+United States of America,Tennessee,Eastern,Bledsoe
+United States of America,Tennessee,Eastern,Blount
+United States of America,Tennessee,Eastern,Bradley
+United States of America,Tennessee,Eastern,Campbell
+United States of America,Tennessee,Eastern,Carter
+United States of America,Tennessee,Eastern,Claiborne
+United States of America,Tennessee,Eastern,Cocke
+United States of America,Tennessee,Eastern,Cumberland
+United States of America,Tennessee,Eastern,Fentress
+United States of America,Tennessee,Eastern,Grainger
+United States of America,Tennessee,Eastern,Greene
+United States of America,Tennessee,Eastern,Hamblen
+United States of America,Tennessee,Eastern,Hamilton
+United States of America,Tennessee,Eastern,Hancock
+United States of America,Tennessee,Eastern,Hawkins
+United States of America,Tennessee,Eastern,Jefferson
+United States of America,Tennessee,Eastern,Johnson
+United States of America,Tennessee,Eastern,Knox
+United States of America,Tennessee,Eastern,Loudon
+United States of America,Tennessee,Eastern,McMinn
+United States of America,Tennessee,Eastern,Meigs
+United States of America,Tennessee,Eastern,Monroe
+United States of America,Tennessee,Eastern,Morgan
+United States of America,Tennessee,Eastern,Polk
+United States of America,Tennessee,Eastern,Rhea
+United States of America,Tennessee,Eastern,Roane
+United States of America,Tennessee,Eastern,Scott
+United States of America,Tennessee,Eastern,Sevier
+United States of America,Tennessee,Eastern,Sullivan
+United States of America,Tennessee,Eastern,Unicoi
+United States of America,Tennessee,Eastern,Union
+United States of America,Tennessee,Eastern,Washington
+United States of America,Tennessee,West,Benton
+United States of America,Tennessee,West,Carroll
+United States of America,Tennessee,West,Chester
+United States of America,Tennessee,West,Crockett
+United States of America,Tennessee,West,Decatur
+United States of America,Tennessee,West,Dickson
+United States of America,Tennessee,West,Dyer
+United States of America,Tennessee,West,Fayette
+United States of America,Tennessee,West,Gibson
+United States of America,Tennessee,West,Hardeman
+United States of America,Tennessee,West,Hardin
+United States of America,Tennessee,West,Haywood
+United States of America,Tennessee,West,Henderson
+United States of America,Tennessee,West,Henry
+United States of America,Tennessee,West,Hickman
+United States of America,Tennessee,West,Houston
+United States of America,Tennessee,West,Humphreys
+United States of America,Tennessee,West,Lake
+United States of America,Tennessee,West,Lauderdale
+United States of America,Tennessee,West,Lawrence
+United States of America,Tennessee,West,Lewis
+United States of America,Tennessee,West,Madison
+United States of America,Tennessee,West,McNairy
+United States of America,Tennessee,West,Montgomery
+United States of America,Tennessee,West,Obion
+United States of America,Tennessee,West,Perry
+United States of America,Tennessee,West,Shelby
+United States of America,Tennessee,West,Stewart
+United States of America,Tennessee,West,Tipton
+United States of America,Tennessee,West,Wayne
+United States of America,Tennessee,West,Weakley
+United States of America,Virginia,Coastal Plains,Accomack
+United States of America,Virginia,Coastal Plains,Alexandria City
+United States of America,Virginia,Coastal Plains,Caroline
+United States of America,Virginia,Coastal Plains,Charles City
+United States of America,Virginia,Coastal Plains,Chesapeake City
+United States of America,Virginia,Coastal Plains,Chesterfield
+United States of America,Virginia,Coastal Plains,Colonial Heights City
+United States of America,Virginia,Coastal Plains,Dinwiddie
+United States of America,Virginia,Coastal Plains,Emporia City
+United States of America,Virginia,Coastal Plains,Essex
+United States of America,Virginia,Coastal Plains,Fairfax
+United States of America,Virginia,Coastal Plains,Fairfax City
+United States of America,Virginia,Coastal Plains,Falls Church City
+United States of America,Virginia,Coastal Plains,Franklin City
+United States of America,Virginia,Coastal Plains,Greensville
+United States of America,Virginia,Coastal Plains,Hampton City
+United States of America,Virginia,Coastal Plains,Hanover
+United States of America,Virginia,Coastal Plains,Henrico
+United States of America,Virginia,Coastal Plains,Hopewell City
+United States of America,Virginia,Coastal Plains,Isle of Wight
+United States of America,Virginia,Coastal Plains,James City
+United States of America,Virginia,Coastal Plains,King and Queen
+United States of America,Virginia,Coastal Plains,King George
+United States of America,Virginia,Coastal Plains,King William
+United States of America,Virginia,Coastal Plains,Lancaster
+United States of America,Virginia,Coastal Plains,Manassas City
+United States of America,Virginia,Coastal Plains,Manassas Park City
+United States of America,Virginia,Coastal Plains,Mathews
+United States of America,Virginia,Coastal Plains,Middlesex
+United States of America,Virginia,Coastal Plains,New Kent
+United States of America,Virginia,Coastal Plains,Newport News City
+United States of America,Virginia,Coastal Plains,Norfolk City
+United States of America,Virginia,Coastal Plains,Northampton
+United States of America,Virginia,Coastal Plains,Northumberland
+United States of America,Virginia,Coastal Plains,Petersburg City
+United States of America,Virginia,Coastal Plains,Poquoson City
+United States of America,Virginia,Coastal Plains,Portsmouth City
+United States of America,Virginia,Coastal Plains,Prince George
+United States of America,Virginia,Coastal Plains,Prince William
+United States of America,Virginia,Coastal Plains,Richmond
+United States of America,Virginia,Coastal Plains,Richmond City
+United States of America,Virginia,Coastal Plains,Southampton
+United States of America,Virginia,Coastal Plains,Stafford
+United States of America,Virginia,Coastal Plains,Suffolk City
+United States of America,Virginia,Coastal Plains,Surry
+United States of America,Virginia,Coastal Plains,Sussex
+United States of America,Virginia,Coastal Plains,Virginia Beach City
+United States of America,Virginia,Coastal Plains,Westmoreland
+United States of America,Virginia,Coastal Plains,Williamsburg City
+United States of America,Virginia,Coastal Plains,York
+United States of America,Virginia,Mountain,Alleghany
+United States of America,Virginia,Mountain,Augusta
+United States of America,Virginia,Mountain,Bath
+United States of America,Virginia,Mountain,Bland
+United States of America,Virginia,Mountain,Botetourt
+United States of America,Virginia,Mountain,Bristol
+United States of America,Virginia,Mountain,Buchanan
+United States of America,Virginia,Mountain,Buena Vista City
+United States of America,Virginia,Mountain,Carroll
+United States of America,Virginia,Mountain,Clarke
+United States of America,Virginia,Mountain,Clifton Forge City
+United States of America,Virginia,Mountain,Covington City
+United States of America,Virginia,Mountain,Craig
+United States of America,Virginia,Mountain,Dickenson
+United States of America,Virginia,Mountain,Floyd
+United States of America,Virginia,Mountain,Frederick
+United States of America,Virginia,Mountain,Galax City
+United States of America,Virginia,Mountain,Giles
+United States of America,Virginia,Mountain,Grayson
+United States of America,Virginia,Mountain,Harrisonburg City
+United States of America,Virginia,Mountain,Highland
+United States of America,Virginia,Mountain,Lee
+United States of America,Virginia,Mountain,Lexington City
+United States of America,Virginia,Mountain,Montgomery
+United States of America,Virginia,Mountain,Norton City
+United States of America,Virginia,Mountain,Page
+United States of America,Virginia,Mountain,Pulaski
+United States of America,Virginia,Mountain,Radford
+United States of America,Virginia,Mountain,Roanoke
+United States of America,Virginia,Mountain,Roanoke City
+United States of America,Virginia,Mountain,Rockbridge
+United States of America,Virginia,Mountain,Rockingham
+United States of America,Virginia,Mountain,Russell
+United States of America,Virginia,Mountain,Salem
+United States of America,Virginia,Mountain,Scott
+United States of America,Virginia,Mountain,Shenandoah
+United States of America,Virginia,Mountain,Smyth
+United States of America,Virginia,Mountain,Staunton City
+United States of America,Virginia,Mountain,Tazewell
+United States of America,Virginia,Mountain,Warren
+United States of America,Virginia,Mountain,Washington
+United States of America,Virginia,Mountain,Waynesboro City
+United States of America,Virginia,Mountain,Winchester City
+United States of America,Virginia,Mountain,Wise
+United States of America,Virginia,Mountain,Wythe
+United States of America,Virginia,Piedmont,Albemarle
+United States of America,Virginia,Piedmont,Amelia
+United States of America,Virginia,Piedmont,Amherst
+United States of America,Virginia,Piedmont,Appomattox
+United States of America,Virginia,Piedmont,Bedford
+United States of America,Virginia,Piedmont,Bedford City
+United States of America,Virginia,Piedmont,Brunswick
+United States of America,Virginia,Piedmont,Buckingham
+United States of America,Virginia,Piedmont,Campbell
+United States of America,Virginia,Piedmont,Charlottesville City
+United States of America,Virginia,Piedmont,Culpeper
+United States of America,Virginia,Piedmont,Cumberland
+United States of America,Virginia,Piedmont,Danville City
+United States of America,Virginia,Piedmont,Fauquier
+United States of America,Virginia,Piedmont,Fluvanna
+United States of America,Virginia,Piedmont,Franklin
+United States of America,Virginia,Piedmont,Fredericksburg City
+United States of America,Virginia,Piedmont,Goochland
+United States of America,Virginia,Piedmont,Greene
+United States of America,Virginia,Piedmont,Halifax
+United States of America,Virginia,Piedmont,Henry
+United States of America,Virginia,Piedmont,Loudoun
+United States of America,Virginia,Piedmont,Louisa
+United States of America,Virginia,Piedmont,Lunenburg
+United States of America,Virginia,Piedmont,Lynchburg City
+United States of America,Virginia,Piedmont,Madison
+United States of America,Virginia,Piedmont,Martinsville City
+United States of America,Virginia,Piedmont,Mecklenburg
+United States of America,Virginia,Piedmont,Nelson
+United States of America,Virginia,Piedmont,Nottoway
+United States of America,Virginia,Piedmont,Orange
+United States of America,Virginia,Piedmont,Patrick
+United States of America,Virginia,Piedmont,Pittsylvania
+United States of America,Virginia,Piedmont,Powhatan
+United States of America,Virginia,Piedmont,Rappahannock
+United States of America,Virginia,Piedmont,Spotsylvania
