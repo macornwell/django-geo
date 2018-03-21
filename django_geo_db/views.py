@@ -125,7 +125,7 @@ class CityDetails(mixins.RetrieveModelMixin,
                    generics.GenericAPIView):
     queryset = City.objects.all()
     serializer_class = serializers.CitySerializer
-    filter_fields =  ('country__country_id', 'name', '')
+    filter_fields = ('country__country_id', 'name', '')
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
@@ -173,7 +173,7 @@ class StateRegionList(mixins.ListModelMixin,
                       generics.GenericAPIView):
     queryset = StateRegion.objects.all()
     serializer_class = serializers.StateRegionSerializer
-    filter_fields = ('name', 'state_id')
+    filter_fields = ('name', 'state__name')
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)

@@ -47,11 +47,14 @@ class CitySerializer(serializers.HyperlinkedModelSerializer):
 
 class StateRegionSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField('state-region-detail')
-
     counties = serializers.SerializerMethodField()
+    state = serializers.SerializerMethodField()
 
     def get_counties(self, obj):
         return sorted([c.name for c in obj.counties.all()])
+
+    def get_state(self, obj):
+        return obj.state.name
 
     class Meta:
         model = StateRegion
