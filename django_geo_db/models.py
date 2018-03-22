@@ -358,7 +358,7 @@ class Location(models.Model):
         elif self.city:
             value = '{0}, {1}'.format(self.city.name, self.state.abbreviation)
         elif self.county:
-            value = '{0}, {1}'.format(self.county.name, self.state.abbreviation)
+            value = str(self.county)
         elif self.state:
             value = '{0}, {1}'.format(self.state.name, self.country.name)
         elif self.region:
