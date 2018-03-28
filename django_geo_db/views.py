@@ -3,6 +3,7 @@ from django.conf import settings
 from django.shortcuts import Http404, HttpResponse
 from wsgiref.util import FileWrapper
 from rest_framework import permissions, mixins, filters, generics, status
+from rest_framework.exceptions import ValidationError
 from rest_framework.decorators import api_view, APIView
 from rest_framework.response import Response
 from django_geo_db import serializers
@@ -324,4 +325,42 @@ class PlotMap(APIView):
         response['Content-Disposition'] = 'attachment; filename="map.png"'
         return response
 
+
+class GeoLocate(APIView):
+    """
+    GeoLocate's a string passed to it. Works for countries, states, counties/parishes and zipcodes.
+
+    For a single Query Use a get on:
+    /geolocate?query=St Tammany Parish, Louisiana
+
+    For a multi query use a POST on:
+    /geolocate
+
+    Then add the query parameters to the POST body with q_1, q_2 etc.
+
+    Query Format:
+    United States of America (Country)
+    Virginia (State)
+    Montgomery County, Virginia (County)
+    Blacksburg, Virginia (State)
+    """
+
+    def get(self, request):
+        query = request.query_params.get('query', None)
+        if not query:
+            raise ValidationError('query was not provided.')
+        results = GEO_DAL.geolocate([query,])
+        if results:
+            results = results[0]
+        serializer = LocationSerializer(results, context={'request': request})
+        return Response(serializer.data)
+
+    def post(self, request):
+        data = request.data
+        if not data:
+            data = request.POST
+        queries = [data[p] for p in data if p.startswith('q_')]
+        results = GEO_DAL.geolocate(queries)
+        serializer = LocationSerializer(results, context={'request': request}, many=True)
+        return Response(serializer.data)
 

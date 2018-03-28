@@ -3,6 +3,7 @@ import csv
 import json
 import urllib.request
 
+from django.db.models import Q
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.files.storage import default_storage
 
@@ -110,6 +111,53 @@ class GeographyDAL:
                 zipcodeObj = Zipcode.objects.get(zipcode=zipcode)
                 break
         return zipcodeObj
+
+
+    def geolocate(self, strings_list):
+        """
+        GeoLocate's a list of strings. This works internally without using Google's services.
+        Query Format:
+        United States of America (Country)
+        Virginia (State)
+        Montgomery County, Virginia (County)
+        Blacksburg, Virginia (State)
+        :param strings_list:
+        :return:
+        """
+        results = []
+        county_words = [
+            ' county',
+            ' parish',
+            ' borough',
+        ]
+        for q in strings_list:
+            location = None
+            # Is this a city or county query?
+            if ',' in q:
+                value, state = q.split(',')
+                value = value.strip()
+                state = state.strip()
+                is_county = False
+                lowered_value = value.lower()
+                for c in county_words:
+                    index = lowered_value.find(c)
+                    if index > -1:
+                        value = value[0:index]
+                        is_county = True
+                        break
+                value = value.strip()
+                if is_county:
+                    location = Location.objects.filter(county__name__iexact=value, state__name__iexact=state,
+                                                       city=None).first()
+                else:
+                    location = Location.objects.filter(city__name__iexact=value, state__name__iexact=state,
+                                                       zipcode__isnull=True).first()
+            else:
+                location = Location.objects.filter(Q(country__name__iexact=q, state=None, region=None) |
+                                                   Q(state__name__iexact=q, city=None, county=None)).first()
+            results.append(location)
+        return results
+
 
 GEO_DAL = GeographyDAL()
 

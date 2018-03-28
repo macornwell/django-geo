@@ -2,6 +2,8 @@ from django_geo_db import views
 from django.conf.urls import url
 
 urlpatterns = [
+    url(r'geolocate/', views.GeoLocate.as_view(), name='geolocate'),
+
     url(r'^geocoordinate/(?P<pk>\d+)/$', views.GeoCoordinateDetails.as_view(), name='geocoordinate-detail'),
     url(r'^continent/(?P<pk>\d+)/$', views.ContinentDetails.as_view(), name='continent-detail'),
     url(r'^country/(?P<pk>\d+)/$', views.CountryDetails.as_view(), name='country-detail'),
