@@ -278,3 +278,22 @@ class MarkedMap:
         combined_image = io.BytesIO()
         image_copy.save(combined_image, format="PNG")
         return combined_image
+
+
+def plot_map(coordinates, storage, location_map,
+             map_bounds, marker, marker_size_percent):
+
+    map_data = storage.get_static_or_media_data(location_map.map_file_url)
+    marked_map = MarkedMap(storage, map_data, map_bounds)
+
+    markers = {
+        'star': 'add_star_to_base_map',
+    }
+
+    combined = map_data
+    for coord in coordinates:
+        method_name = markers[marker]
+        combined = getattr(marked_map, method_name)(coord, marker_size=marker_size_percent).getvalue()
+        # Recreate the object to use the updated map because we're adding many marks to it.
+        marked_map = MarkedMap(storage, combined, map_bounds)
+    return combined

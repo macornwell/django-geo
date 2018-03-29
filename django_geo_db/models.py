@@ -6,6 +6,18 @@ from django.contrib.auth.models import User
 from django_geo_db.managers import GeoCoordinateManager
 from django_geo_db.utilities import get_standardized_coordinate
 
+CELERY_PENDING = 'p'
+CELERY_STARTED = 't'
+CELERY_SUCCESS = 's'
+
+CELERY_STATUS_CHOICES = (
+    (CELERY_PENDING, 'Pending'),
+    (CELERY_STARTED, 'Started'),
+    ('r', 'Retry'),
+    ('f', 'Failure'),
+    (CELERY_SUCCESS, 'Success'),
+)
+
 
 class IntegerRangeField(models.IntegerField):
     def __init__(self, verbose_name=None, name=None, min_value=None, max_value=None, **kwargs):
@@ -472,3 +484,23 @@ class StateRegion(models.Model):
 
     class Meta:
         unique_together = (('state', 'name'),)
+
+
+class PlottedMap(models.Model):
+    """
+    A map that has been plotted.
+    """
+    plotted_map_id = models.AutoField(primary_key=True)
+    map_file_url = models.URLField(blank=True, null=True)
+    location_map_type = models.ForeignKey(LocationMapType)
+    location = models.ForeignKey(Location)
+    marker_type = models.CharField(max_length=20)
+    marker_size = models.DecimalField(max_digits=3, decimal_places=2)
+
+
+class CeleryPlottedMapTask(models.Model):
+    celery_plotted_map_task_id = models.AutoField(primary_key=True)
+    date_submitted = models.DateTimeField(default=datetime.now)
+    status = models.CharField(max_length=1, choices=CELERY_STATUS_CHOICES)
+    task_id = models.CharField(max_length=40, blank=True, null=True)
+    plotted_map = models.ForeignKey(PlottedMap)

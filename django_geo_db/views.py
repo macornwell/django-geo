@@ -7,10 +7,13 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.decorators import api_view, APIView
 from rest_framework.response import Response
 from django_geo_db import serializers
-from django_geo_db.serializers import LocationSerializer, LocationMapTypeSerializer, LocationMapSerializer
+from django_geo_db.serializers import LocationSerializer, LocationMapTypeSerializer, LocationMapSerializer, \
+    PlottedMapSerializer
 from django_geo_db.services import GEO_DAL, LocationMapGenerator
 from django_geo_db.models import Continent, Country, State, Location, City, \
-    Zipcode, GeoCoordinate, UserLocation, County, LocationMapType, LocationMap, LocationBounds, StateRegion
+    Zipcode, GeoCoordinate, UserLocation, County, LocationMapType, LocationMap, LocationBounds, StateRegion, \
+    PlottedMap
+from django_geo_db.tasks import check_on_map_status, start_plot_map
 from django_geo_db.storage import DataStorage
 from django_geo_db.utilities import MarkedMap, LatLon
 
@@ -270,6 +273,38 @@ class LocationMapTypeDetail(APIView):
         return Response(serializer.data)
 
 
+class PlottedMapStatus(APIView):
+
+    def get(self, request, pk):
+        try:
+            plotted_map = PlottedMap.objects.get(pk=pk)
+        except PlottedMap.DoesNotExist:
+            raise Http404
+        status = check_on_map_status(plotted_map)
+        return Response({'status': status})
+
+
+class PlottedMapDetail(APIView):
+
+    def get(self, request, pk):
+        try:
+            plotted_map = PlottedMap.objects.get(pk=pk)
+        except PlottedMap.DoesNotExist:
+            raise Http404
+        check_on_map_status(plotted_map)
+        serializer = PlottedMapSerializer(plotted_map, context={'request': request})
+        return Response(serializer.data)
+
+    def delete(self, request, pk):
+        try:
+            plotted_map = PlottedMap.objects.get(pk=pk)
+        except PlottedMap.DoesNotExist:
+            raise Http404
+        print('Deleting map file')
+        print('Deleting map')
+        raise Exception()
+
+
 class PlotMap(APIView):
     """
     Plots markers on a map.
@@ -299,31 +334,28 @@ class PlotMap(APIView):
         bounds = LocationBounds.objects.get(location=location)
 
         map_type = LocationMapType.objects.get(type=map_type)
-        location_type = LocationMap.objects.get(location=location, type=map_type)
-
-        storage = DataStorage(domain)
-        map_data = storage.get_static_or_media_data(location_type.map_file_url)
-
+        location_map = LocationMap.objects.get(location=location, type=map_type)
         marker = request.query_params.get('marker', 'star')
         size_percent = float(request.query_params.get('size_percent', 0.05))
-        coords = [LatLon.parse_string(request.POST[p]) for p in request.POST if p.startswith('ll_')]
-        marked_map = MarkedMap(storage, map_data, bounds)
+        coord_strings = [request.POST[p] for p in request.POST if p.startswith('ll_')]
 
-        markers = {
-            'star': 'add_star_to_base_map',
-        }
+        plotted_map = PlottedMap()
+        plotted_map.location = location
+        plotted_map.location_map_type = map_type
+        plotted_map.marker_type = marker
+        plotted_map.marker_size = size_percent
+        plotted_map.save()
 
-        combined = map_data
-        for coord in coords:
-            method_name = markers[marker]
-            combined = getattr(marked_map, method_name)(coord, marker_size=size_percent).getvalue()
-            # Recreate the object to use the updated map because we're adding many marks to it.
-            marked_map = MarkedMap(storage, combined, bounds)
+        start_plot_map.delay(plotted_map.plotted_map_id, coord_strings, domain, location_map.location_map_id,
+                             bounds.location_bounds_id, marker, size_percent)
 
+        """
         wrapper = FileWrapper(io.BytesIO(combined))
         response = HttpResponse(wrapper, content_type="application/octet-stream")
         response['Content-Disposition'] = 'attachment; filename="map.png"'
-        return response
+        """
+        serializer = PlottedMapSerializer(plotted_map, context={'request': request})
+        return Response(serializer.data)
 
 
 class GeoLocate(APIView):

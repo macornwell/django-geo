@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django_geo_db.models import Location, GeoCoordinate, Zipcode, Continent, Country, State, City, County, \
-                                 LocationMap, LocationMapType, StateRegion
+                                 LocationMap, LocationMapType, StateRegion, PlottedMap
 
 
 class GeoCoordinateSerializer(serializers.HyperlinkedModelSerializer):
@@ -123,5 +123,11 @@ class LocationMapTypeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = LocationMapType
         fields = ('type',)
+
+
+class PlottedMapSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlottedMap
+        fields = ('plotted_map_id', 'map_file_url')
 
 

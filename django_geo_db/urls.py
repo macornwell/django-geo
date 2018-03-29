@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^location-map/$', views.LocationMapView.as_view(), name='location-map'),
     url(r'^location-map-type/(?P<pk>[0-9]+)/$', views.LocationMapTypeDetail.as_view(), name='locationmaptype-detail'),
     url(r'^plot/(?P<map_type>[a-zA-Z\-]+)/(?P<location_type>[a-zA-Z0-9\-]+)/(?P<country_name>[a-zA-Z0-9\-]+)/(?P<location_name>[a-zA-Z0-9\-]+)/$', views.PlotMap.as_view(), name='plot-map'),
-
+    url(r'^plot-status/(?P<pk>[0-9]+)/$', views.PlottedMapStatus.as_view(), name='plottedmap-status'),
+    url(r'^plotted-map/(?P<pk>[0-9]+)/$', views.PlottedMapDetail.as_view(), name='plottedmap-detail'),
 ]
 
