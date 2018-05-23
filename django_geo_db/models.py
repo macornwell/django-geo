@@ -140,7 +140,6 @@ class GeoCoordinate(models.Model):
             coord_points.append(0)
         return coord_points
 
-
     class Meta:
         unique_together = ('lat', 'lon')
 
