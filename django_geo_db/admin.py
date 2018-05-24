@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from django_geo_db.models import Location, City, Continent, Country, \
-    State, GeoCoordinate, UserLocation, County, Region, LocationMap, LocationBounds, LocationMapType
+    State, GeoCoordinate, UserLocation, County, Region, LocationMap, LocationBounds, LocationMapType, PlottedMap, CeleryPlottedMapTask
 from django_geo_db.forms import UserLocationForm, LocationForm, CityForm, GeocoordinateForm, RegionForm, LocationMapForm, \
     LocationBoundsForm
 
@@ -46,5 +46,7 @@ admin.site.register(Region, RegionAdmin)
 admin.site.register(LocationBounds, LocationBoundsAdmin)
 admin.site.register(LocationMap, LocationMapAdmin)
 admin.site.register(LocationMapType)
+admin.site.register(PlottedMap)
+admin.site.register(CeleryPlottedMapTask)
 
 
