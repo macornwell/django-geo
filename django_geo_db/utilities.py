@@ -1,7 +1,6 @@
 import io
 from decimal import Decimal
 import random
-from PIL import Image
 
 from django_geo_db.math import Translations
 
@@ -241,6 +240,7 @@ class MarkedMap:
         return self.data_storage.get_star()
 
     def add_star_to_base_map(self, coord_obj, marker_size=MAP_STAR_PERCENTAGE):
+        from PIL import Image
         # 1. Get Star, translate star to be the standard size relative to picture size.
         coord_star = self.__get_star()
 
