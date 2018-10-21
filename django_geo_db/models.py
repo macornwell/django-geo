@@ -154,10 +154,10 @@ class Continent(models.Model):
 
 class Country(models.Model):
     country_id = models.AutoField(primary_key=True)
-    continent = models.ForeignKey(Continent)
+    continent = models.ForeignKey(Continent, on_delete=models.PROTECT)
     name = models.CharField(max_length=50, unique=True)
     abbreviation = models.CharField(max_length=2, unique=True)
-    geocoordinate = models.ForeignKey(GeoCoordinate)
+    geocoordinate = models.ForeignKey(GeoCoordinate, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.name
@@ -169,9 +169,9 @@ class Region(models.Model):
     The geocoordinate for this should not be taken too seriously, but is roughly the "center."
     """
     region_id = models.AutoField(primary_key=True)
-    country = models.ForeignKey(Country)
+    country = models.ForeignKey(Country, on_delete=models.PROTECT)
     name = models.CharField(max_length=40)
-    geocoordinate = models.ForeignKey(GeoCoordinate)
+    geocoordinate = models.ForeignKey(GeoCoordinate, on_delete=models.PROTECT)
 
     def __str__(self):
         return '{0}, {1}'.format(self.name, self.country.abbreviation)
@@ -179,10 +179,10 @@ class Region(models.Model):
 
 class State(models.Model):
     state_id = models.AutoField(primary_key=True)
-    country = models.ForeignKey(Country)
+    country = models.ForeignKey(Country, on_delete=models.PROTECT)
     name = models.CharField(max_length=50)
     abbreviation = models.CharField(max_length=2, unique=True)
-    geocoordinate = models.ForeignKey(GeoCoordinate)
+    geocoordinate = models.ForeignKey(GeoCoordinate, on_delete=models.PROTECT)
     generated_name = models.CharField(max_length=50, blank=True, null=True)
 
     def save(self, *args, **kwargs):
@@ -201,9 +201,9 @@ class State(models.Model):
 
 class County(models.Model):
     county_id = models.AutoField(primary_key=True)
-    state = models.ForeignKey(State)
+    state = models.ForeignKey(State, on_delete=models.PROTECT)
     name = models.CharField(max_length=50)
-    geocoordinate = models.ForeignKey(GeoCoordinate)
+    geocoordinate = models.ForeignKey(GeoCoordinate, on_delete=models.PROTECT)
     generated_name = models.CharField(max_length=50, blank=True, null=True)
 
     def save(self, *args, **kwargs):
@@ -227,10 +227,10 @@ class County(models.Model):
 
 class City(models.Model):
     city_id = models.AutoField(primary_key=True)
-    state = models.ForeignKey(State)
-    county = models.ForeignKey(County, blank=True, null=True)
+    state = models.ForeignKey(State, on_delete=models.PROTECT)
+    county = models.ForeignKey(County, blank=True, null=True, on_delete=models.PROTECT)
     name = models.CharField(max_length=50)
-    geocoordinate = models.ForeignKey(GeoCoordinate)
+    geocoordinate = models.ForeignKey(GeoCoordinate, on_delete=models.PROTECT)
     generated_name = models.CharField(max_length=50, blank=True, null=True)
 
     def save(self, *args, **kwargs):
@@ -249,9 +249,9 @@ class City(models.Model):
 
 class Zipcode(models.Model):
     zipcode_id = models.AutoField(primary_key=True)
-    city = models.ForeignKey(City)
+    city = models.ForeignKey(City, on_delete=models.PROTECT)
     zipcode = IntegerRangeField(unique=True, min_value=1, max_value=99999)
-    geocoordinate = models.ForeignKey(GeoCoordinate)
+    geocoordinate = models.ForeignKey(GeoCoordinate, on_delete=models.PROTECT)
     timezone = models.IntegerField()
     generated_name = models.CharField(max_length=50, blank=True, null=True)
 
@@ -280,13 +280,13 @@ class Location(models.Model):
     Regions - Regions are special case entities that are not required to fill out since they are not political boundaries.
     """
     location_id = models.AutoField(primary_key=True)
-    country = models.ForeignKey(Country)
-    region = models.ForeignKey(Region, blank=True, null=True)
-    state = models.ForeignKey(State, blank=True, null=True)
-    county = models.ForeignKey(County, blank=True, null=True)
-    city = models.ForeignKey(City, blank=True, null=True)
-    zipcode = models.ForeignKey(Zipcode, blank=True, null=True)
-    geocoordinate = models.ForeignKey(GeoCoordinate, blank=True, null=True, help_text='This is a very specific location.')
+    country = models.ForeignKey(Country, on_delete=models.PROTECT)
+    region = models.ForeignKey(Region, blank=True, null=True, on_delete=models.PROTECT)
+    state = models.ForeignKey(State, blank=True, null=True, on_delete=models.PROTECT)
+    county = models.ForeignKey(County, blank=True, null=True, on_delete=models.PROTECT)
+    city = models.ForeignKey(City, blank=True, null=True, on_delete=models.PROTECT)
+    zipcode = models.ForeignKey(Zipcode, blank=True, null=True, on_delete=models.PROTECT)
+    geocoordinate = models.ForeignKey(GeoCoordinate, blank=True, null=True, help_text='This is a very specific location.', on_delete=models.PROTECT)
     name = models.CharField(max_length=50, blank=True, null=True)
     generated_name = models.CharField(max_length=90, blank=True, null=True)
 
@@ -387,8 +387,8 @@ class UserLocation(models.Model):
     A location that a user has used in the past.
     """
     user_location_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User)
-    location = models.ForeignKey(Location)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    location = models.ForeignKey(Location, on_delete=models.PROTECT)
     last_used = models.DateTimeField(default=datetime.now, blank=True)
     user_created = models.BooleanField(default=True)
 
@@ -409,7 +409,7 @@ class LocationBounds(models.Model):
     The bounds of any location.
     """
     location_bounds_id = models.AutoField(primary_key=True)
-    location = models.ForeignKey(Location)
+    location = models.ForeignKey(Location, on_delete=models.PROTECT)
     max_lat = models.DecimalField(max_digits=8, decimal_places=6)
     min_lat = models.DecimalField(max_digits=8, decimal_places=6)
     max_lon = models.DecimalField(max_digits=9, decimal_places=6)
@@ -446,9 +446,9 @@ class LocationMap(models.Model):
     A rendered map of a location.
     """
     location_map_id = models.AutoField(primary_key=True)
-    type = models.ForeignKey(LocationMapType)
+    type = models.ForeignKey(LocationMapType, on_delete=models.PROTECT)
     map_file_url = models.URLField()
-    location = models.ForeignKey(Location)
+    location = models.ForeignKey(Location, on_delete=models.PROTECT)
 
     def save(self, *args, **kwargs):
         return super(LocationMap, self).save(args, kwargs)
@@ -474,7 +474,7 @@ class StateRegion(models.Model):
     A region of a state. Often East, Central, West or North, South or Mountain, Piedmont, Coast. Etc.
     """
     state_region_id = models.AutoField(primary_key=True)
-    state = models.ForeignKey(State)
+    state = models.ForeignKey(State, on_delete=models.PROTECT)
     name = models.CharField(max_length=30)
     counties = models.ManyToManyField(County)
 
@@ -491,8 +491,8 @@ class PlottedMap(models.Model):
     """
     plotted_map_id = models.AutoField(primary_key=True)
     map_file_url = models.URLField(blank=True, null=True)
-    location_map_type = models.ForeignKey(LocationMapType)
-    location = models.ForeignKey(Location)
+    location_map_type = models.ForeignKey(LocationMapType, on_delete=models.PROTECT)
+    location = models.ForeignKey(Location, on_delete=models.PROTECT)
     marker_type = models.CharField(max_length=20)
     marker_size = models.DecimalField(max_digits=3, decimal_places=2)
 
@@ -502,4 +502,4 @@ class CeleryPlottedMapTask(models.Model):
     date_submitted = models.DateTimeField(default=datetime.now)
     status = models.CharField(max_length=1, choices=CELERY_STATUS_CHOICES)
     task_id = models.CharField(max_length=40, blank=True, null=True)
-    plotted_map = models.ForeignKey(PlottedMap)
+    plotted_map = models.ForeignKey(PlottedMap, on_delete=models.PROTECT)

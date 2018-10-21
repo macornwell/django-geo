@@ -1,21 +1,17 @@
-import io
 from django.conf import settings
-from django.shortcuts import Http404, HttpResponse
-from wsgiref.util import FileWrapper
-from rest_framework import permissions, mixins, filters, generics, status
+from django.shortcuts import Http404
+from rest_framework import permissions, mixins, generics, status
 from rest_framework.exceptions import ValidationError
-from rest_framework.decorators import api_view, APIView
+from rest_framework.decorators import APIView
 from rest_framework.response import Response
 from django_geo_db import serializers
 from django_geo_db.serializers import LocationSerializer, LocationMapTypeSerializer, LocationMapSerializer, \
     PlottedMapSerializer
 from django_geo_db.services import GEO_DAL, LocationMapGenerator
 from django_geo_db.models import Continent, Country, State, Location, City, \
-    Zipcode, GeoCoordinate, UserLocation, County, LocationMapType, LocationMap, LocationBounds, StateRegion, \
+    Zipcode, GeoCoordinate, County, LocationMapType, LocationMap, LocationBounds, StateRegion, \
     PlottedMap
 from django_geo_db.tasks import check_on_map_status, start_plot_map
-from django_geo_db.storage import DataStorage
-from django_geo_db.utilities import MarkedMap, LatLon
 
 
 class LocationDetail(APIView):
