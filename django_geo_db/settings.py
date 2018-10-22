@@ -1,3 +1,13 @@
+from django.conf import settings
+
+def require_authentication(self):
+    require = True 
+    try:
+        require = settings.GEO_AUTOCOMPLETE_REQUIRES_AUTHENTICATION
+    except:
+        pass
+    return require
+
 
 class GoogleMapsSettings:
     lat = None

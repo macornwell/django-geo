@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.conf import settings
 from django.shortcuts import Http404
 from dal import autocomplete
 
@@ -6,15 +7,17 @@ from rest_framework import generics, permissions, mixins, filters
 from rest_framework.decorators import api_view, APIView
 from rest_framework.response import Response
 from django_geo_db import serializers
+from django_geo_db.models import Continent, Country, State, Location, City, Zipcode, GeoCoordinate, UserLocation, County
 from django_geo_db.serializers import LocationSerializer
 from django_geo_db.services import GEO_DAL
-from django_geo_db.models import Continent, Country, State, Location, City, Zipcode, GeoCoordinate, UserLocation, County
+from django_geo_db.settings import require_authentication
 
 
 class UsersLocationAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        if not self.request.user.is_authenticated:
-            return Location.objects.none()
+        if require_authentication():
+            if not self.request.user.is_authenticated:
+                return Location.objects.none()
 
         user = self.request.user
         qs = UserLocation.objects.filter(user=user)
@@ -28,8 +31,9 @@ class UsersLocationAutocomplete(autocomplete.Select2QuerySetView):
 
 class NamedLocationAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        if not self.request.user.is_authenticated:
-            return Location.objects.none()
+        if require_authentication():
+            if not self.request.user.is_authenticated:
+                return Location.objects.none()
 
         qs = Location.objects.filter(name__isnull=False)
 
@@ -42,8 +46,9 @@ class NamedLocationAutocomplete(autocomplete.Select2QuerySetView):
 
 class LocationAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        if not self.request.user.is_authenticated:
-            return Location.objects.none()
+        if require_authentication():
+            if not self.request.user.is_authenticated:
+                return Location.objects.none()
 
         qs = Location.objects.all()
 
@@ -57,7 +62,7 @@ class LocationAutocomplete(autocomplete.Select2QuerySetView):
 
 class PublicLocationsAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-
+        #TODO: This will explode. This method nolonger exists.
         qs = Location.objects.public_locations()
 
         if self.q:
@@ -69,8 +74,9 @@ class PublicLocationsAutocomplete(autocomplete.Select2QuerySetView):
 
 class CityAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        if not self.request.user.is_authenticated:
-            return City.objects.none()
+        if require_authentication():
+            if not self.request.user.is_authenticated:
+                return City.objects.none()
 
         qs = City.objects.all()
 
@@ -84,8 +90,9 @@ class CityAutocomplete(autocomplete.Select2QuerySetView):
 
 class CountryAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        if not self.request.user.is_authenticated:
-            return Country.objects.none()
+        if require_authentication():
+            if not self.request.user.is_authenticated:
+                return Country.objects.none()
 
         qs = Country.objects.all()
 
@@ -99,8 +106,9 @@ class CountryAutocomplete(autocomplete.Select2QuerySetView):
 
 class CountyAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        if not self.request.user.is_authenticated:
-            return County.objects.none()
+        if require_authentication():
+            if not self.request.user.is_authenticated:
+                return County.objects.none()
 
         qs = County.objects.all()
 
@@ -115,6 +123,10 @@ class CountyAutocomplete(autocomplete.Select2QuerySetView):
 
 class ZipcodeAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
+        if require_authentication():
+            if not self.request.user.is_authenticated:
+                return Zipcode.objects.none()
+
         qs = Zipcode.objects.all()
 
         if self.q:
@@ -126,8 +138,9 @@ class ZipcodeAutocomplete(autocomplete.Select2QuerySetView):
 
 class GeoCoordinateAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        if not self.request.user.is_authenticated:
-            return GeoCoordinate.objects.none()
+        if require_authentication():
+            if not self.request.user.is_authenticated:
+                return GeoCoordinate.objects.none()
 
         qs = GeoCoordinate.objects.all()
 
