@@ -1,6 +1,6 @@
 from django.conf import settings
 
-def require_authentication(self):
+def require_authentication():
     require = True 
     try:
         require = settings.GEO_AUTOCOMPLETE_REQUIRES_AUTHENTICATION
