@@ -286,7 +286,7 @@ class Location(models.Model):
     county = models.ForeignKey(County, blank=True, null=True, on_delete=models.PROTECT)
     city = models.ForeignKey(City, blank=True, null=True, on_delete=models.PROTECT)
     zipcode = models.ForeignKey(Zipcode, blank=True, null=True, on_delete=models.PROTECT)
-    street_address = models.CharField(max_length=100, blank=True, null=True, on_delete=models.PROTECT)
+    street_address = models.CharField(max_length=100, blank=True, null=True)
     geocoordinate = models.ForeignKey(GeoCoordinate, blank=True, null=True, help_text='This is a very specific location.', on_delete=models.PROTECT)
     name = models.CharField(max_length=50, blank=True, null=True)
     generated_name = models.CharField(max_length=90, blank=True, null=True)
