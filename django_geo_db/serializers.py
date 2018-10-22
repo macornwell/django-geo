@@ -109,7 +109,7 @@ class LocationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Location
-        fields = ('location_id', 'country', 'city', 'county', 'state', 'zipcode', 'lat', 'lon', 'name', 'generated_name', 'url')
+        fields = ('location_id', 'country', 'city', 'county', 'state', 'zipcode', 'lat', 'lon', 'name', 'street_address', 'generated_name', 'url')
 
 
 class LocationMapSerializer(serializers.HyperlinkedModelSerializer):

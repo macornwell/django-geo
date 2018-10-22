@@ -25,7 +25,7 @@ class GeographyDAL:
     def get_map_type(self, map_type):
         return LocationMapType.objects.get(type=map_type)
 
-    def get_location(self, country_name, state_name=None, county_name=None, city_name=None, zipcode=None, name=None):
+    def get_location(self, country_name, state_name=None, county_name=None, city_name=None, zipcode=None, name=None, street_address=None):
         result = Location.objects.filter(country__name__iexact=country_name)
         if zipcode:
             result = result.filter(zipcode__zipcode=zipcode).first()
@@ -38,6 +38,8 @@ class GeographyDAL:
             result = result.filter(city__name__iexact=city_name)
         if name:
             result = result.filter(name__iexact=name)
+        if street_address:
+            result = result.filter(street_address__iexact=street_address)
         return result.first()
 
     def get_region(self, country_name, region):
