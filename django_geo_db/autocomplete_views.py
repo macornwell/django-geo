@@ -13,7 +13,7 @@ from django_geo_db.models import Continent, Country, State, Location, City, Zipc
 
 class UsersLocationAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        if not self.request.user.is_authenticated():
+        if not self.request.user.is_authenticated:
             return Location.objects.none()
 
         user = self.request.user
@@ -28,7 +28,7 @@ class UsersLocationAutocomplete(autocomplete.Select2QuerySetView):
 
 class NamedLocationAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        if not self.request.user.is_authenticated():
+        if not self.request.user.is_authenticated:
             return Location.objects.none()
 
         qs = Location.objects.filter(name__isnull=False)
@@ -42,7 +42,7 @@ class NamedLocationAutocomplete(autocomplete.Select2QuerySetView):
 
 class LocationAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        if not self.request.user.is_authenticated():
+        if not self.request.user.is_authenticated:
             return Location.objects.none()
 
         qs = Location.objects.all()
@@ -69,7 +69,7 @@ class PublicLocationsAutocomplete(autocomplete.Select2QuerySetView):
 
 class CityAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        if not self.request.user.is_authenticated():
+        if not self.request.user.is_authenticated:
             return City.objects.none()
 
         qs = City.objects.all()
@@ -84,7 +84,7 @@ class CityAutocomplete(autocomplete.Select2QuerySetView):
 
 class CountryAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        if not self.request.user.is_authenticated():
+        if not self.request.user.is_authenticated:
             return Country.objects.none()
 
         qs = Country.objects.all()
@@ -99,7 +99,7 @@ class CountryAutocomplete(autocomplete.Select2QuerySetView):
 
 class CountyAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        if not self.request.user.is_authenticated():
+        if not self.request.user.is_authenticated:
             return County.objects.none()
 
         qs = County.objects.all()
@@ -126,7 +126,7 @@ class ZipcodeAutocomplete(autocomplete.Select2QuerySetView):
 
 class GeoCoordinateAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        if not self.request.user.is_authenticated():
+        if not self.request.user.is_authenticated:
             return GeoCoordinate.objects.none()
 
         qs = GeoCoordinate.objects.all()
