@@ -11,7 +11,6 @@ from django_geo_db.services import GEO_DAL, LocationMapGenerator
 from django_geo_db.models import Continent, Country, State, Location, City, \
     Zipcode, GeoCoordinate, County, LocationMapType, LocationMap, LocationBounds, StateRegion, \
     PlottedMap
-from django_geo_db.tasks import check_on_map_status, start_plot_map
 
 
 class LocationDetail(APIView):
@@ -278,6 +277,7 @@ class PlottedMapStatus(APIView):
             plotted_map = PlottedMap.objects.get(pk=pk)
         except PlottedMap.DoesNotExist:
             raise Http404
+        from django_geo_db.tasks import check_on_map_status
         status = check_on_map_status(plotted_map)
         return Response({'status': status})
 
@@ -289,6 +289,7 @@ class PlottedMapDetail(APIView):
             plotted_map = PlottedMap.objects.get(pk=pk)
         except PlottedMap.DoesNotExist:
             raise Http404
+        from django_geo_db.tasks import check_on_map_status
         check_on_map_status(plotted_map)
         serializer = PlottedMapSerializer(plotted_map, context={'request': request})
         return Response(serializer.data)
@@ -344,6 +345,7 @@ class PlotMap(APIView):
         plotted_map.marker_size = size_percent
         plotted_map.save()
 
+        from django_geo_db.tasks import start_plot_map
         start_plot_map.delay(plotted_map.plotted_map_id, coord_strings, domain, location_map.location_map_id,
                              bounds.location_bounds_id, marker, size_percent)
 
