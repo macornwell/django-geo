@@ -4,7 +4,9 @@ from rest_framework import permissions, mixins, generics, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.decorators import APIView
 from rest_framework.response import Response
+
 from django_geo_db import serializers
+from django_geo_db.settings import require_authentication
 from django_geo_db.serializers import LocationSerializer, LocationMapTypeSerializer, LocationMapSerializer, \
     PlottedMapSerializer
 from django_geo_db.services import GEO_DAL, LocationMapGenerator
@@ -35,7 +37,8 @@ class LocationDetail(APIView):
 
 class LocationList(generics.ListAPIView):
     serializer_class = LocationSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    if require_authentication():
+        permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
         return GEO_DAL.get_all_named_locations()

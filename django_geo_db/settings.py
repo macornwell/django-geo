@@ -3,7 +3,7 @@ from django.conf import settings
 def require_authentication():
     require = True 
     try:
-        require = settings.GEO_AUTOCOMPLETE_REQUIRES_AUTHENTICATION
+        require = settings.GEO_REQUIRES_AUTHENTICATION
     except:
         pass
     return require
