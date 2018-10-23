@@ -12,6 +12,13 @@ from django_geo_db.models import Continent, Country, State, Location, City, \
     Zipcode, GeoCoordinate, County, LocationMapType, LocationMap, LocationBounds, StateRegion, \
     PlottedMap
 
+CELERY_PRESENT = True 
+
+try:
+    from django_geo_db.tasks import check_on_map_status, start_plot_map
+except:
+    CELERY_PRESENT = False
+
 
 class LocationDetail(APIView):
     def get_object(self, pk):
@@ -273,11 +280,12 @@ class LocationMapTypeDetail(APIView):
 class PlottedMapStatus(APIView):
 
     def get(self, request, pk):
+        if not CELERY_PRESENT:
+            raise Exception('Celery is not present')
         try:
             plotted_map = PlottedMap.objects.get(pk=pk)
         except PlottedMap.DoesNotExist:
             raise Http404
-        from django_geo_db.tasks import check_on_map_status
         status = check_on_map_status(plotted_map)
         return Response({'status': status})
 
@@ -285,11 +293,12 @@ class PlottedMapStatus(APIView):
 class PlottedMapDetail(APIView):
 
     def get(self, request, pk):
+        if not CELERY_PRESENT:
+            raise Exception('Celery is not present')
         try:
             plotted_map = PlottedMap.objects.get(pk=pk)
         except PlottedMap.DoesNotExist:
             raise Http404
-        from django_geo_db.tasks import check_on_map_status
         check_on_map_status(plotted_map)
         serializer = PlottedMapSerializer(plotted_map, context={'request': request})
         return Response(serializer.data)
@@ -317,6 +326,9 @@ class PlotMap(APIView):
     """
 
     def post(self, request, map_type, location_type, country_name, location_name):
+        if not CELERY_PRESENT:
+            raise Exception('Celery is not present')
+
         domain = request.build_absolute_uri('/')[0:-1]
 
         country_name = country_name.replace('-', ' ')
@@ -345,7 +357,6 @@ class PlotMap(APIView):
         plotted_map.marker_size = size_percent
         plotted_map.save()
 
-        from django_geo_db.tasks import start_plot_map
         start_plot_map.delay(plotted_map.plotted_map_id, coord_strings, domain, location_map.location_map_id,
                              bounds.location_bounds_id, marker, size_percent)
 
