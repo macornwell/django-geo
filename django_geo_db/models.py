@@ -1,8 +1,7 @@
-from django.contrib.auth.models import User
+from django.conf import settings
 from django_geo_db.utilities import BoundingBox, LatLon
 from datetime import datetime
 from django.db import models
-from django.contrib.auth.models import User
 from django_geo_db.managers import GeoCoordinateManager
 from django_geo_db.utilities import get_standardized_coordinate
 
@@ -345,6 +344,9 @@ class Location(models.Model):
         if self.region:
             if self.state or self.county or self.city or self.zipcode or self.geocoordinate:
                 raise Exception('Region must not be used for detailed locations.')
+        if self.street_address:
+            if not self.city:
+                raise Exception('Street addresses require a city.')
         if self.state and self.state.country != self.country:
             raise Exception("The state's country does not match the selected country.")
         if self.city and self.city.county != self.county:
@@ -365,6 +367,9 @@ class Location(models.Model):
         value = ''
         if self.name:
             value = '{0} ({1})'.format(self.name, self.geocoordinate)
+        elif self.street_address:
+            value = '{0} {1}, {2} {3}'.format(self.street_address, self.city.name,
+                                              self.state.abbreviation, self.zipcode.zipcode)
         elif self.zipcode:
             value = '{0}, {1} {2}'.format(self.city.name, self.state.abbreviation, self.zipcode.zipcode)
         elif self.city:
@@ -380,7 +385,11 @@ class Location(models.Model):
         return value
 
     class Meta:
-        unique_together = (('country', 'state', 'city', 'zipcode', 'geocoordinate'), ('country', 'region'))
+        unique_together = (
+            ('country', 'state', 'city', 'zipcode', 'geocoordinate'),
+            ('country', 'region'),
+            ('country', 'state', 'city', 'zipcode', 'street_address'),
+        )
 
 
 class UserLocation(models.Model):
@@ -388,7 +397,7 @@ class UserLocation(models.Model):
     A location that a user has used in the past.
     """
     user_location_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     location = models.ForeignKey(Location, on_delete=models.PROTECT)
     last_used = models.DateTimeField(default=datetime.now, blank=True)
     user_created = models.BooleanField(default=True)

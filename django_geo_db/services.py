@@ -42,12 +42,26 @@ class GeographyDAL:
             result = result.filter(street_address__iexact=street_address)
         return result.first()
 
+    def get_location_specific(self, country_name, state_name=None, county_name=None,
+                              city_name=None, zipcode=None, name=None, street_address=None):
+        result = Location.objects.filter(country__name__iexact=country_name)
+        result = result.filter(zipcode__zipcode=zipcode)
+        result = result.filter(state__name__iexact=state_name)
+        result = result.filter(county__name__iexact=county_name)
+        result = result.filter(city__name__iexact=city_name)
+        result = result.filter(name__iexact=name)
+        result = result.filter(street_address__iexact=street_address)
+        return result.first()
+
     def get_region(self, country_name, region):
         result = Location.objects.filter(country__name__iexact=country_name, region__name__iexact=region).first()
         return result
 
     def get_us_country(self):
         return Country.objects.get(name='United States of America')
+
+    def get_us_country_location(self):
+        return self.get_location_specific(country_name='United States of America')
 
     def get_us_states(self):
         return State.objects.filter(country=self.get_us_country()).order_by('name')
@@ -78,8 +92,17 @@ class GeographyDAL:
         city = zipcode.city
         state = city.state
         country = state.country
-        location, created = Location.objects.get_or_create(country=country, state=state, city=city, zipcode=zipcode, geocoordinate=coordinate, name=name)
+        location, created = Location.objects.get_or_create(country=country, state=state, city=city, zipcode=zipcode,
+                                                           geocoordinate=coordinate, name=name)
         return location
+
+    def get_or_create_street_address_location(self, street_address, zipcode):
+        city = zipcode.city
+        state = city.state
+        country = state.country
+        location, created = Location.objects.get_or_create(country=country, state=state, city=city, zipcode=zipcode,
+                                                           street_address=street_address)
+        return location, created
 
     def get_or_create_geocoordinate(self, lat, lon):
         lat_neg, lat_tens, lat_ones, lat_tenths, lat_hundredths, lat_thousands, lat_ten_thousands, other2 = GeoCoordinate.split_lat_coordinate(str(lat))

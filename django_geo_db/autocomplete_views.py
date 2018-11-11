@@ -120,7 +120,6 @@ class CountyAutocomplete(autocomplete.Select2QuerySetView):
         return qs
 
 
-
 class ZipcodeAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         if require_authentication():
@@ -134,6 +133,17 @@ class ZipcodeAutocomplete(autocomplete.Select2QuerySetView):
                 Q(generated_name__iendswith=self.q)
             )
         return qs
+
+
+class SimpleZipcodeAutocomplete(ZipcodeAutocomplete):
+    def get_selected_result_label(self, result):
+        return result.zipcode
+
+    def get_result_value(self, result):
+        return result.zipcode
+
+    def get_result_label(self, result):
+        return result.zipcode
 
 
 class GeoCoordinateAutocomplete(autocomplete.Select2QuerySetView):

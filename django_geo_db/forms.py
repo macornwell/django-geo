@@ -1,6 +1,6 @@
 from django import forms
 from dal.autocomplete import ModelSelect2
-from django_geo_db.models import UserLocation, City, Location, GeoCoordinate, Region, LocationMap, LocationBounds
+from django_geo_db.models import UserLocation, City, Location, GeoCoordinate, Region, LocationMap, LocationBounds, Zipcode
 from django_geo_db.widgets import GeocoordinateWidget
 
 
@@ -78,3 +78,13 @@ class CityForm(forms.ModelForm):
             }
         fields = '__all__'
 
+
+class ZipcodeChoiceField(forms.ModelChoiceField):
+
+    def __init__(self):
+        super(ZipcodeChoiceField, self).__init__(
+            queryset=Zipcode.objects.all(),
+            widget=ModelSelect2(url='simple-zipcode-autocomplete'))
+
+    def label_from_instance(self, zipcode):
+        return zipcode.zipcode

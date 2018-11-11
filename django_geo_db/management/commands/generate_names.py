@@ -24,6 +24,15 @@ class Command(BaseCommand):
                     print('Exception occurred while committing.')
                     raise e
                 buffer = []
+        if len(buffer) > 0:
+            try:
+                with transaction.atomic():
+                    for l in buffer:
+                        l.save()
+                print('Saved {0}'.format(len(buffer)))
+            except IntegrityError as e:
+                print('Exception occurred while committing.')
+                raise e
 
     def handle(self, *args, **options):
         self.__generate(Location)
