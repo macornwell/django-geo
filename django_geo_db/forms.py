@@ -81,10 +81,12 @@ class CityForm(forms.ModelForm):
 
 class ZipcodeChoiceField(forms.ModelChoiceField):
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         super(ZipcodeChoiceField, self).__init__(
             queryset=Zipcode.objects.all(),
-            widget=ModelSelect2(url='simple-zipcode-autocomplete'))
+            widget=ModelSelect2(url='simple-zipcode-autocomplete'),
+            **kwargs
+        )
 
     def label_from_instance(self, zipcode):
         return zipcode.zipcode
