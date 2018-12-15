@@ -22,6 +22,15 @@ US_STATES_BOUNDS_FILE = 'us-state-boundaries.json'
 
 class GeographyDAL:
 
+    def __googlemaps_available(self):
+        try:
+            import googlemaps
+            from django.conf import settings
+            gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
+            return True
+        except:
+            return False
+
     def get_map_type(self, map_type):
         return LocationMapType.objects.get(type=map_type)
 
@@ -88,6 +97,9 @@ class GeographyDAL:
     def get_zipcode_by_zip(self, zipcode):
         return Zipcode.objects.get(zipcode=zipcode)
 
+    def get_zipcode_by_id(self, zipcode_id):
+        return Zipcode.objects.get(zipcode_id=zipcode_id)
+
     def create_location(self, zipcode, coordinate, name):
         city = zipcode.city
         state = city.state
@@ -102,7 +114,28 @@ class GeographyDAL:
         country = state.country
         location, created = Location.objects.get_or_create(country=country, state=state, city=city, zipcode=zipcode,
                                                            street_address=street_address)
+        if created and not geocoordinate:
+            if self.__googlemaps_available():
+                try:
+                    lat, lon = self.geocode_location_get_lat_lon(location)
+                    geocoordinate = self.get_or_create_geocoordinate(lat, lon)
+                    location.geocoordinate = geocoordinate
+                    location.save()  # This will set the name as well.
+                except Exception as e:
+                    print(e)
+                    pass
         return location, created
+
+    def geocode_location_get_lat_lon(self, location):
+        import googlemaps
+        from django.conf import settings
+        gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
+        geocode_result = gmaps.geocode(str(location))
+        result = geocode_result[0]
+        geo_coord = result['geometry']['location']
+        lat = geo_coord['lat']
+        lon = geo_coord['lng']
+        return lat, lon
 
     def get_or_create_geocoordinate(self, lat, lon):
         lat_neg, lat_tens, lat_ones, lat_tenths, lat_hundredths, lat_thousands, lat_ten_thousands, other2 = GeoCoordinate.split_lat_coordinate(str(lat))

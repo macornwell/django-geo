@@ -109,6 +109,7 @@ class GeoCoordinate(models.Model):
         zeros_to_add = 8 - len(coord_points)
         for i in range(0, zeros_to_add):
             coord_points.append(0)
+        coord_points = coord_points[0:8]
         return coord_points
 
     @staticmethod
@@ -137,6 +138,7 @@ class GeoCoordinate(models.Model):
         zeros_to_add = 9 - len(coord_points)
         for i in range(0, zeros_to_add):
             coord_points.append(0)
+        coord_points = coord_points[0:9]
         return coord_points
 
     class Meta:
@@ -268,6 +270,11 @@ class Zipcode(models.Model):
         return str('{0}, {1} {2}'.format(self.city.name, self.city.state.name, self.zipcode))
 
 
+class StreetType(models.Model):
+    street_type_id = models.AutoField(primary_key=True)
+    type = models.CharField(max_length=20, unique=True)
+
+
 class Location(models.Model):
     """
     The working horse of locational data.
@@ -277,6 +284,7 @@ class Location(models.Model):
 
     Exceptions:
     Regions - Regions are special case entities that are not required to fill out since they are not political boundaries.
+    Street Addresses - The name value cannot be anything other the street_address value.
     """
     location_id = models.AutoField(primary_key=True)
     country = models.ForeignKey(Country, on_delete=models.PROTECT)
@@ -339,6 +347,8 @@ class Location(models.Model):
             self.country = self.state.country
         if self.region and not self.country:
             self.country = self.region.country
+        if self.street_address and self.geocoordinate:
+            self.name = self.street_address
 
     def __validate_interconnection_details(self):
         if self.region:
@@ -347,6 +357,8 @@ class Location(models.Model):
         if self.street_address:
             if not self.city:
                 raise Exception('Street addresses require a city.')
+            if self.geocoordinate and not self.name:
+                self.name = self.street_address
         if self.state and self.state.country != self.country:
             raise Exception("The state's country does not match the selected country.")
         if self.city and self.city.county != self.county:
@@ -358,18 +370,19 @@ class Location(models.Model):
         if self.name and not self.geocoordinate:
             raise Exception('Names must have a geocoordinate.')
         if not self.name and self.geocoordinate:
-            raise Exception('Geocoordinates must be named.')
+            if not self.street_address:
+                raise Exception('Geocoordinates must be named.')
 
     def __set_generated_name(self):
         self.generated_name = self.__get_generated_name()
 
     def __get_generated_name(self):
         value = ''
-        if self.name:
-            value = '{0} ({1})'.format(self.name, self.geocoordinate)
-        elif self.street_address:
+        if self.street_address:
             value = '{0} {1}, {2} {3}'.format(self.street_address, self.city.name,
                                               self.state.abbreviation, self.zipcode.zipcode)
+        elif self.name:
+            value = '{0} ({1})'.format(self.name, self.geocoordinate)
         elif self.zipcode:
             value = '{0}, {1} {2}'.format(self.city.name, self.state.abbreviation, self.zipcode.zipcode)
         elif self.city:
@@ -388,7 +401,7 @@ class Location(models.Model):
         unique_together = (
             ('country', 'state', 'city', 'zipcode', 'geocoordinate'),
             ('country', 'region'),
-            ('country', 'state', 'city', 'zipcode', 'street_address'),
+            ('country', 'state', 'city', 'zipcode', 'street_address'),  # Only one street_address no to multi-geoocoords
         )
 
 
