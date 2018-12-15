@@ -270,11 +270,6 @@ class Zipcode(models.Model):
         return str('{0}, {1} {2}'.format(self.city.name, self.city.state.name, self.zipcode))
 
 
-class StreetType(models.Model):
-    street_type_id = models.AutoField(primary_key=True)
-    type = models.CharField(max_length=20, unique=True)
-
-
 class Location(models.Model):
     """
     The working horse of locational data.
