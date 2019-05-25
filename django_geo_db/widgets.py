@@ -8,7 +8,7 @@ class GeocoordinateWidget(forms.TextInput):
             'all': ('styles.css',)
         }
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         context = {
             'name': name,
             'value': value,

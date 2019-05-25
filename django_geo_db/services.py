@@ -19,6 +19,18 @@ US_STATES_FILE = 'us-states.csv'
 COUNTRIES_FILE = 'countries.csv'
 US_STATES_BOUNDS_FILE = 'us-state-boundaries.json'
 
+US_TERRITORIES = [
+    'American Samoa',
+    'Federated States Of Micronesia',
+    'Guam',
+    'Marshall Islands',
+    'Northern Mariana Islands',
+    'Palau',
+    'Puero Rico',
+    'Puerto Rico',
+    'Saint Thomas',
+]
+
 
 class GeographyDAL:
 
@@ -30,6 +42,9 @@ class GeographyDAL:
             return True
         except:
             return False
+
+    def get_state_by_name(self, state_name):
+        return State.objects.get(name__iexact=state_name)
 
     def get_map_type(self, map_type):
         return LocationMapType.objects.get(type=map_type)
@@ -73,7 +88,7 @@ class GeographyDAL:
         return self.get_location_specific(country_name='United States of America')
 
     def get_us_states(self):
-        return State.objects.filter(country=self.get_us_country()).order_by('name')
+        return State.objects.filter(country=self.get_us_country()).exclude(name__in=US_TERRITORIES).order_by('name')
 
     def get_country_by_name(self, name):
         country = Country.objects.filter(name__iexact=name).first()
@@ -114,7 +129,7 @@ class GeographyDAL:
         country = state.country
         location, created = Location.objects.get_or_create(country=country, state=state, city=city, zipcode=zipcode,
                                                            street_address=street_address)
-        if created and not geocoordinate:
+        if created and not location.geocoordinate:
             if self.__googlemaps_available():
                 try:
                     lat, lon = self.geocode_location_get_lat_lon(location)

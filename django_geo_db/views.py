@@ -169,14 +169,21 @@ class GeoCoordinateList(mixins.ListModelMixin,
         return self.list(request, *args, **kwargs)
 
 
-class GeoCoordinateDetails(mixins.RetrieveModelMixin,
-                     generics.GenericAPIView):
+class GeoCoordinateDetails(
+                            mixins.CreateModelMixin,
+                           generics.RetrieveUpdateDestroyAPIView
+                           ):
     queryset = GeoCoordinate.objects.all()
     serializer_class = serializers.GeoCoordinateSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
+    def update(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
+
+    def partial_update(self, request, *args, **kwargs):
+        return super().partial_update(request, *args, **kwargs)
 
 class StateRegionList(mixins.ListModelMixin,
                       generics.GenericAPIView):

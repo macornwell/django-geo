@@ -68,6 +68,48 @@ class ZipcodeSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('zipcode_id', 'city', 'zipcode', 'geocoordinate', 'timezone', 'url')
 
 
+class SimpleLocationSerializer(serializers.ModelSerializer):
+    display = serializers.SerializerMethodField()
+    lat = serializers.SerializerMethodField()
+    lon = serializers.SerializerMethodField()
+    state = serializers.SerializerMethodField()
+    city = serializers.SerializerMethodField()
+    zipcode = serializers.SerializerMethodField()
+
+    def get_display(self, obj):
+        return obj.generated_name
+
+    def get_lat(self, obj):
+        return str(obj.get_geocoordinate().lat)
+
+    def get_lon(self, obj):
+        return str(obj.get_geocoordinate().lon)
+
+    def get_state(self, obj):
+        if obj.state:
+            return obj.state.name
+        return None
+
+    def get_county(self, obj):
+        if obj.county:
+            return obj.county.name
+        return None
+
+    def get_zipcode(self, obj):
+        if obj.zipcode:
+            return obj.zipcode.zipcode
+        return None
+
+    def get_city(self, obj):
+        if obj.city:
+            return obj.city.name
+        return None
+
+    class Meta:
+        model = Location
+        fields = ('location_id', 'lat', 'lon', 'city', 'state', 'zipcode', 'display')
+
+
 class LocationSerializer(serializers.ModelSerializer):
     lat = serializers.SerializerMethodField()
     lon = serializers.SerializerMethodField()
