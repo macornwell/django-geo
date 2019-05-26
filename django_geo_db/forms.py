@@ -1,12 +1,33 @@
 from django import forms
 from dal.autocomplete import ModelSelect2
-from django_geo_db.models import UserLocation, City, Location, GeoCoordinate, Region, LocationMap, LocationBounds, Zipcode
+from django_geo_db import models
 from django_geo_db.widgets import GeocoordinateWidget
+from django_geo_db.services import GEO_DAL
+
+
+class AddUSZipcodeForm(forms.Form):
+    zipcode = forms.IntegerField(min_value=1, max_value=99999)
+    timezone = forms.ChoiceField(choices=models.US_TIMEZONE_CHOICES)
+    city = forms.ModelChoiceField(
+        queryset=models.City.objects.all(),
+        widget=ModelSelect2(url='city-autocomplete'),
+    )
+
+    def clean(self):
+        cleaned_data = super(AddUSZipcodeForm, self).clean()
+        zipcode = int(self.data.get('zipcode'))
+        city = self.data.get('city')
+
+        if GEO_DAL.does_zipcode_exist(zipcode):
+            self.add_error('zipcode', "This zipcode already exists.")
+        if not city:
+            self.add_error('city', 'Must have city')
+        return
 
 
 class GeocoordinateForm(forms.ModelForm):
     class Meta:
-        model = GeoCoordinate
+        model = models.GeoCoordinate
         fields = [
             'generated_name',
             'lat',
@@ -19,7 +40,7 @@ class GeocoordinateForm(forms.ModelForm):
 
 class UserLocationForm(forms.ModelForm):
     class Meta:
-        model = UserLocation
+        model = models.UserLocation
         widgets = {
             'location': ModelSelect2(url='location-autocomplete')
         }
@@ -29,7 +50,7 @@ class UserLocationForm(forms.ModelForm):
 
 class LocationForm(forms.ModelForm):
     class Meta:
-        model = Location
+        model = models.Location
         widgets = {
             'zipcode': ModelSelect2(url='zipcode-autocomplete'),
             'city': ModelSelect2(url='city-autocomplete'),
@@ -41,7 +62,7 @@ class LocationForm(forms.ModelForm):
 
 class RegionForm(forms.ModelForm):
     class Meta:
-        model = Region
+        model = models.Region
         widgets = {
             'country': ModelSelect2(url='country-autocomplete'),
             'geocoordinate': ModelSelect2(url='geocoordinate-autocomplete'),
@@ -51,7 +72,7 @@ class RegionForm(forms.ModelForm):
 
 class LocationMapForm(forms.ModelForm):
     class Meta:
-        model = LocationMap
+        model = models.LocationMap
         widgets = {
             'location': ModelSelect2(url='location-autocomplete'),
             }
@@ -61,7 +82,7 @@ class LocationMapForm(forms.ModelForm):
 
 class LocationBoundsForm(forms.ModelForm):
     class Meta:
-        model = LocationBounds
+        model = models.LocationBounds
         widgets = {
             'location': ModelSelect2(url='location-autocomplete'),
             }
@@ -70,7 +91,7 @@ class LocationBoundsForm(forms.ModelForm):
 
 class CityForm(forms.ModelForm):
     class Meta:
-        model = City
+        model = models.City
         widgets = {
             'zipcode': ModelSelect2(url='zipcode-autocomplete'),
             'county': ModelSelect2(url='county-autocomplete'),
@@ -83,7 +104,7 @@ class ZipcodeChoiceField(forms.ModelChoiceField):
 
     def __init__(self, **kwargs):
         super(ZipcodeChoiceField, self).__init__(
-            queryset=Zipcode.objects.all(),
+            queryset=models.Zipcode.objects.all(),
             widget=ModelSelect2(url='simple-zipcode-autocomplete'),
             **kwargs
         )

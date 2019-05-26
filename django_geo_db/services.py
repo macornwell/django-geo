@@ -7,11 +7,9 @@ from django.db.models import Q
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.files.storage import default_storage
 
+from django_geo_db import models
 from django_geo_db.utilities import MarkedMap
 from django_geo_db.storage import DataStorage
-
-from django_geo_db.models import UserLocation, Zipcode, Location, Country, \
-    State, LocationMap, LocationBounds, LocationMapType, GeoCoordinate
 
 
 US_CITIES_FILE = 'us-data-final.csv'
@@ -44,13 +42,13 @@ class GeographyDAL:
             return False
 
     def get_state_by_name(self, state_name):
-        return State.objects.get(name__iexact=state_name)
+        return models.State.objects.get(name__iexact=state_name)
 
     def get_map_type(self, map_type):
-        return LocationMapType.objects.get(type=map_type)
+        return models.LocationMapType.objects.get(type=map_type)
 
     def get_location(self, country_name, state_name=None, county_name=None, city_name=None, zipcode=None, name=None, street_address=None):
-        result = Location.objects.filter(country__name__iexact=country_name)
+        result = models.Location.objects.filter(country__name__iexact=country_name)
         if zipcode:
             result = result.filter(zipcode__zipcode=zipcode).first()
             return result
@@ -68,7 +66,7 @@ class GeographyDAL:
 
     def get_location_specific(self, country_name, state_name=None, county_name=None,
                               city_name=None, zipcode=None, name=None, street_address=None):
-        result = Location.objects.filter(country__name__iexact=country_name)
+        result = models.Location.objects.filter(country__name__iexact=country_name)
         result = result.filter(zipcode__zipcode=zipcode)
         result = result.filter(state__name__iexact=state_name)
         result = result.filter(county__name__iexact=county_name)
@@ -78,48 +76,59 @@ class GeographyDAL:
         return result.first()
 
     def get_region(self, country_name, region):
-        result = Location.objects.filter(country__name__iexact=country_name, region__name__iexact=region).first()
+        result = models.Location.objects.filter(country__name__iexact=country_name, region__name__iexact=region).first()
         return result
 
     def get_us_country(self):
-        return Country.objects.get(name='United States of America')
+        return models.Country.objects.get(name='United States of America')
 
     def get_us_country_location(self):
         return self.get_location_specific(country_name='United States of America')
 
     def get_us_states(self):
-        return State.objects.filter(country=self.get_us_country()).exclude(name__in=US_TERRITORIES).order_by('name')
+        return models.State.objects.filter(country=self.get_us_country()).exclude(name__in=US_TERRITORIES).order_by('name')
+
+    def get_city_by_id(self, city_id):
+        return models.City.objects.get(pk=city_id)
 
     def get_country_by_name(self, name):
-        country = Country.objects.filter(name__iexact=name).first()
+        country = models.Country.objects.filter(name__iexact=name).first()
         return country
 
     def get_all_named_locations(self, include_private=False):
-        objects = Location.objects.filter(name__isnull=False)
+        objects = models.Location.objects.filter(name__isnull=False)
         return objects
 
     def get_location_by_id(self, id):
-        return Location.objects.get(pk=id)
+        return models.Location.objects.get(pk=id)
 
     def get_users_locations(self, user):
-        return UserLocation.objects.filter(user=user).values_list('location', flat=True)
+        return models.Usermodels.Location.objects.filter(user=user).values_list('location', flat=True)
 
     def append_user_location(self, user, locationUsedByUser):
-        obj, created = UserLocation.objects.get_or_create(user=user, location=locationUsedByUser)
+        obj, created = models.Usermodels.Location.objects.get_or_create(user=user, location=locationUsedByUser)
         if not created:
             obj.save()  # This triggers the updating of the date.
 
     def get_zipcode_by_zip(self, zipcode):
-        return Zipcode.objects.get(zipcode=zipcode)
+        return models.Zipcode.objects.get(zipcode=zipcode)
+
+    def does_zipcode_exist(self, zipcode):
+        return models.Zipcode.objects.filter(zipcode=zipcode).exists()
 
     def get_zipcode_by_id(self, zipcode_id):
-        return Zipcode.objects.get(zipcode_id=zipcode_id)
+        return models.Zipcode.objects.get(zipcode_id=zipcode_id)
+
+    def create_zipcode(self, city, zipcode, timezone, geocoordinate=None):
+        if not geocoordinate:
+            geocoordinate = city.geocoordinate
+        return models.Zipcode.objects.create(city=city, zipcode=zipcode, geocoordinate=geocoordinate, timezone=timezone)
 
     def create_location(self, zipcode, coordinate, name):
         city = zipcode.city
         state = city.state
         country = state.country
-        location, created = Location.objects.get_or_create(country=country, state=state, city=city, zipcode=zipcode,
+        location, created = models.Location.objects.get_or_create(country=country, state=state, city=city, zipcode=zipcode,
                                                            geocoordinate=coordinate, name=name)
         return location
 
@@ -127,7 +136,7 @@ class GeographyDAL:
         city = zipcode.city
         state = city.state
         country = state.country
-        location, created = Location.objects.get_or_create(country=country, state=state, city=city, zipcode=zipcode,
+        location, created = models.Location.objects.get_or_create(country=country, state=state, city=city, zipcode=zipcode,
                                                            street_address=street_address)
         if created and not location.geocoordinate:
             if self.__googlemaps_available():
@@ -153,16 +162,16 @@ class GeographyDAL:
         return lat, lon
 
     def get_or_create_geocoordinate(self, lat, lon):
-        lat_neg, lat_tens, lat_ones, lat_tenths, lat_hundredths, lat_thousands, lat_ten_thousands, other2 = GeoCoordinate.split_lat_coordinate(str(lat))
-        lon_neg, lon_hundreds, lon_tens, lon_ones, lon_tenths, lon_hundredths, lon_thousands, lon_ten_thousands, other2 = GeoCoordinate.split_lon_coordinate(str(lon))
-        coord = GeoCoordinate.objects.filter(lat_neg=lat_neg, lat_tens=lat_tens, lat_ones=lat_ones,
+        lat_neg, lat_tens, lat_ones, lat_tenths, lat_hundredths, lat_thousands, lat_ten_thousands, other2 = models.GeoCoordinate.split_lat_coordinate(str(lat))
+        lon_neg, lon_hundreds, lon_tens, lon_ones, lon_tenths, lon_hundredths, lon_thousands, lon_ten_thousands, other2 = models.GeoCoordinate.split_lon_coordinate(str(lon))
+        coord = models.GeoCoordinate.objects.filter(lat_neg=lat_neg, lat_tens=lat_tens, lat_ones=lat_ones,
                                              lat_tenths=lat_tenths, lat_hundredths=lat_hundredths,
                                              lat_thousands=lat_thousands, lat_ten_thousands=lat_ten_thousands,
                                              lon_neg=lon_neg, lon_hundreds=lon_hundreds, lon_tens=lon_tens,
                                              lon_ones=lon_ones, lon_tenths=lon_tenths, lon_hundredths=lon_hundredths,
                                              lon_ten_thousands=lon_ten_thousands).first()
         if not coord:
-            coord = GeoCoordinate()
+            coord = models.GeoCoordinate()
             coord.lat = lat
             coord.lon = lon
             coord.save()
@@ -181,7 +190,7 @@ class GeographyDAL:
             obj = reverse_geocode_result[0]['address_components']
             if obj[index]['types'][0] == 'postal_code':
                 zipcode = obj[index]['short_name']
-                zipcodeObj = Zipcode.objects.get(zipcode=zipcode)
+                zipcodeObj = models.Zipcode.objects.get(zipcode=zipcode)
                 break
         return zipcodeObj
 
@@ -220,13 +229,13 @@ class GeographyDAL:
                         break
                 value = value.strip()
                 if is_county:
-                    location = Location.objects.filter(county__name__iexact=value, state__name__iexact=state,
+                    location = models.Location.objects.filter(county__name__iexact=value, state__name__iexact=state,
                                                        city=None).first()
                 else:
-                    location = Location.objects.filter(city__name__iexact=value, state__name__iexact=state,
+                    location = models.Location.objects.filter(city__name__iexact=value, state__name__iexact=state,
                                                        zipcode__isnull=True).first()
             else:
-                location = Location.objects.filter(Q(country__name__iexact=q, state=None, region=None) |
+                location = models.Location.objects.filter(Q(country__name__iexact=q, state=None, region=None) |
                                                    Q(state__name__iexact=q, city=None, county=None)).first()
             results.append(location)
         return results
@@ -310,7 +319,7 @@ def get_us_states_boundaries():
 
 class LocationMapGenerator:
     """
-    Creates a LocationMap object. This takes into consideration the type (used as the underlying map)
+    Creates a models.LocationMap object. This takes into consideration the type (used as the underlying map)
     and the location. If the location is more detailed than a state, a star is generated on the map
     where the location exists.
 
@@ -322,12 +331,12 @@ class LocationMapGenerator:
         self.domain = domain
 
     def get_regional_map(self, type, location):
-        map = LocationMap.objects.filter(location=location, type=type).first()
+        map = models.LocationMap.objects.filter(location=location, type=type).first()
         if not map:
             url = 'img/django_geo_db/maps/{0}/{1}/{2}.png'.format(type, location.country.name.replace(' ', '-').lower(),
                                                                   location.region.name.replace(' ', '-').lower())
             url, base_map = self.__get_map(url)
-            map = LocationMap()
+            map = models.LocationMap()
             map.location = location
             map.type = type
             map.map_file_url = url
@@ -335,7 +344,7 @@ class LocationMapGenerator:
         return map
 
     def get_or_generate_location_map(self, type, location):
-        map = LocationMap.objects.filter(location=location, type=type).first()
+        map = models.LocationMap.objects.filter(location=location, type=type).first()
         if not map:
             url, base_map = self.__get_base_map(type, location)
             coord_obj = None
@@ -349,15 +358,15 @@ class LocationMapGenerator:
             elif location.county:
                 coord_obj = location.county.geocoordinate
             if location.state:
-                location_bounds_location_obj = Location.objects.get(state=location.state, county=None, city=None)
+                location_bounds_location_obj = models.Location.objects.get(state=location.state, county=None, city=None)
             if coord_obj and not location_bounds_location_obj:
                 location_bounds_location_obj = location
             location_bounds = None
             if location_bounds_location_obj:
-                location_bounds = LocationBounds.objects.get(location=location_bounds_location_obj)
+                location_bounds = models.LocationBounds.objects.get(location=location_bounds_location_obj)
 
             # If we have a coordinate, that means we have a specific spot to build a generated detailed map on.
-            map = LocationMap()
+            map = models.LocationMap()
             map.location = location
             map.type = type
             if coord_obj:

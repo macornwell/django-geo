@@ -17,6 +17,19 @@ CELERY_STATUS_CHOICES = (
     (CELERY_SUCCESS, 'Success'),
 )
 
+US_TIMEZONE_CHOICES = (
+    (-11, 'American Samoa'),
+    (-10, 'Hawaii–Aleutian Time Zone'),
+    (-9, 'Alaskan'),
+    (-8, 'Pacific'),
+    (-7, 'Mountain'),
+    (-6, 'Central'),
+    (-5, 'Eastern'),
+    (10, 'Guam'),
+    (12, 'Wake Island'),
+
+)
+
 
 class IntegerRangeField(models.IntegerField):
     def __init__(self, verbose_name=None, name=None, min_value=None, max_value=None, **kwargs):
