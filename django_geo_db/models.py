@@ -496,8 +496,20 @@ class GeographicShape(models.Model):
     An arbitrary shape enclosed by GeoCoordinates
     """
     geographic_shape_id = models.AutoField(primary_key=True)
-    geocoordinates = models.ManyToManyField(GeoCoordinate)
     name = models.CharField(max_length=40, unique=True)
+
+
+class GeographicShapeCoordinate(models.Model):
+    """
+    A point to a geographic shape.
+    """
+    geographic_shape_coordinate_id = models.AutoField(primary_key=True)
+    geographic_shape = models.ForeignKey(GeographicShape, on_delete=models.CASCADE)
+    order = models.IntegerField()
+    geocoordinate = models.ForeignKey(GeoCoordinate, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = (('geographic_shape', 'order'), )
 
 
 class StateRegion(models.Model):

@@ -79,6 +79,9 @@ class GeographyDAL:
         result = models.Location.objects.filter(country__name__iexact=country_name, region__name__iexact=region).first()
         return result
 
+    def get_boundary_for_us_state(self, state):
+        models.LocationBounds
+
     def get_us_country(self):
         return models.Country.objects.get(name='United States of America')
 
@@ -240,6 +243,23 @@ class GeographyDAL:
             results.append(location)
         return results
 
+    def does_geographic_shape_exist(self, name):
+        return models.GeographicShape.objects.filter(name=name).exists()
+
+    def create_geographic_shape(self, name):
+        shape = models.GeographicShape.objects.create(name=name)
+        return shape
+
+    def create_geographic_shape_coordinate(self, geographic_shape_id, order, lat, lon):
+        geocoordinate = self.get_or_create_geocoordinate(lat, lon)
+        return models.GeographicShapeCoordinate.objects.create(geographic_shape_id=geographic_shape_id, geocoordinate=geocoordinate, order=order)
+
+    def delete_geographic_shape(self, geographic_shape_id):
+        models.GeographicShape.objects.get(pk=geographic_shape_id).delete()
+
+    def delete_geographic_shape_coordinate(self, geographic_shape_coordinate_id):
+        models.GeographicShapeCoordinate.objects.get(pk=geographic_shape_coordinate_id).delete()
+
 
 GEO_DAL = GeographyDAL()
 
@@ -315,6 +335,39 @@ def get_us_states_boundaries():
     with open(file_path) as file:
         data = json.load(file)
     return data
+
+
+class GeographicShapeBuilder:
+
+    def list_us_shape_data(self):
+        data = get_us_states_boundaries()
+        states = data['states']['state']
+        for state in states:
+            name = state['-name']
+            points = state['point']
+            yield (name, points)
+
+    def create_us_states_geographic_shapes(self):
+        for name, points in self.list_us_shape_data():
+            shape, shape_coordinates = self.create_geographic_shapes(name, points)
+
+    def create_geographic_shapes(self, name, boundary_dict_list):
+        shape = GEO_DAL.create_geographic_shape(name)
+        points = []
+        try:
+            order = 1
+            for p in boundary_dict_list:
+                lat = float(p["-lat"])
+                lon = float(p["-lng"])
+                point = GEO_DAL.create_geographic_shape_coordinate(shape.pk, order, lat, lon)
+                points.append(point)
+                order += 1
+        except Exception as e:
+            for p in points:
+                GEO_DAL.delete_geographic_shape_coordinate(p.pk)
+            GEO_DAL.delete_geographic_shape(shape.pk)
+            raise e
+        return (shape, points)
 
 
 class LocationMapGenerator:
