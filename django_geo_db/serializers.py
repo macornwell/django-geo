@@ -172,4 +172,3 @@ class PlottedMapSerializer(serializers.ModelSerializer):
         model = PlottedMap
         fields = ('plotted_map_id', 'map_file_url')
 
-

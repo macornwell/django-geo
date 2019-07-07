@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.shortcuts import Http404
-from rest_framework import permissions, mixins, generics, status
+from rest_framework import permissions, mixins, generics, status, decorators
 from rest_framework.exceptions import ValidationError
 from rest_framework.decorators import APIView
 from rest_framework.response import Response
@@ -416,4 +416,15 @@ class GeoLocate(APIView):
         results = GEO_DAL.geolocate(queries)
         serializer = LocationSerializer(results, context={'request': request}, many=True)
         return Response(serializer.data)
+
+
+@decorators.api_view(['GET', ])
+@decorators.permission_classes([permissions.AllowAny])
+def geographic_border(request, name):
+    data = GEO_DAL.get_geographic_shape_coordinates_data(name)
+    data = {
+        'name': name,
+        'data': data
+    }
+    return Response(data)
 

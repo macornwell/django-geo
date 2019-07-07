@@ -3,6 +3,7 @@ import csv
 import json
 import urllib.request
 
+from django.db import connection
 from django.db.models import Q
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.files.storage import default_storage
@@ -28,6 +29,14 @@ US_TERRITORIES = [
     'Puerto Rico',
     'Saint Thomas',
 ]
+
+def fetch_all_dict(cursor):
+    "Return all rows from a cursor as a dict"
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
 
 
 class GeographyDAL:
@@ -241,6 +250,46 @@ class GeographyDAL:
                 location = models.Location.objects.filter(Q(country__name__iexact=q, state=None, region=None) |
                                                    Q(state__name__iexact=q, city=None, county=None)).first()
             results.append(location)
+        return results
+
+    def get_geographic_shape_coordinates_data(self, name):
+        coordinates = []
+        for coord in models.GeographicShapeCoordinate.objects.filter(geographic_shape__name=name).select_related('geocoordinate').order_by('order'):
+            coordinates.append({'lat': coord.geocoordinate.lat, 'lon': coord.geocoordinate.lon, 'order': coord.order})
+        return coordinates
+
+    def get_geographic_shape_coordinate_data_for_list(self, name_list):
+        where_clause = ''
+        if len(name_list) > 1:
+            for i in range(0, len(name_list)):
+                where_clause += 'shape.name = %s OR '
+            where_clause = where_clause[0:-3]
+        else:
+            where_clause = "shape.name = %s "
+        query = f"""
+            SELECT shape.name, coord.order, geo.lat, geo.lon
+            FROM django_geo_db_geographicshapecoordinate as coord
+            LEFT JOIN django_geo_db_geographicshape as shape on shape.geographic_shape_id = coord.geographic_shape_id
+            LEFT JOIN django_geo_db_geocoordinate as geo on geo.geocoordinate_id = coord.geocoordinate_id
+            WHERE {where_clause}
+            ORDER BY shape.name, coord.order"""
+        results = {}
+        with connection.cursor() as cursor:
+            cursor.execute(query, name_list)
+            for line in fetch_all_dict(cursor):
+                name = line['name']
+                if name not in results:
+                    results[name] = []
+                data = results[name]
+                data.append({
+                    'order': line['order'],
+                    'lat': line['lat'],
+                    'lon': line['lon'],
+                })
+        results = [
+            (key, results[key])
+            for key in sorted(results.keys())
+        ]
         return results
 
     def does_geographic_shape_exist(self, name):

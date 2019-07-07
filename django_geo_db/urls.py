@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^zipcodes/(?P<pk>\d+)/$', views.ZipcodeDetails.as_view(), name='zipcode-detail'),
     url(r'^locations/(?P<pk>[0-9]+)/$', views.LocationDetail.as_view(), name='location-detail'),
     url(r'^state-regions/(?P<pk>[0-9]+)/$', views.StateRegionDetails.as_view(), name='state-region-detail'),
+    url(r'^geographic-border/(?P<name>.+)/$', views.geographic_border, name='geographic-border'),
 
     url(r'^geocoordinates/$', views.GeoCoordinateList.as_view(), name='geocoordinate-list'),
     url(r'^continentsx/$', views.ContinentList.as_view(), name='continent-list'),
